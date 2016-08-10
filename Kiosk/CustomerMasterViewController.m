@@ -6,23 +6,45 @@
 //  Copyright © 2016 ovlesser. All rights reserved.
 //
 
-#import "MasterViewController.h"
-#import "DetailViewController.h"
+#import "CustomerMasterViewController.h"
+#import "CustomerDetailViewController.h"
+#import "CustomerCell.h"
+#import "AppDelegate.h"
 
-@interface MasterViewController ()
+static NSString *customerCellIdentifier = @"CustomerCell";
+
+static NSString * const kCustomerEntityName = @"Customer";
+static NSString * const kNameKey = @"name";
+static NSString * const kMobileKey = @"mobile";
+static NSString * const kIdentificationKey = @"identification";
+static NSString * const kAddressKey = @"address";
+static NSString * const kNicknameKey = @"nickname";
+
+@interface CustomerMasterViewController ()
 
 @end
 
-@implementation MasterViewController
+@implementation CustomerMasterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    //self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+
+    UITableView *tableView = (id)[self.view viewWithTag:1];
+    tableView.rowHeight = 94;
+    UINib *nib = [UINib nibWithNibName:@"CustomerCell" bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:customerCellIdentifier];
+    
+    UIEdgeInsets contentInset = tableView.contentInset;
+    contentInset.top = 20;
+    [tableView setContentInset:contentInset];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -36,14 +58,27 @@
 }
 
 - (void)insertNewObject:(id)sender {
+    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomerDetailNavigation"];
+    self.detailViewController = (CustomerDetailViewController *)[navigationController topViewController];
+    //controller.managedObjectContext = self.managedObjectContext;
+    //controller.fetchedResultsController = self.fetchedResultsController;
+    self.detailViewController.masterViewController = self;
+    [self.navigationController pushViewController:navigationController animated:YES];
+}
+
+- (void)save {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-        
+    
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-        
+    [newManagedObject setValue:self.detailViewController.nameField.text forKey:kNameKey];
+    [newManagedObject setValue:self.detailViewController.mobileField.text forKey:kMobileKey];
+    [newManagedObject setValue:self.detailViewController.addressField.text forKey:kAddressKey];
+    [newManagedObject setValue:self.detailViewController.identificationField.text forKey:kIdentificationKey];
+    [newManagedObject setValue:self.detailViewController.nicknameField.text forKey:kNicknameKey];
+    
     // Save the context.
     NSError *error = nil;
     if (![context save:&error]) {
@@ -52,6 +87,7 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    
 }
 
 #pragma mark - Segues
@@ -60,7 +96,7 @@
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
+        CustomerDetailViewController *controller = (CustomerDetailViewController *)[[segue destinationViewController] topViewController];
         [controller setDetailItem:object];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
@@ -79,7 +115,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    CustomerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomerCell" forIndexPath:indexPath];
     NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     [self configureCell:cell withObject:object];
     return cell;
@@ -105,8 +141,13 @@
     }
 }
 
-- (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object {
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+- (void)configureCell:(CustomerCell *)cell withObject:(NSManagedObject *)object {
+    //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    cell.name = [object valueForKey:kNameKey];
+    cell.mobile = [object valueForKey:kMobileKey];
+    cell.identification = [object valueForKey:kIdentificationKey];
+    cell.address = [object valueForKey:kAddressKey];
+    cell.nickname = [object valueForKey:kNicknameKey];
 }
 
 #pragma mark - Fetched results controller
@@ -119,14 +160,14 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:kCustomerEntityName inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kNameKey ascending:NO];
 
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     

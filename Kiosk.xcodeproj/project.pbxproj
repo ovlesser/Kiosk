@@ -10,13 +10,15 @@
 		0EF7DADC1D59527A00F14323 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DADB1D59527A00F14323 /* main.m */; };
 		0EF7DADF1D59527A00F14323 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DADE1D59527A00F14323 /* AppDelegate.m */; };
 		0EF7DAE21D59527A00F14323 /* Kiosk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */; };
-		0EF7DAE51D59527A00F14323 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DAE41D59527A00F14323 /* MasterViewController.m */; };
-		0EF7DAE81D59527A00F14323 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DAE71D59527A00F14323 /* DetailViewController.m */; };
+		0EF7DAE51D59527A00F14323 /* CustomerMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DAE41D59527A00F14323 /* CustomerMasterViewController.m */; };
+		0EF7DAE81D59527A00F14323 /* CustomerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DAE71D59527A00F14323 /* CustomerDetailViewController.m */; };
 		0EF7DAEB1D59527A00F14323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EF7DAE91D59527A00F14323 /* Main.storyboard */; };
 		0EF7DAED1D59527A00F14323 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EF7DAEC1D59527A00F14323 /* Assets.xcassets */; };
 		0EF7DAF01D59527A00F14323 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EF7DAEE1D59527A00F14323 /* LaunchScreen.storyboard */; };
 		0EF7DAFB1D59527B00F14323 /* KioskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DAFA1D59527B00F14323 /* KioskTests.m */; };
 		0EF7DB061D59527B00F14323 /* KioskUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DB051D59527B00F14323 /* KioskUITests.m */; };
+		0EF7DB181D5954F100F14323 /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DB141D5954F100F14323 /* CustomerCell.m */; };
+		0EF7DB191D5954F100F14323 /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EF7DB151D5954F100F14323 /* CustomerCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,10 +44,10 @@
 		0EF7DADD1D59527A00F14323 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0EF7DADE1D59527A00F14323 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0EF7DAE11D59527A00F14323 /* Kiosk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kiosk.xcdatamodel; sourceTree = "<group>"; };
-		0EF7DAE31D59527A00F14323 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		0EF7DAE41D59527A00F14323 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		0EF7DAE61D59527A00F14323 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		0EF7DAE71D59527A00F14323 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		0EF7DAE31D59527A00F14323 /* CustomerMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerMasterViewController.h; sourceTree = "<group>"; };
+		0EF7DAE41D59527A00F14323 /* CustomerMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerMasterViewController.m; sourceTree = "<group>"; };
+		0EF7DAE61D59527A00F14323 /* CustomerDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerDetailViewController.h; sourceTree = "<group>"; };
+		0EF7DAE71D59527A00F14323 /* CustomerDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailViewController.m; sourceTree = "<group>"; };
 		0EF7DAEA1D59527A00F14323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EF7DAEC1D59527A00F14323 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EF7DAEF1D59527A00F14323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,6 +58,9 @@
 		0EF7DB011D59527B00F14323 /* KioskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KioskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF7DB051D59527B00F14323 /* KioskUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KioskUITests.m; sourceTree = "<group>"; };
 		0EF7DB071D59527B00F14323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EF7DB131D5954F100F14323 /* CustomerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCell.h; sourceTree = "<group>"; };
+		0EF7DB141D5954F100F14323 /* CustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCell.m; sourceTree = "<group>"; };
+		0EF7DB151D5954F100F14323 /* CustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,15 +113,18 @@
 			children = (
 				0EF7DADD1D59527A00F14323 /* AppDelegate.h */,
 				0EF7DADE1D59527A00F14323 /* AppDelegate.m */,
-				0EF7DAE31D59527A00F14323 /* MasterViewController.h */,
-				0EF7DAE41D59527A00F14323 /* MasterViewController.m */,
-				0EF7DAE61D59527A00F14323 /* DetailViewController.h */,
-				0EF7DAE71D59527A00F14323 /* DetailViewController.m */,
+				0EF7DAE31D59527A00F14323 /* CustomerMasterViewController.h */,
+				0EF7DAE41D59527A00F14323 /* CustomerMasterViewController.m */,
+				0EF7DAE61D59527A00F14323 /* CustomerDetailViewController.h */,
+				0EF7DAE71D59527A00F14323 /* CustomerDetailViewController.m */,
 				0EF7DAE91D59527A00F14323 /* Main.storyboard */,
 				0EF7DAEC1D59527A00F14323 /* Assets.xcassets */,
 				0EF7DAEE1D59527A00F14323 /* LaunchScreen.storyboard */,
 				0EF7DAF11D59527A00F14323 /* Info.plist */,
 				0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */,
+				0EF7DB131D5954F100F14323 /* CustomerCell.h */,
+				0EF7DB141D5954F100F14323 /* CustomerCell.m */,
+				0EF7DB151D5954F100F14323 /* CustomerCell.xib */,
 				0EF7DADA1D59527A00F14323 /* Supporting Files */,
 			);
 			path = Kiosk;
@@ -254,6 +262,7 @@
 				0EF7DAF01D59527A00F14323 /* LaunchScreen.storyboard in Resources */,
 				0EF7DAED1D59527A00F14323 /* Assets.xcassets in Resources */,
 				0EF7DAEB1D59527A00F14323 /* Main.storyboard in Resources */,
+				0EF7DB191D5954F100F14323 /* CustomerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,11 +287,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EF7DAE81D59527A00F14323 /* DetailViewController.m in Sources */,
-				0EF7DAE51D59527A00F14323 /* MasterViewController.m in Sources */,
+				0EF7DAE81D59527A00F14323 /* CustomerDetailViewController.m in Sources */,
+				0EF7DAE51D59527A00F14323 /* CustomerMasterViewController.m in Sources */,
 				0EF7DAE21D59527A00F14323 /* Kiosk.xcdatamodeld in Sources */,
 				0EF7DADF1D59527A00F14323 /* AppDelegate.m in Sources */,
 				0EF7DADC1D59527A00F14323 /* main.m in Sources */,
+				0EF7DB181D5954F100F14323 /* CustomerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +516,7 @@
 				0EF7DB0C1D59527B00F14323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0EF7DB0D1D59527B00F14323 /* Build configuration list for PBXNativeTarget "KioskTests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +525,7 @@
 				0EF7DB0F1D59527B00F14323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0EF7DB101D59527B00F14323 /* Build configuration list for PBXNativeTarget "KioskUITests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +534,7 @@
 				0EF7DB121D59527B00F14323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

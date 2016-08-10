@@ -9,15 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@class DetailViewController;
+@class CustomerDetailViewController;
 
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface CustomerMasterViewController : UITableViewController
+<NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) CustomerDetailViewController *detailViewController;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
+- (void)save;
 
 @end
 
