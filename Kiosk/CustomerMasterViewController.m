@@ -11,14 +11,7 @@
 #import "CustomerCell.h"
 #import "AppDelegate.h"
 
-static NSString *customerCellIdentifier = @"CustomerCell";
-
-static NSString * const kCustomerEntityName = @"Customer";
-static NSString * const kNameKey = @"name";
-static NSString * const kMobileKey = @"mobile";
-static NSString * const kIdentificationKey = @"identification";
-static NSString * const kAddressKey = @"address";
-static NSString * const kNicknameKey = @"nickname";
+static NSString *customerCellIdentifier = @"customerCell";
 
 @interface CustomerMasterViewController ()
 
@@ -29,7 +22,7 @@ static NSString * const kNicknameKey = @"nickname";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
@@ -37,14 +30,14 @@ static NSString * const kNicknameKey = @"nickname";
     
 
     UITableView *tableView = (id)[self.view viewWithTag:1];
+//    [tableView registerClass:[CustomerCell class] forCellReuseIdentifier:customerCellIdentifier];
     tableView.rowHeight = 94;
-    UINib *nib = [UINib nibWithNibName:@"CustomerCell" bundle:nil];
-    [tableView registerNib:nib forCellReuseIdentifier:customerCellIdentifier];
     
     UIEdgeInsets contentInset = tableView.contentInset;
     contentInset.top = 20;
     [tableView setContentInset:contentInset];
     
+    self.searchDisplayController.searchResultsTableView.rowHeight = tableView.rowHeight;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -60,16 +53,26 @@ static NSString * const kNicknameKey = @"nickname";
 - (void)insertNewObject:(id)sender {
     UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomerDetailNavigation"];
     self.detailViewController = (CustomerDetailViewController *)[navigationController topViewController];
-    //controller.managedObjectContext = self.managedObjectContext;
-    //controller.fetchedResultsController = self.fetchedResultsController;
     self.detailViewController.masterViewController = self;
+    [self.detailViewController setDetailItem:nil];
     [self.navigationController pushViewController:navigationController animated:YES];
 }
 
 - (void)save {
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    NSManagedObjectContext *context = nil;
+    NSEntityDescription *entity = nil;
+    if ([self.searchDisplayController isActive]) {
+        context = [self.searchFetchedResultsController managedObjectContext];
+        entity = [[self.searchFetchedResultsController fetchRequest] entity];
+    }
+    else {
+        context = [self.fetchedResultsController managedObjectContext];
+        entity = [[self.fetchedResultsController fetchRequest] entity];
+    }
+    NSManagedObject *newManagedObject = self.detailViewController.detailItem;
+    if (!newManagedObject) {
+        newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    }
     
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
@@ -87,36 +90,74 @@ static NSString * const kNicknameKey = @"nickname";
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
+    if (![self.searchDisplayController isActive]) {
+        [self.tableView reloadData];
+    }
+    else {
+        [self.searchDisplayController.searchResultsTableView reloadData];
+    }
 }
 
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        CustomerDetailViewController *controller = (CustomerDetailViewController *)[[segue destinationViewController] topViewController];
-        [controller setDetailItem:object];
-        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-        controller.navigationItem.leftItemsSupplementBackButton = YES;
+        NSIndexPath *indexPath = nil;
+        NSManagedObject *object = nil;
+        if ([self.searchDisplayController isActive]) {
+            indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            object = [[self searchFetchedResultsController] objectAtIndexPath:indexPath];
+        }
+        else {
+            indexPath = [self.tableView indexPathForSelectedRow];
+            object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        }
+        self.detailViewController = (CustomerDetailViewController *)[[segue destinationViewController] topViewController];
+        self.detailViewController.masterViewController =self;
+        [self.detailViewController setDetailItem:object];
+        self.detailViewController.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+        self.detailViewController.navigationItem.leftItemsSupplementBackButton = YES;
     }
 }
 
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[self.fetchedResultsController sections] count];
+    if ([self.searchDisplayController isActive]) {
+        return [[self.searchFetchedResultsController sections] count];
+    }
+    else {
+        return [[self.fetchedResultsController sections] count];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    if ([self.searchDisplayController isActive]) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [self.searchFetchedResultsController sections][section];
+        return [sectionInfo numberOfObjects];
+    }
+    else {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+        return [sectionInfo numberOfObjects];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CustomerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomerCell" forIndexPath:indexPath];
-    NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+//    CustomerCell *cell = [tableView dequeueReusableCellWithIdentifier:customerCellIdentifier forIndexPath:indexPath];
+    
+    CustomerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:customerCellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[CustomerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customerCellIdentifier];
+    }
+    
+    NSManagedObject *object = nil;
+    if ([self.searchDisplayController isActive]) {
+        object = [[self searchFetchedResultsController] objectAtIndexPath:indexPath];
+    }
+    else {
+        object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    }
     [self configureCell:cell withObject:object];
     return cell;
 }
@@ -127,16 +168,18 @@ static NSString * const kNicknameKey = @"nickname";
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    if (![self.searchDisplayController isActive]) {
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+            [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
             
-        NSError *error = nil;
-        if (![context save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+            NSError *error = nil;
+            if (![context save:&error]) {
+                // Replace this implementation with code to handle the error appropriately.
+                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+            }
         }
     }
 }
@@ -173,7 +216,7 @@ static NSString * const kNicknameKey = @"nickname";
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Customer"];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -190,23 +233,27 @@ static NSString * const kNicknameKey = @"nickname";
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.tableView beginUpdates];
+    if (![self.searchDisplayController isActive]) {
+        [self.tableView beginUpdates];
+    }
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        default:
-            return;
+    if (![self.searchDisplayController isActive]) {
+        switch(type) {
+            case NSFetchedResultsChangeInsert:
+                [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+                break;
+                
+            case NSFetchedResultsChangeDelete:
+                [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+                break;
+                
+            default:
+                return;
+        }
     }
 }
 
@@ -214,30 +261,73 @@ static NSString * const kNicknameKey = @"nickname";
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
-    UITableView *tableView = self.tableView;
-    
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] withObject:anObject];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
-            break;
+    if (![self.searchDisplayController isActive]) {
+        UITableView *tableView = self.tableView;
+        
+        switch(type) {
+            case NSFetchedResultsChangeInsert:
+                [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+                break;
+                
+            case NSFetchedResultsChangeDelete:
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                break;
+                
+            case NSFetchedResultsChangeUpdate:
+                [self configureCell:[tableView cellForRowAtIndexPath:indexPath] withObject:anObject];
+                break;
+                
+            case NSFetchedResultsChangeMove:
+                [tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+                break;
+        }
     }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.tableView endUpdates];
+    if (![self.searchDisplayController isActive]) {
+        [self.tableView endUpdates];
+    }
+}
+
+- (BOOL)searchDisplayController:(UISearchController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    if (self.searchFetchedResultsController) {
+        self.searchFetchedResultsController = nil;
+    }
+    if (searchString.length > 0) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        // Edit the entity name as appropriate.
+        NSEntityDescription *entity = [NSEntityDescription entityForName:kCustomerEntityName inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        // Set the batch size to a suitable number.
+        [fetchRequest setFetchBatchSize:20];
+        
+        // Edit the sort key as appropriate.
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kNameKey ascending:NO];
+        
+        [fetchRequest setSortDescriptors:@[sortDescriptor]];
+        
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(name contains[cd] %@)", searchString];
+        [fetchRequest setPredicate:predicate];
+        
+        // Edit the section name key path and cache name if appropriate.
+        // nil for section name key path means "no sections".
+        NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        aFetchedResultsController.delegate = self;
+        self.searchFetchedResultsController = aFetchedResultsController;
+        
+        NSError *error = nil;
+        if (![self.searchFetchedResultsController performFetch:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+    return YES;
 }
 
 /*

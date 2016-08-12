@@ -29,7 +29,11 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-//        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
+        self.nameField.text = [self.detailItem valueForKey:kNameKey];
+        self.addressField.text = [[self.detailItem valueForKey:kAddressKey] description];
+        self.identificationField.text = [[self.detailItem valueForKey:kIdentificationKey] description];
+        self.nicknameField.text = [[self.detailItem valueForKey:kNicknameKey] description];
+        self.mobileField.text = [[self.detailItem valueForKey:kMobileKey] description];
     }
 }
 

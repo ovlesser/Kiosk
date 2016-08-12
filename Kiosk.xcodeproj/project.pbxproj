@@ -18,7 +18,6 @@
 		0EF7DAFB1D59527B00F14323 /* KioskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DAFA1D59527B00F14323 /* KioskTests.m */; };
 		0EF7DB061D59527B00F14323 /* KioskUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DB051D59527B00F14323 /* KioskUITests.m */; };
 		0EF7DB181D5954F100F14323 /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DB141D5954F100F14323 /* CustomerCell.m */; };
-		0EF7DB191D5954F100F14323 /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EF7DB151D5954F100F14323 /* CustomerCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +59,6 @@
 		0EF7DB071D59527B00F14323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EF7DB131D5954F100F14323 /* CustomerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCell.h; sourceTree = "<group>"; };
 		0EF7DB141D5954F100F14323 /* CustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCell.m; sourceTree = "<group>"; };
-		0EF7DB151D5954F100F14323 /* CustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +111,8 @@
 			children = (
 				0EF7DADD1D59527A00F14323 /* AppDelegate.h */,
 				0EF7DADE1D59527A00F14323 /* AppDelegate.m */,
+				0EF7DB131D5954F100F14323 /* CustomerCell.h */,
+				0EF7DB141D5954F100F14323 /* CustomerCell.m */,
 				0EF7DAE31D59527A00F14323 /* CustomerMasterViewController.h */,
 				0EF7DAE41D59527A00F14323 /* CustomerMasterViewController.m */,
 				0EF7DAE61D59527A00F14323 /* CustomerDetailViewController.h */,
@@ -122,9 +122,6 @@
 				0EF7DAEE1D59527A00F14323 /* LaunchScreen.storyboard */,
 				0EF7DAF11D59527A00F14323 /* Info.plist */,
 				0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */,
-				0EF7DB131D5954F100F14323 /* CustomerCell.h */,
-				0EF7DB141D5954F100F14323 /* CustomerCell.m */,
-				0EF7DB151D5954F100F14323 /* CustomerCell.xib */,
 				0EF7DADA1D59527A00F14323 /* Supporting Files */,
 			);
 			path = Kiosk;
@@ -262,7 +259,6 @@
 				0EF7DAF01D59527A00F14323 /* LaunchScreen.storyboard in Resources */,
 				0EF7DAED1D59527A00F14323 /* Assets.xcassets in Resources */,
 				0EF7DAEB1D59527A00F14323 /* Main.storyboard in Resources */,
-				0EF7DB191D5954F100F14323 /* CustomerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
