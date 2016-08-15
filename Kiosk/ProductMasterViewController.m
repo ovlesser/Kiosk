@@ -1,50 +1,45 @@
 //
-//  MasterViewController.m
+//  ProductMasterViewCell.m
 //  Kiosk
 //
-//  Created by ovlesser on 9/08/2016.
+//  Created by ovlesser on 12/08/2016.
 //  Copyright © 2016 ovlesser. All rights reserved.
 //
 
-#import "CustomerMasterViewController.h"
-#import "CustomerDetailViewController.h"
-#import "CustomerCell.h"
+#import "ProductMasterViewController.h"
+#import "ProductDetailViewController.h"
+#import "ProductCell.h"
 #import "AppDelegate.h"
 
-NSString *customerCellIdentifier = @"customerCell";
-NSString * const kCustomerEntityName = @"Customer";
-NSString * const kNameKey = @"name";
-NSString * const kMobileKey = @"mobile";
-NSString * const kIdentificationKey = @"identification";
-NSString * const kAddressKey = @"address";
-NSString * const kNicknameKey = @"nickname";
+NSString *productCellIdentifier = @"productCell";
+NSString * const kProductEntityName = @"Product";
+NSString * const kName1Key = @"name";
+NSString * const kBrandKey = @"brand";
+NSString * const kVendorKey = @"vendor";
+NSString * const kPriceKey = @"price";
+NSString * const kDateKey = @"date";
+NSString * const kVolumeKey = @"volume";
 
-
-@interface CustomerMasterViewController ()
-
-@end
-
-@implementation CustomerMasterViewController
+@implementation ProductMasterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
+    
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     //self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
-
-    UITableView *tableView = (id)[self.view viewWithTag:1];
-//    [tableView registerClass:[CustomerCell class] forCellReuseIdentifier:customerCellIdentifier];
-    tableView.rowHeight = 94;
     
-    UIEdgeInsets contentInset = tableView.contentInset;
-    contentInset.top = 20;
-    [tableView setContentInset:contentInset];
+    //UITableView *tableView = (id)[self.view viewWithTag:1];
+    //tableView.rowHeight = 94;
     
-    self.searchDisplayController.searchResultsTableView.rowHeight = tableView.rowHeight;
+    //UIEdgeInsets contentInset = tableView.contentInset;
+    //contentInset.top = 20;
+    //[tableView setContentInset:contentInset];
+    
+    //self.searchDisplayController.searchResultsTableView.rowHeight = tableView.rowHeight;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -58,8 +53,8 @@ NSString * const kNicknameKey = @"nickname";
 }
 
 - (void)insertNewObject:(id)sender {
-    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"customerDetailNavigation"];
-    self.detailViewController = (CustomerDetailViewController *)[navigationController topViewController];
+    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"productDetailNavigation"];
+    self.detailViewController = (ProductDetailViewController *)[navigationController topViewController];
     self.detailViewController.masterViewController = self;
     [self.detailViewController setDetailItem:nil];
     [self.navigationController pushViewController:navigationController animated:YES];
@@ -83,11 +78,20 @@ NSString * const kNicknameKey = @"nickname";
     
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:self.detailViewController.nameField.text forKey:kNameKey];
-    [newManagedObject setValue:self.detailViewController.mobileField.text forKey:kMobileKey];
-    [newManagedObject setValue:self.detailViewController.addressField.text forKey:kAddressKey];
-    [newManagedObject setValue:self.detailViewController.identificationField.text forKey:kIdentificationKey];
-    [newManagedObject setValue:self.detailViewController.nicknameField.text forKey:kNicknameKey];
+    [newManagedObject setValue:self.detailViewController.nameField.text forKey:kName1Key];
+    [newManagedObject setValue:self.detailViewController.brandField.text forKey:kBrandKey];
+    [newManagedObject setValue:[NSDecimalNumber decimalNumberWithString:self.detailViewController.priceField.text] forKey:kPriceKey];
+    
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    [newManagedObject setValue:[f numberFromString:self.detailViewController.volumeField.text] forKey:kVolumeKey];
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    [newManagedObject setValue:[dateFormatter dateFromString:self.detailViewController.dateField.text] forKey:kDateKey];
+
+    [newManagedObject setValue:self.detailViewController.vendorField.text forKey:kVendorKey];
     
     // Save the context.
     NSError *error = nil;
@@ -119,7 +123,7 @@ NSString * const kNicknameKey = @"nickname";
             indexPath = [self.tableView indexPathForSelectedRow];
             object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         }
-        self.detailViewController = (CustomerDetailViewController *)[[segue destinationViewController] topViewController];
+        self.detailViewController = (ProductDetailViewController *)[[segue destinationViewController] topViewController];
         self.detailViewController.masterViewController =self;
         [self.detailViewController setDetailItem:object];
         self.detailViewController.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
@@ -150,12 +154,10 @@ NSString * const kNicknameKey = @"nickname";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    CustomerCell *cell = [tableView dequeueReusableCellWithIdentifier:customerCellIdentifier forIndexPath:indexPath];
-    
-    CustomerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:customerCellIdentifier];
+    ProductCell *cell = [self.tableView dequeueReusableCellWithIdentifier:productCellIdentifier];
     
     if (cell == nil) {
-        cell = [[CustomerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customerCellIdentifier];
+        cell = [[ProductCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:productCellIdentifier];
     }
     
     NSManagedObject *object = nil;
@@ -191,13 +193,19 @@ NSString * const kNicknameKey = @"nickname";
     }
 }
 
-- (void)configureCell:(CustomerCell *)cell withObject:(NSManagedObject *)object {
+- (void)configureCell:(ProductCell *)cell withObject:(NSManagedObject *)object {
     //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
-    cell.name = [object valueForKey:kNameKey];
-    cell.mobile = [object valueForKey:kMobileKey];
-    cell.identification = [object valueForKey:kIdentificationKey];
-    cell.address = [object valueForKey:kAddressKey];
-    cell.nickname = [object valueForKey:kNicknameKey];
+    cell.name = [object valueForKey:kName1Key];
+    cell.brand = [object valueForKey:kBrandKey];
+    cell.price = [NSString stringWithFormat:@"%@", [object valueForKey:kPriceKey]];
+    cell.volume = [[object valueForKey:kVolumeKey] stringValue];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    cell.date = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[object valueForKey:kDateKey]]];
+    
+    cell.vendor = [object valueForKey:kVendorKey];
 }
 
 #pragma mark - Fetched results controller
@@ -210,33 +218,33 @@ NSString * const kNicknameKey = @"nickname";
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:kCustomerEntityName inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:kProductEntityName inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kNameKey ascending:NO];
-
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kName1Key ascending:NO];
+    
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Customer"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Product"];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
-	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error]) {
-	     // Replace this implementation with code to handle the error appropriately.
-	     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
-	}
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
     
     return _fetchedResultsController;
-}    
+}
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
@@ -306,14 +314,14 @@ NSString * const kNicknameKey = @"nickname";
     if (searchString.length > 0) {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         // Edit the entity name as appropriate.
-        NSEntityDescription *entity = [NSEntityDescription entityForName:kCustomerEntityName inManagedObjectContext:self.managedObjectContext];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:kProductEntityName inManagedObjectContext:self.managedObjectContext];
         [fetchRequest setEntity:entity];
         
         // Set the batch size to a suitable number.
         [fetchRequest setFetchBatchSize:20];
         
         // Edit the sort key as appropriate.
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kNameKey ascending:NO];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kName1Key ascending:NO];
         
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
@@ -338,13 +346,12 @@ NSString * const kNicknameKey = @"nickname";
 }
 
 /*
-// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
+ // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
  
  - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    // In the simplest, most efficient, case, reload the table view.
-    [self.tableView reloadData];
-}
+ {
+ // In the simplest, most efficient, case, reload the table view.
+ [self.tableView reloadData];
+ }
  */
-
 @end

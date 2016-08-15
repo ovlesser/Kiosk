@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "CustomerDetailViewController.h"
 #import "CustomerMasterViewController.h"
+#import "ProductDetailViewController.h"
+#import "ProductMasterViewController.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -19,14 +21,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-    UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-    navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
-    splitViewController.delegate = self;
-
-    UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
-    CustomerMasterViewController *controller = (CustomerMasterViewController *)masterNavigationController.topViewController;
-    controller.managedObjectContext = self.managedObjectContext;
+//    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    for (UISplitViewController *splitViewController in tabBarController.viewControllers) {
+        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+        navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
+        splitViewController.delegate = self;
+        
+        UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
+        CustomerMasterViewController *customerController = (CustomerMasterViewController *)masterNavigationController.topViewController;
+        customerController.managedObjectContext = self.managedObjectContext;
+        ProductMasterViewController *productController = (ProductMasterViewController *)masterNavigationController.topViewController;
+        productController.managedObjectContext = self.managedObjectContext;
+    }
     return YES;
 }
 
@@ -60,7 +67,10 @@
     if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[CustomerDetailViewController class]] && ([(CustomerDetailViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)) {
         // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
         return YES;
-    } else {
+    } else if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[ProductDetailViewController class]] && ([(ProductDetailViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)) {
+            // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
+            return YES;
+        } else {
         return NO;
     }
 }

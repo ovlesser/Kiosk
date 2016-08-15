@@ -9,8 +9,14 @@
 #import "CustomerDetailViewController.h"
 #import "CustomerMasterViewController.h"
 
-@interface CustomerDetailViewController ()
+extern NSString * const kCustomerEntityName;
+extern NSString * const kNameKey;
+extern NSString * const kMobileKey;
+extern NSString * const kIdentificationKey;
+extern NSString * const kAddressKey;
+extern NSString * const kNicknameKey;
 
+@interface CustomerDetailViewController ()
 @end
 
 @implementation CustomerDetailViewController
@@ -29,7 +35,7 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.nameField.text = [self.detailItem valueForKey:kNameKey];
+        self.nameField.text = [[self.detailItem valueForKey:kNameKey] description];
         self.addressField.text = [[self.detailItem valueForKey:kAddressKey] description];
         self.identificationField.text = [[self.detailItem valueForKey:kIdentificationKey] description];
         self.nicknameField.text = [[self.detailItem valueForKey:kNicknameKey] description];

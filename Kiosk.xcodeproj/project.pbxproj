@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E4540D31D5D926300358D07 /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540D21D5D926300358D07 /* ProductCell.m */; };
+		0E4540D81D5D97EB00358D07 /* ProductMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540D71D5D97EB00358D07 /* ProductMasterViewController.m */; };
+		0E4540DB1D5D9A0A00358D07 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540DA1D5D9A0A00358D07 /* ProductDetailViewController.m */; };
+		0E7CD5E81D618D2D00728078 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CD5E71D618D2D00728078 /* MasterViewController.m */; };
 		0EF7DADC1D59527A00F14323 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DADB1D59527A00F14323 /* main.m */; };
 		0EF7DADF1D59527A00F14323 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DADE1D59527A00F14323 /* AppDelegate.m */; };
 		0EF7DAE21D59527A00F14323 /* Kiosk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */; };
@@ -38,6 +42,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E4540D11D5D926300358D07 /* ProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCell.h; sourceTree = "<group>"; };
+		0E4540D21D5D926300358D07 /* ProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCell.m; sourceTree = "<group>"; };
+		0E4540D61D5D97EB00358D07 /* ProductMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductMasterViewController.h; sourceTree = "<group>"; };
+		0E4540D71D5D97EB00358D07 /* ProductMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductMasterViewController.m; sourceTree = "<group>"; };
+		0E4540D91D5D9A0A00358D07 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
+		0E4540DA1D5D9A0A00358D07 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
+		0E7CD5E61D618D2D00728078 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		0E7CD5E71D618D2D00728078 /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		0EF7DAD71D59527A00F14323 /* Kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF7DADB1D59527A00F14323 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0EF7DADD1D59527A00F14323 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -86,6 +98,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E4540D41D5D928900358D07 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				0EF7DB131D5954F100F14323 /* CustomerCell.h */,
+				0EF7DB141D5954F100F14323 /* CustomerCell.m */,
+				0EF7DAE31D59527A00F14323 /* CustomerMasterViewController.h */,
+				0EF7DAE41D59527A00F14323 /* CustomerMasterViewController.m */,
+				0EF7DAE61D59527A00F14323 /* CustomerDetailViewController.h */,
+				0EF7DAE71D59527A00F14323 /* CustomerDetailViewController.m */,
+			);
+			name = Customer;
+			sourceTree = "<group>";
+		};
+		0E4540D51D5D92A800358D07 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				0E4540D11D5D926300358D07 /* ProductCell.h */,
+				0E4540D21D5D926300358D07 /* ProductCell.m */,
+				0E4540D61D5D97EB00358D07 /* ProductMasterViewController.h */,
+				0E4540D71D5D97EB00358D07 /* ProductMasterViewController.m */,
+				0E4540D91D5D9A0A00358D07 /* ProductDetailViewController.h */,
+				0E4540DA1D5D9A0A00358D07 /* ProductDetailViewController.m */,
+			);
+			name = Product;
+			sourceTree = "<group>";
+		};
 		0EF7DACE1D59527A00F14323 = {
 			isa = PBXGroup;
 			children = (
@@ -109,14 +147,12 @@
 		0EF7DAD91D59527A00F14323 /* Kiosk */ = {
 			isa = PBXGroup;
 			children = (
+				0E4540D51D5D92A800358D07 /* Product */,
+				0E4540D41D5D928900358D07 /* Customer */,
 				0EF7DADD1D59527A00F14323 /* AppDelegate.h */,
 				0EF7DADE1D59527A00F14323 /* AppDelegate.m */,
-				0EF7DB131D5954F100F14323 /* CustomerCell.h */,
-				0EF7DB141D5954F100F14323 /* CustomerCell.m */,
-				0EF7DAE31D59527A00F14323 /* CustomerMasterViewController.h */,
-				0EF7DAE41D59527A00F14323 /* CustomerMasterViewController.m */,
-				0EF7DAE61D59527A00F14323 /* CustomerDetailViewController.h */,
-				0EF7DAE71D59527A00F14323 /* CustomerDetailViewController.m */,
+				0E7CD5E61D618D2D00728078 /* MasterViewController.h */,
+				0E7CD5E71D618D2D00728078 /* MasterViewController.m */,
 				0EF7DAE91D59527A00F14323 /* Main.storyboard */,
 				0EF7DAEC1D59527A00F14323 /* Assets.xcassets */,
 				0EF7DAEE1D59527A00F14323 /* LaunchScreen.storyboard */,
@@ -285,6 +321,10 @@
 			files = (
 				0EF7DAE81D59527A00F14323 /* CustomerDetailViewController.m in Sources */,
 				0EF7DAE51D59527A00F14323 /* CustomerMasterViewController.m in Sources */,
+				0E7CD5E81D618D2D00728078 /* MasterViewController.m in Sources */,
+				0E4540D81D5D97EB00358D07 /* ProductMasterViewController.m in Sources */,
+				0E4540DB1D5D9A0A00358D07 /* ProductDetailViewController.m in Sources */,
+				0E4540D31D5D926300358D07 /* ProductCell.m in Sources */,
 				0EF7DAE21D59527A00F14323 /* Kiosk.xcdatamodeld in Sources */,
 				0EF7DADF1D59527A00F14323 /* AppDelegate.m in Sources */,
 				0EF7DADC1D59527A00F14323 /* main.m in Sources */,
