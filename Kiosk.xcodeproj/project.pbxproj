@@ -10,7 +10,23 @@
 		0E4540D31D5D926300358D07 /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540D21D5D926300358D07 /* ProductCell.m */; };
 		0E4540D81D5D97EB00358D07 /* ProductMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540D71D5D97EB00358D07 /* ProductMasterViewController.m */; };
 		0E4540DB1D5D9A0A00358D07 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540DA1D5D9A0A00358D07 /* ProductDetailViewController.m */; };
+		0E5829E01D63E0C000EC01A7 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829DF1D63E0C000EC01A7 /* ItemCell.m */; };
+		0E5829E31D63E0EF00EC01A7 /* ItemMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829E21D63E0EF00EC01A7 /* ItemMasterViewController.m */; };
+		0E5829FB1D66C1E900EC01A7 /* Stock+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829E81D66C1E900EC01A7 /* Stock+CoreDataProperties.m */; };
+		0E5829FC1D66C1E900EC01A7 /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829EA1D66C1E900EC01A7 /* Stock.m */; };
+		0E5829FD1D66C1E900EC01A7 /* Product+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829EC1D66C1E900EC01A7 /* Product+CoreDataProperties.m */; };
+		0E5829FE1D66C1E900EC01A7 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829EE1D66C1E900EC01A7 /* Product.m */; };
+		0E5829FF1D66C1E900EC01A7 /* Item+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829F01D66C1E900EC01A7 /* Item+CoreDataProperties.m */; };
+		0E582A001D66C1E900EC01A7 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829F21D66C1E900EC01A7 /* Item.m */; };
+		0E582A011D66C1E900EC01A7 /* Customer+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829F41D66C1E900EC01A7 /* Customer+CoreDataProperties.m */; };
+		0E582A021D66C1E900EC01A7 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829F61D66C1E900EC01A7 /* Customer.m */; };
+		0E582A031D66C1E900EC01A7 /* Order+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829F81D66C1E900EC01A7 /* Order+CoreDataProperties.m */; };
+		0E582A041D66C1E900EC01A7 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829FA1D66C1E900EC01A7 /* Order.m */; };
 		0E7CD5E81D618D2D00728078 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CD5E71D618D2D00728078 /* MasterViewController.m */; };
+		0E7CD5EB1D6192EC00728078 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CD5EA1D6192EC00728078 /* DetailViewController.m */; };
+		0E7CD5EF1D61959D00728078 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CD5EE1D61959D00728078 /* OrderCell.m */; };
+		0E7CD5F21D6195E600728078 /* OrderMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CD5F11D6195E600728078 /* OrderMasterViewController.m */; };
+		0E7CD5F51D61960200728078 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CD5F41D61960200728078 /* OrderDetailViewController.m */; };
 		0EF7DADC1D59527A00F14323 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DADB1D59527A00F14323 /* main.m */; };
 		0EF7DADF1D59527A00F14323 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DADE1D59527A00F14323 /* AppDelegate.m */; };
 		0EF7DAE21D59527A00F14323 /* Kiosk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */; };
@@ -48,8 +64,40 @@
 		0E4540D71D5D97EB00358D07 /* ProductMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductMasterViewController.m; sourceTree = "<group>"; };
 		0E4540D91D5D9A0A00358D07 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		0E4540DA1D5D9A0A00358D07 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
+		0E5829DE1D63E0C000EC01A7 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
+		0E5829DF1D63E0C000EC01A7 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
+		0E5829E11D63E0EF00EC01A7 /* ItemMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemMasterViewController.h; sourceTree = "<group>"; };
+		0E5829E21D63E0EF00EC01A7 /* ItemMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemMasterViewController.m; sourceTree = "<group>"; };
+		0E5829E71D66C1E900EC01A7 /* Stock+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Stock+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0E5829E81D66C1E900EC01A7 /* Stock+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Stock+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0E5829E91D66C1E900EC01A7 /* Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stock.h; sourceTree = "<group>"; };
+		0E5829EA1D66C1E900EC01A7 /* Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stock.m; sourceTree = "<group>"; };
+		0E5829EB1D66C1E900EC01A7 /* Product+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Product+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0E5829EC1D66C1E900EC01A7 /* Product+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Product+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0E5829ED1D66C1E900EC01A7 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		0E5829EE1D66C1E900EC01A7 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		0E5829EF1D66C1E900EC01A7 /* Item+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Item+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0E5829F01D66C1E900EC01A7 /* Item+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Item+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0E5829F11D66C1E900EC01A7 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		0E5829F21D66C1E900EC01A7 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		0E5829F31D66C1E900EC01A7 /* Customer+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Customer+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0E5829F41D66C1E900EC01A7 /* Customer+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Customer+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0E5829F51D66C1E900EC01A7 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
+		0E5829F61D66C1E900EC01A7 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
+		0E5829F71D66C1E900EC01A7 /* Order+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Order+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0E5829F81D66C1E900EC01A7 /* Order+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Order+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0E5829F91D66C1E900EC01A7 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
+		0E5829FA1D66C1E900EC01A7 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		0E7CD5E61D618D2D00728078 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		0E7CD5E71D618D2D00728078 /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		0E7CD5E91D6192EC00728078 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		0E7CD5EA1D6192EC00728078 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		0E7CD5ED1D61959D00728078 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		0E7CD5EE1D61959D00728078 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		0E7CD5F01D6195E600728078 /* OrderMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderMasterViewController.h; sourceTree = "<group>"; };
+		0E7CD5F11D6195E600728078 /* OrderMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderMasterViewController.m; sourceTree = "<group>"; };
+		0E7CD5F31D61960200728078 /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
+		0E7CD5F41D61960200728078 /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
 		0EF7DAD71D59527A00F14323 /* Kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF7DADB1D59527A00F14323 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0EF7DADD1D59527A00F14323 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,6 +172,30 @@
 			name = Product;
 			sourceTree = "<group>";
 		};
+		0E5829DD1D63E09200EC01A7 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				0E5829DE1D63E0C000EC01A7 /* ItemCell.h */,
+				0E5829DF1D63E0C000EC01A7 /* ItemCell.m */,
+				0E5829E11D63E0EF00EC01A7 /* ItemMasterViewController.h */,
+				0E5829E21D63E0EF00EC01A7 /* ItemMasterViewController.m */,
+			);
+			name = Item;
+			sourceTree = "<group>";
+		};
+		0E7CD5EC1D61952E00728078 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				0E7CD5ED1D61959D00728078 /* OrderCell.h */,
+				0E7CD5EE1D61959D00728078 /* OrderCell.m */,
+				0E7CD5F01D6195E600728078 /* OrderMasterViewController.h */,
+				0E7CD5F11D6195E600728078 /* OrderMasterViewController.m */,
+				0E7CD5F31D61960200728078 /* OrderDetailViewController.h */,
+				0E7CD5F41D61960200728078 /* OrderDetailViewController.m */,
+			);
+			name = Order;
+			sourceTree = "<group>";
+		};
 		0EF7DACE1D59527A00F14323 = {
 			isa = PBXGroup;
 			children = (
@@ -147,17 +219,41 @@
 		0EF7DAD91D59527A00F14323 /* Kiosk */ = {
 			isa = PBXGroup;
 			children = (
+				0E5829DD1D63E09200EC01A7 /* Item */,
+				0E7CD5EC1D61952E00728078 /* Order */,
 				0E4540D51D5D92A800358D07 /* Product */,
 				0E4540D41D5D928900358D07 /* Customer */,
 				0EF7DADD1D59527A00F14323 /* AppDelegate.h */,
 				0EF7DADE1D59527A00F14323 /* AppDelegate.m */,
 				0E7CD5E61D618D2D00728078 /* MasterViewController.h */,
 				0E7CD5E71D618D2D00728078 /* MasterViewController.m */,
+				0E7CD5E91D6192EC00728078 /* DetailViewController.h */,
+				0E7CD5EA1D6192EC00728078 /* DetailViewController.m */,
 				0EF7DAE91D59527A00F14323 /* Main.storyboard */,
 				0EF7DAEC1D59527A00F14323 /* Assets.xcassets */,
 				0EF7DAEE1D59527A00F14323 /* LaunchScreen.storyboard */,
 				0EF7DAF11D59527A00F14323 /* Info.plist */,
 				0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */,
+				0E5829E71D66C1E900EC01A7 /* Stock+CoreDataProperties.h */,
+				0E5829E81D66C1E900EC01A7 /* Stock+CoreDataProperties.m */,
+				0E5829E91D66C1E900EC01A7 /* Stock.h */,
+				0E5829EA1D66C1E900EC01A7 /* Stock.m */,
+				0E5829EB1D66C1E900EC01A7 /* Product+CoreDataProperties.h */,
+				0E5829EC1D66C1E900EC01A7 /* Product+CoreDataProperties.m */,
+				0E5829ED1D66C1E900EC01A7 /* Product.h */,
+				0E5829EE1D66C1E900EC01A7 /* Product.m */,
+				0E5829EF1D66C1E900EC01A7 /* Item+CoreDataProperties.h */,
+				0E5829F01D66C1E900EC01A7 /* Item+CoreDataProperties.m */,
+				0E5829F11D66C1E900EC01A7 /* Item.h */,
+				0E5829F21D66C1E900EC01A7 /* Item.m */,
+				0E5829F31D66C1E900EC01A7 /* Customer+CoreDataProperties.h */,
+				0E5829F41D66C1E900EC01A7 /* Customer+CoreDataProperties.m */,
+				0E5829F51D66C1E900EC01A7 /* Customer.h */,
+				0E5829F61D66C1E900EC01A7 /* Customer.m */,
+				0E5829F71D66C1E900EC01A7 /* Order+CoreDataProperties.h */,
+				0E5829F81D66C1E900EC01A7 /* Order+CoreDataProperties.m */,
+				0E5829F91D66C1E900EC01A7 /* Order.h */,
+				0E5829FA1D66C1E900EC01A7 /* Order.m */,
 				0EF7DADA1D59527A00F14323 /* Supporting Files */,
 			);
 			path = Kiosk;
@@ -319,16 +415,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E582A031D66C1E900EC01A7 /* Order+CoreDataProperties.m in Sources */,
+				0E5829E01D63E0C000EC01A7 /* ItemCell.m in Sources */,
+				0E5829FE1D66C1E900EC01A7 /* Product.m in Sources */,
 				0EF7DAE81D59527A00F14323 /* CustomerDetailViewController.m in Sources */,
 				0EF7DAE51D59527A00F14323 /* CustomerMasterViewController.m in Sources */,
+				0E5829FB1D66C1E900EC01A7 /* Stock+CoreDataProperties.m in Sources */,
+				0E7CD5F51D61960200728078 /* OrderDetailViewController.m in Sources */,
+				0E7CD5EF1D61959D00728078 /* OrderCell.m in Sources */,
+				0E582A041D66C1E900EC01A7 /* Order.m in Sources */,
+				0E582A021D66C1E900EC01A7 /* Customer.m in Sources */,
+				0E5829FD1D66C1E900EC01A7 /* Product+CoreDataProperties.m in Sources */,
+				0E5829FC1D66C1E900EC01A7 /* Stock.m in Sources */,
 				0E7CD5E81D618D2D00728078 /* MasterViewController.m in Sources */,
+				0E7CD5F21D6195E600728078 /* OrderMasterViewController.m in Sources */,
 				0E4540D81D5D97EB00358D07 /* ProductMasterViewController.m in Sources */,
 				0E4540DB1D5D9A0A00358D07 /* ProductDetailViewController.m in Sources */,
 				0E4540D31D5D926300358D07 /* ProductCell.m in Sources */,
 				0EF7DAE21D59527A00F14323 /* Kiosk.xcdatamodeld in Sources */,
+				0E582A011D66C1E900EC01A7 /* Customer+CoreDataProperties.m in Sources */,
+				0E5829FF1D66C1E900EC01A7 /* Item+CoreDataProperties.m in Sources */,
+				0E7CD5EB1D6192EC00728078 /* DetailViewController.m in Sources */,
 				0EF7DADF1D59527A00F14323 /* AppDelegate.m in Sources */,
+				0E582A001D66C1E900EC01A7 /* Item.m in Sources */,
 				0EF7DADC1D59527A00F14323 /* main.m in Sources */,
 				0EF7DB181D5954F100F14323 /* CustomerCell.m in Sources */,
+				0E5829E31D63E0EF00EC01A7 /* ItemMasterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

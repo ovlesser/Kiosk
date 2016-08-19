@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailViewController.h"
 
 @class CustomerMasterViewController;
 
-@interface CustomerDetailViewController : UIViewController
-
-@property (strong, nonatomic) id detailItem;
+@interface CustomerDetailViewController : DetailViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *mobileField;

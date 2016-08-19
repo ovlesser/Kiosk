@@ -7,10 +7,12 @@
 //
 
 #import "AppDelegate.h"
-#import "CustomerDetailViewController.h"
-#import "CustomerMasterViewController.h"
-#import "ProductDetailViewController.h"
-#import "ProductMasterViewController.h"
+#import "MasterViewController.h"
+#import "DetailViewController.h"
+//#import "CustomerDetailViewController.h"
+//#import "CustomerMasterViewController.h"
+//#import "ProductDetailViewController.h"
+//#import "ProductMasterViewController.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -29,10 +31,8 @@
         splitViewController.delegate = self;
         
         UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
-        CustomerMasterViewController *customerController = (CustomerMasterViewController *)masterNavigationController.topViewController;
-        customerController.managedObjectContext = self.managedObjectContext;
-        ProductMasterViewController *productController = (ProductMasterViewController *)masterNavigationController.topViewController;
-        productController.managedObjectContext = self.managedObjectContext;
+        MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
+        controller.managedObjectContext = self.managedObjectContext;
     }
     return YES;
 }
@@ -64,13 +64,10 @@
 #pragma mark - Split view
 
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
-    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[CustomerDetailViewController class]] && ([(CustomerDetailViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)) {
+    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[DetailViewController class]] && ([(DetailViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)) {
         // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
         return YES;
-    } else if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[ProductDetailViewController class]] && ([(ProductDetailViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)) {
-            // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
-            return YES;
-        } else {
+    } else {
         return NO;
     }
 }

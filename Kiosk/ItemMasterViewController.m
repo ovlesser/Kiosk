@@ -1,45 +1,79 @@
 //
-//  ProductMasterViewCell.m
+//  ItemMasterViewController.m
 //  Kiosk
 //
-//  Created by ovlesser on 12/08/2016.
+//  Created by ovlesser on 17/08/2016.
 //  Copyright © 2016 ovlesser. All rights reserved.
 //
 
-#import "ProductMasterViewController.h"
-#import "ProductDetailViewController.h"
-#import "ProductCell.h"
+#import "ItemMasterViewController.h"
+#import "ItemCell.h"
 #import "AppDelegate.h"
 
-NSString *productCellIdentifier = @"productCell";
-NSString * const kProductEntityName = @"Product";
-NSString * const kName1Key = @"name";
-NSString * const kBrandKey = @"brand";
-NSString * const kVendorKey = @"vendor";
-NSString * const kPriceKey = @"price";
-NSString * const kDateKey = @"date";
-NSString * const kVolumeKey = @"volume";
+NSString *itemCellIdentifier = @"itemCell";
+NSString * const kItemEntityName = @"Item";
+NSString * const kProductKey = @"product";
+NSString * const kCountKey = @"count";
+NSString * const kPrice1Key = @"price";
 
-@implementation ProductMasterViewController
+@implementation ItemMasterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    // Do any additional setup after loading the view.
     
+
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+/*
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    //self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.navigationItem.titleView.backgroundColor = [UIColor cyanColor];
+
+    UINavigationController *naviCOntroller = self.navigationController;
+    UIView *view = naviCOntroller.view;
+    UIView *superView = view.superview;
     
+
+    [[self.navigationController.view superview] setTranslatesAutoresizingMaskIntoConstraints:false];
     
-    //UITableView *tableView = (id)[self.view viewWithTag:1];
-    //tableView.rowHeight = 94;
-    
-    //UIEdgeInsets contentInset = tableView.contentInset;
-    //contentInset.top = 20;
-    //[tableView setContentInset:contentInset];
-    
-    //self.searchDisplayController.searchResultsTableView.rowHeight = tableView.rowHeight;
+    NSLayoutConstraint *rightSideConstraint = [NSLayoutConstraint constraintWithItem:self.view
+                                                                           attribute:NSLayoutAttributeRight
+                                                                           relatedBy:NSLayoutRelationEqual
+                                                                              toItem:[self.navigationController.view superview]
+                                                                           attribute:NSLayoutAttributeRightMargin
+                                                                          multiplier:1.0
+                                                                            constant:0.0];
+/*
+ NSLayoutConstraint *leftSideConstraint = [NSLayoutConstraint constraintWithItem:[self.view superview]
+                                                                          attribute:NSLayoutAttributeLeft
+                                                                          relatedBy:NSLayoutRelationEqual
+                                                                             toItem:self.view
+                                                                          attribute:NSLayoutAttributeLeft
+                                                                         multiplier:1.0
+                                                                           constant:0.0];
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:[self.view superview]
+                                                                        attribute:NSLayoutAttributeBottom
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                           toItem:self.view
+                                                                        attribute:NSLayoutAttributeBottom
+                                                                       multiplier:1.0
+                                                                         constant:0.0];
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:[self.view superview]
+                                                                       attribute:NSLayoutAttributeWidth
+                                                                       relatedBy:NSLayoutRelationEqual
+                                                                          toItem:self.view
+                                                                       attribute:NSLayoutAttributeWidth
+                                                                      multiplier:1.0
+                                                                        constant:0.0];
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:[self.view superview]
+                                                                        attribute:NSLayoutAttributeHeight
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                           toItem:self.view
+                                                                        attribute:NSLayoutAttributeHeight
+                                                                       multiplier:1.0
+                                                                         constant:0.0];
+    //    [navigationController.topViewController.view addConstraints:@[leftSideConstraint, bottomConstraint, heightConstraint, widthConstraint]];
+    [[self.view superview] addConstraint:rightSideConstraint];*/
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -53,11 +87,14 @@ NSString * const kVolumeKey = @"volume";
 }
 
 - (void)insertNewObject:(id)sender {
-    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"productDetailNavigation"];
-    self.detailViewController = (ProductDetailViewController *)[navigationController topViewController];
+/*    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"itemDetailNavigation"];
+    self.detailViewController = (ItemDetailViewController *)[navigationController topViewController];
     self.detailViewController.masterViewController = self;
     [self.detailViewController setDetailItem:nil];
-    [self.navigationController pushViewController:navigationController animated:YES];
+    [self.navigationController pushViewController:navigationController animated:YES];*/
+    [self save];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)save {
@@ -78,20 +115,9 @@ NSString * const kVolumeKey = @"volume";
     
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:self.detailViewController.nameField.text forKey:kName1Key];
-    [newManagedObject setValue:self.detailViewController.brandField.text forKey:kBrandKey];
-    [newManagedObject setValue:[NSDecimalNumber decimalNumberWithString:self.detailViewController.priceField.text] forKey:kPriceKey];
-    
-    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-    f.numberStyle = NSNumberFormatterDecimalStyle;
-    [newManagedObject setValue:[f numberFromString:self.detailViewController.volumeField.text] forKey:kVolumeKey];
-
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    [newManagedObject setValue:[dateFormatter dateFromString:self.detailViewController.dateField.text] forKey:kDateKey];
-
-    [newManagedObject setValue:self.detailViewController.vendorField.text forKey:kVendorKey];
+    [newManagedObject setValue:self.detailViewController.productField.text forKey:kProductKey];
+    [newManagedObject setValue:self.detailViewController.priceField.text forKey:kPrice1Key];
+    [newManagedObject setValue:self.detailViewController.countField.text forKey:kCountKey];
     
     // Save the context.
     NSError *error = nil;
@@ -123,7 +149,7 @@ NSString * const kVolumeKey = @"volume";
             indexPath = [self.tableView indexPathForSelectedRow];
             object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         }
-        self.detailViewController = (ProductDetailViewController *)[[segue destinationViewController] topViewController];
+        self.detailViewController = (ItemDetailViewController *)[[segue destinationViewController] topViewController];
         self.detailViewController.masterViewController =self;
         [self.detailViewController setDetailItem:object];
         self.detailViewController.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
@@ -138,6 +164,7 @@ NSString * const kVolumeKey = @"volume";
         return [[self.searchFetchedResultsController sections] count];
     }
     else {
+        NSLog(@"%lul", [[self.fetchedResultsController sections] count]);
         return [[self.fetchedResultsController sections] count];
     }
 }
@@ -154,10 +181,12 @@ NSString * const kVolumeKey = @"volume";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ProductCell *cell = [self.tableView dequeueReusableCellWithIdentifier:productCellIdentifier];
+    //    ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:ItemCellIdentifier forIndexPath:indexPath];
+    
+    ItemCell *cell = [self.tableView dequeueReusableCellWithIdentifier:itemCellIdentifier];
     
     if (cell == nil) {
-        cell = [[ProductCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:productCellIdentifier];
+        cell = [[ItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:itemCellIdentifier];
     }
     
     NSManagedObject *object = nil;
@@ -193,19 +222,11 @@ NSString * const kVolumeKey = @"volume";
     }
 }
 
-- (void)configureCell:(ProductCell *)cell withObject:(NSManagedObject *)object {
+- (void)configureCell:(ItemCell *)cell withObject:(NSManagedObject *)object {
     //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
-    cell.name = [object valueForKey:kName1Key];
-    cell.brand = [object valueForKey:kBrandKey];
-    cell.price = [NSString stringWithFormat:@"%@", [object valueForKey:kPriceKey]];
-    cell.volume = [[object valueForKey:kVolumeKey] stringValue];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    cell.date = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[object valueForKey:kDateKey]]];
-    
-    cell.vendor = [object valueForKey:kVendorKey];
+    cell.product = @"Product";//[object valueForKey:kProductKey];
+    cell.price = @"Price";//[object valueForKey:kPrice1Key];
+    cell.count = @"Count";//[object valueForKey:kCountKey];
 }
 
 #pragma mark - Fetched results controller
@@ -218,20 +239,20 @@ NSString * const kVolumeKey = @"volume";
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:kProductEntityName inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:kItemEntityName inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kName1Key ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kProductKey ascending:NO];
     
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Product"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Item"];
     aFetchedResultsController.delegate = self;
     super.fetchedResultsController = aFetchedResultsController;
     
@@ -314,14 +335,14 @@ NSString * const kVolumeKey = @"volume";
     if (searchString.length > 0) {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         // Edit the entity name as appropriate.
-        NSEntityDescription *entity = [NSEntityDescription entityForName:kProductEntityName inManagedObjectContext:self.managedObjectContext];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:kItemEntityName inManagedObjectContext:self.managedObjectContext];
         [fetchRequest setEntity:entity];
         
         // Set the batch size to a suitable number.
         [fetchRequest setFetchBatchSize:20];
         
         // Edit the sort key as appropriate.
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kName1Key ascending:NO];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kProductKey ascending:NO];
         
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
@@ -346,12 +367,13 @@ NSString * const kVolumeKey = @"volume";
 }
 
 /*
- // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
+ #pragma mark - Navigation
  
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
- {
- // In the simplest, most efficient, case, reload the table view.
- [self.tableView reloadData];
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
  }
  */
+
 @end

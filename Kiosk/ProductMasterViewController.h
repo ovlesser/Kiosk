@@ -7,20 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
+#import "MasterViewController.h"
 
 @class ProductDetailViewController;
 
-
-@interface ProductMasterViewController : UITableViewController
-<NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
+@interface ProductMasterViewController : MasterViewController
 
 @property (strong, nonatomic) ProductDetailViewController *detailViewController;
-
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSFetchedResultsController *searchFetchedResultsController;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
-- (void)save;
 
 @end

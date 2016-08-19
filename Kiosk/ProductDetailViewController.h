@@ -7,16 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailViewController.h"
 
 @class ProductMasterViewController;
 
-@interface ProductDetailViewController : UIViewController {
+@interface ProductDetailViewController : DetailViewController {
     
     UIDatePicker *datePicker;
     
 }
-
-@property (strong, nonatomic) id detailItem;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *brandField;
