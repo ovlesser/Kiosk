@@ -9,6 +9,7 @@
 #import "ItemCell.h"
 #import "AppDelegate.h"
 #import "Product.h"
+#import "Item.h"
 
 extern NSString * const kProductEntityName;
 
@@ -27,10 +28,15 @@ extern NSString * const kProductEntityName;
     // Initialization code
     
     self.productPicker = [[UIPickerView alloc] init];
+    self.productPicker.delegate = self;
+    self.productPicker.dataSource = self;
     [self.productField setInputView:self.productPicker];
     UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [toolBar setTintColor:[UIColor grayColor]];
-    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(ShowSelectedProduct)];
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithTitle:@"Done"
+                                                               style:UIBarButtonItemStyleBordered
+                                                              target:self
+                                                              action:@selector(ShowSelectedProduct)];
     UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [toolBar setItems:[NSArray arrayWithObjects:space,doneBtn, nil]];
     [self.productField setInputAccessoryView:toolBar];
@@ -39,7 +45,7 @@ extern NSString * const kProductEntityName;
     NSManagedObjectContext *context = [delegate managedObjectContext];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kProductEntityName];
-    self.productArray = [context executeFetchRequest:request error:nil];
+    self.products = [context executeFetchRequest:request error:nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -48,41 +54,27 @@ extern NSString * const kProductEntityName;
     // Configure the view for the selected state
 }
 
-- (void)setProduct:(NSString *)product
+- (void)setItem:(Item *)item
 {
-    if (![product isEqualToString:_product]) {
-        _product = [product copy];
+    if (![item isEqual:_item]) {
+        _item = item;
     }
-    self.productField.text = _product;
-}
-
--(void)setPrice:(NSString *)price
-{
-    if (![price isEqualToString:_price]) {
-        _price = [price copy];
+    if (item.product) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        self.productField.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
+                                  _item.product.brand,
+                                  _item.product.name,
+                                  _item.product.price,
+                                  [dateFormatter stringFromDate:_item.product.date]];
     }
-    self.priceField.text = _price;
-}
-
-- (void)setCount:(NSString *)count
-{
-    if (![count isEqualToString:_count]) {
-        _count = [count copy];
+    if (item.price) {
+        self.priceField.text = [_item.price stringValue];
     }
-    self.countField.text = _count;
-}
-
--(void)ShowSelectedProduct
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    self.productField.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
-                              self.productSelected.brand,
-                              self.productSelected.name,
-                              self.productSelected.price,
-                              [dateFormatter stringFromDate:self.productSelected.date]];
-    [self.productField resignFirstResponder];
+    if (item.count) {
+        self.countField.text = [_item.count stringValue];
+    }
 }
 
 #pragma mark -
@@ -94,21 +86,42 @@ extern NSString * const kProductEntityName;
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [self.productArray count];
+    return [self.products count];
 
 }
 
 #pragma mark Picker Delegate Methods
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    self.productSelected = self.productArray[row];
+    _item.product = self.products[row];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     return [NSString stringWithFormat:@"%@ %@ %@ %@",
-            self.productSelected.brand,
-            self.productSelected.name,
-            self.productSelected.price,
-            [dateFormatter stringFromDate:self.productSelected.date]];
+            _item.product.brand,
+            _item.product.name,
+            _item.product.price,
+            [dateFormatter stringFromDate:_item.product.date]];
+}
+
+-(void)ShowSelectedProduct
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    self.productField.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
+                              _item.product.brand,
+                              _item.product.name,
+                              _item.product.price,
+                              [dateFormatter stringFromDate:_item.product.date]];
+    [self.productField resignFirstResponder];
+}
+
+- (IBAction)priceValueChanged:(id)sender {
+    _item.price = [NSDecimalNumber decimalNumberWithString:self.priceField.text];
+}
+- (IBAction)countValueChanged:(id)sender
+{
+    _item.count = @([self.countField.text intValue]);
 }
 @end

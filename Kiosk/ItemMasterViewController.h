@@ -8,11 +8,11 @@
 
 #import "MasterViewController.h"
 
-@class ItemDetailViewController;
+@class Item;
 
 @interface ItemMasterViewController : MasterViewController
 
-@property (strong, nonatomic) ItemDetailViewController *detailViewController;
+@property (strong, nonatomic) NSMutableArray<Item*> *items;
 
 - (void)insertNewObject:(id)sender;
 

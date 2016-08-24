@@ -9,6 +9,7 @@
 #import "OrderMasterViewController.h"
 #import "OrderDetailViewController.h"
 #import "OrderCell.h"
+#import "Order.h"
 #import "AppDelegate.h"
 
 NSString *orderCellIdentifier = @"orderCell";
@@ -39,6 +40,10 @@ NSString * const kDate1Key = @"date";
     [super viewWillAppear:animated];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [NSFetchedResultsController deleteCacheWithName:@"Order"];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -48,7 +53,6 @@ NSString * const kDate1Key = @"date";
     UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"orderDetailNavigation"];
     self.detailViewController = (OrderDetailViewController *)[navigationController topViewController];
     self.detailViewController.masterViewController = self;
-    [self.detailViewController setDetailItem:nil];
     [self.navigationController pushViewController:navigationController animated:YES];
 }
 
@@ -63,19 +67,20 @@ NSString * const kDate1Key = @"date";
         context = [self.fetchedResultsController managedObjectContext];
         entity = [[self.fetchedResultsController fetchRequest] entity];
     }
-    NSManagedObject *newManagedObject = self.detailViewController.detailItem;
-    if (!newManagedObject) {
-        newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+
+    Order *order = self.detailViewController.detailItem;
+    if (!order) {
+        order = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     }
     
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:self.detailViewController.numberField.text forKey:kNumberKey];
-    [newManagedObject setValue:self.detailViewController.customerField.text forKey:kCustomerKey];
-    [newManagedObject setValue:self.detailViewController.itemField.text forKey:kItemKey];
-    [newManagedObject setValue:self.detailViewController.postageField.text forKey:kPostageKey];
-    [newManagedObject setValue:self.detailViewController.dateField.text forKey:kDate1Key];
-    
+    order.number = self.detailViewController.number;
+    order.customer = self.detailViewController.customer;
+    order.postage = self.detailViewController.postage;
+    order.date = self.detailViewController.date;
+    order.item = [NSSet setWithArray:self.detailViewController.items];
+     
     // Save the context.
     NSError *error = nil;
     if (![context save:&error]) {
@@ -107,7 +112,7 @@ NSString * const kDate1Key = @"date";
             object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         }
         self.detailViewController = (OrderDetailViewController *)[[segue destinationViewController] topViewController];
-        self.detailViewController.masterViewController =self;
+        self.detailViewController.masterViewController = self;
         [self.detailViewController setDetailItem:object];
         self.detailViewController.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         self.detailViewController.navigationItem.leftItemsSupplementBackButton = YES;
@@ -137,8 +142,6 @@ NSString * const kDate1Key = @"date";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //    OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:OrderCellIdentifier forIndexPath:indexPath];
-    
     OrderCell *cell = [self.tableView dequeueReusableCellWithIdentifier:orderCellIdentifier];
     
     if (cell == nil) {
@@ -179,12 +182,7 @@ NSString * const kDate1Key = @"date";
 }
 
 - (void)configureCell:(OrderCell *)cell withObject:(NSManagedObject *)object {
-    //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
-    cell.number = [object valueForKey:kNumberKey];
-    cell.customer = [object valueForKey:kCustomerKey];
-    cell.item = [object valueForKey:kItemKey];
-    cell.postage = [object valueForKey:kPostageKey];
-    cell.date = [object valueForKey:kDate1Key];
+    cell.order = (Order *)object;
 }
 
 #pragma mark - Fetched results controller

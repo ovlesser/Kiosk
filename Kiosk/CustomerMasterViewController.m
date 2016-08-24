@@ -52,6 +52,10 @@ NSString * const kNicknameKey = @"nickname";
     [super viewWillAppear:animated];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [NSFetchedResultsController deleteCacheWithName:@"Customer"];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

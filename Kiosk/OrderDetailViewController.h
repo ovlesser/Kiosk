@@ -11,22 +11,21 @@
 @class OrderMasterViewController;
 @class ItemMasterViewController;
 @class Customer;
+@class Item;
+@class Order;
 
-@interface OrderDetailViewController : DetailViewController <UIPickerViewDataSource, UIPickerViewDelegate> {
-    
-    UIDatePicker *datePicker;
-    
-}
+@interface OrderDetailViewController : DetailViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *numberField;
-@property (weak, nonatomic) IBOutlet UITextField *customerField;
-@property (weak, nonatomic) IBOutlet UITextField *postageField;
-@property (weak, nonatomic) IBOutlet UITextField *dateField;
-@property (weak, nonatomic) IBOutlet UITableView *itemTable;
+@property (copy, nonatomic) NSString *number;
+@property (strong, nonatomic) Customer *customer;
+@property (copy, nonatomic) NSDecimalNumber *postage;
+@property (copy, nonatomic) NSDate *date;
+@property (copy, nonatomic) NSMutableArray<Item *> *items;
+//@property (strong, nonatomic) Order *order;
 
+@property (strong, nonatomic) UIDatePicker *datePicker;
 @property (strong, nonatomic) UIPickerView *customerPicker;
-@property (strong, nonatomic) NSArray<Customer *> *customerArray;
-@property (strong, nonatomic) Customer *customerSelected;
+@property (strong, nonatomic) NSArray<Customer *> *customers;
 
 @property (strong, nonatomic) OrderMasterViewController *masterViewController;
 @property (strong, nonatomic) ItemMasterViewController *itemViewController;

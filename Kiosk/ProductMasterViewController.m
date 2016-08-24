@@ -47,6 +47,10 @@ NSString * const kVolumeKey = @"volume";
     [super viewWillAppear:animated];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [NSFetchedResultsController deleteCacheWithName:@"Product"];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

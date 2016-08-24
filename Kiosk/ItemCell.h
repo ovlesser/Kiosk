@@ -9,14 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @class Product;
+@class Item;
 
 @interface ItemCell : UITableViewCell <UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (copy, nonatomic) NSString *product;
-@property (copy, nonatomic) NSString *price;
-@property (copy, nonatomic) NSString *count;
+//@property (strong, nonatomic) Product *product;
+//@property (copy, nonatomic) NSDecimalNumber *price;
+//@property (copy, nonatomic) NSNumber *count;
 
 @property (strong, nonatomic) UIPickerView *productPicker;
-@property (strong, nonatomic) NSArray<Product *> *productArray;
-@property (strong, nonatomic) Product *productSelected;
+@property (strong, nonatomic) NSArray<Product *> *products;
+
+@property (strong, nonatomic) Item *item;
+
 @end

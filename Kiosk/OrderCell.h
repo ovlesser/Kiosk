@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class Customer;
+@class Order;
+@class Item;
+
 @interface OrderCell : UITableViewCell
 
-@property (copy, nonatomic) NSString *number;
-@property (copy, nonatomic) NSString *customer;
-@property (copy, nonatomic) NSString *item;
-@property (copy, nonatomic) NSString *postage;
-@property (copy, nonatomic) NSString *date;
+//@property (copy, nonatomic) NSString *number;
+//@property (strong, nonatomic) Customer *customer;
+//@property (copy, nonatomic) NSDecimalNumber *postage;
+//@property (copy, nonatomic) NSDate *date;
+//@property (strong, nonatomic) NSSet<Item *> *items;
+@property (strong, nonatomic) Order *order;
 
 @end

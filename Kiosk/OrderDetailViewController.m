@@ -9,18 +9,22 @@
 #import "OrderDetailViewController.h"
 #import "OrderMasterViewController.h"
 #import "ItemMasterViewController.h"
+#import "Order.h"
 #import "Customer.h"
 #import "AppDelegate.h"
 
+#import "Product.h"
+#import "Item.h"
+
 extern NSString * const kCustomerEntityName;
-extern NSString * const kOrderEntityName;
-extern NSString * const kNumberKey;
-extern NSString * const kCustomerKey;
-extern NSString * const kItemKey;
-extern NSString * const kPostageKey;
-extern NSString * const kDate1Key;
 
 @interface OrderDetailViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *numberField;
+@property (weak, nonatomic) IBOutlet UITextField *customerField;
+@property (weak, nonatomic) IBOutlet UITextField *postageField;
+@property (weak, nonatomic) IBOutlet UITextField *dateField;
+@property (weak, nonatomic) IBOutlet UITableView *itemTable;
 
 @end
 
@@ -33,38 +37,45 @@ extern NSString * const kDate1Key;
         super.detailItem = newDetailItem;
         
         // Update the view.
-        [self configureView];
+        //[self configureView];
     }
 }
 
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.numberField.text = [[self.detailItem valueForKey:kNumberKey] description];
-        self.customerField.text = [[self.detailItem valueForKey:kCustomerKey] description];
-        self.postageField.text = [[self.detailItem valueForKey:kPostageKey] stringValue];
+        Order *order = (Order *)self.detailItem;
+//        NSLog(@"configureView %@", self.order);
+        self.number = order.number;
+        self.customer = order.customer;
+        self.postage = order.postage;
+        self.date = order.date;
+        self.items = [[order.item allObjects] mutableCopy];
+        
+        self.numberField.text = order.number;
+        self.customerField.text = [NSString stringWithFormat:@"%@ %@", order.customer.name, order.customer.mobile];
+        self.postageField.text = [order.postage stringValue];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-        self.dateField.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[self.detailItem valueForKey:kDate1Key]]];
+        self.dateField.text = [dateFormatter stringFromDate:order.date];
+        
+        self.itemViewController.items = [[order.item allObjects] mutableCopy];
     }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
-    
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed:)];
     self.navigationItem.rightBarButtonItem = saveButton;
     
     { // init a date picker
-        datePicker = [[UIDatePicker alloc] init];
-        datePicker.datePickerMode = UIDatePickerModeDate;
-        [self.dateField setInputView:datePicker];
+        self.datePicker = [[UIDatePicker alloc] init];
+        self.datePicker.datePickerMode = UIDatePickerModeDate;
+        [self.dateField setInputView:self.datePicker];
         UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
         [toolBar setTintColor:[UIColor grayColor]];
         UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithTitle:@"Done"
@@ -76,19 +87,6 @@ extern NSString * const kDate1Key;
         [self.dateField setInputAccessoryView:toolBar];
     }
     
-//    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"itemMasterNavigation"];
-//    MasterViewController *controller = (MasterViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"itemMasterViewController"];
-//    [navigationController addChildViewController:controller];
-//    navigationController = controller;
-//    navigationController.view.frame = CGRectMake(self.dateLabel.frame.origin.x,
-//                                                 self.dateLabel.frame.origin.y + self.dateLabel.frame.size.height + 20,
-//                                                 self.dateField.frame.origin.x + self.dateField.frame.size.width - self.dateLabel.frame.origin.x,
-//                                                 self.view.frame.origin.y + self.view.frame.size.height - 20 - (self.dateLabel.frame.origin.y + self.dateLabel.frame.size.height + 20));
-//    navigationController.view.backgroundColor = [UIColor blueColor];
-//    [navigationController.view setNeedsLayout];
-//    [self addChildViewController:navigationController];
-//    [self.view addSubview:navigationController.view];
-
     ItemMasterViewController *controller = [[ItemMasterViewController alloc] init];
     controller.tableView = self.itemTable;
     self.itemViewController = controller;
@@ -98,6 +96,8 @@ extern NSString * const kDate1Key;
 
     { // init customer picker
         self.customerPicker = [[UIPickerView alloc] init];
+        self.customerPicker.delegate = self;
+        self.customerPicker.dataSource = self;
         [self.customerField setInputView:self.customerPicker];
         UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
         [toolBar setTintColor:[UIColor grayColor]];
@@ -112,9 +112,10 @@ extern NSString * const kDate1Key;
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
         NSManagedObjectContext *context = [delegate managedObjectContext];
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kCustomerEntityName];
-        self.customerArray = [context executeFetchRequest:request error:nil];
+        self.customers = [context executeFetchRequest:request error:nil];
+        NSLog(@"%@", self.customers);
     }
-
+    [self configureView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,6 +124,10 @@ extern NSString * const kDate1Key;
 }
 
 - (IBAction)savePressed:(id)sender {
+    self.number = [self.numberField.text copy];
+    self.postage = [[NSDecimalNumber decimalNumberWithString:self.postageField.text] copy];
+    self.items = [self.itemViewController.items mutableCopy];
+//    NSLog(@"savePressed %@", self.order);
     [self.masterViewController save];
 }
 
@@ -133,18 +138,18 @@ extern NSString * const kDate1Key;
 -(void)ShowSelectedDate
 {
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
-    //    [formatter setDateFormat:@"dd/MMM/YYYY"];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    self.dateField.text=[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:datePicker.date]];
+    self.dateField.text = [dateFormatter stringFromDate:self.datePicker.date];
+    self.date = [self.datePicker.date copy];
     [self.dateField resignFirstResponder];
 }
 
 -(void)ShowSelectedCustomer
 {
     self.customerField.text = [NSString stringWithFormat:@"%@ %@",
-                               self.customerSelected.name,
-                               self.customerSelected.mobile];
+                               self.customer.name,
+                               self.customer.mobile];
     [self.customerField resignFirstResponder];
 }
 
@@ -157,15 +162,14 @@ extern NSString * const kDate1Key;
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [self.customerArray count];
+    return [self.customers count];
     
 }
 
 #pragma mark Picker Delegate Methods
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    Customer *customer = self.customerArray[row];
-    self.customerSelected = customer;
-    return [NSString stringWithFormat:@"%@ %@", customer.name, customer.mobile];
+    self.customer = self.customers[row];
+    return [NSString stringWithFormat:@"%@ %@", self.customer.name, self.customer.mobile];
 }
 @end

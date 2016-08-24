@@ -8,72 +8,17 @@
 
 #import "ItemMasterViewController.h"
 #import "ItemCell.h"
-#import "AppDelegate.h"
+#import "Item.h"
+#import "Product.h"
 
 NSString *itemCellIdentifier = @"itemCell";
 NSString * const kItemEntityName = @"Item";
-NSString * const kProductKey = @"product";
-NSString * const kCountKey = @"count";
-NSString * const kPrice1Key = @"price";
 
 @implementation ItemMasterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-/*
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-    self.navigationItem.titleView.backgroundColor = [UIColor cyanColor];
-
-    UINavigationController *naviCOntroller = self.navigationController;
-    UIView *view = naviCOntroller.view;
-    UIView *superView = view.superview;
-    
-
-    [[self.navigationController.view superview] setTranslatesAutoresizingMaskIntoConstraints:false];
-    
-    NSLayoutConstraint *rightSideConstraint = [NSLayoutConstraint constraintWithItem:self.view
-                                                                           attribute:NSLayoutAttributeRight
-                                                                           relatedBy:NSLayoutRelationEqual
-                                                                              toItem:[self.navigationController.view superview]
-                                                                           attribute:NSLayoutAttributeRightMargin
-                                                                          multiplier:1.0
-                                                                            constant:0.0];
-/*
- NSLayoutConstraint *leftSideConstraint = [NSLayoutConstraint constraintWithItem:[self.view superview]
-                                                                          attribute:NSLayoutAttributeLeft
-                                                                          relatedBy:NSLayoutRelationEqual
-                                                                             toItem:self.view
-                                                                          attribute:NSLayoutAttributeLeft
-                                                                         multiplier:1.0
-                                                                           constant:0.0];
-    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:[self.view superview]
-                                                                        attribute:NSLayoutAttributeBottom
-                                                                        relatedBy:NSLayoutRelationEqual
-                                                                           toItem:self.view
-                                                                        attribute:NSLayoutAttributeBottom
-                                                                       multiplier:1.0
-                                                                         constant:0.0];
-    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:[self.view superview]
-                                                                       attribute:NSLayoutAttributeWidth
-                                                                       relatedBy:NSLayoutRelationEqual
-                                                                          toItem:self.view
-                                                                       attribute:NSLayoutAttributeWidth
-                                                                      multiplier:1.0
-                                                                        constant:0.0];
-    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:[self.view superview]
-                                                                        attribute:NSLayoutAttributeHeight
-                                                                        relatedBy:NSLayoutRelationEqual
-                                                                           toItem:self.view
-                                                                        attribute:NSLayoutAttributeHeight
-                                                                       multiplier:1.0
-                                                                         constant:0.0];
-    //    [navigationController.topViewController.view addConstraints:@[leftSideConstraint, bottomConstraint, heightConstraint, widthConstraint]];
-    [[self.view superview] addConstraint:rightSideConstraint];*/
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -87,116 +32,30 @@ NSString * const kPrice1Key = @"price";
 }
 
 - (void)insertNewObject:(id)sender {
-/*    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"itemDetailNavigation"];
-    self.detailViewController = (ItemDetailViewController *)[navigationController topViewController];
-    self.detailViewController.masterViewController = self;
-    [self.detailViewController setDetailItem:nil];
-    [self.navigationController pushViewController:navigationController animated:YES];*/
-    [self save];
+    if (!self.items) {
+        self.items = [[NSMutableArray alloc] init];
+    }
+    NSEntityDescription *entity = [NSEntityDescription entityForName:kItemEntityName inManagedObjectContext:self.managedObjectContext];
+    [self.items insertObject:[[Item alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-- (void)save {
-    NSManagedObjectContext *context = nil;
-    NSEntityDescription *entity = nil;
-    if ([self.searchDisplayController isActive]) {
-        context = [self.searchFetchedResultsController managedObjectContext];
-        entity = [[self.searchFetchedResultsController fetchRequest] entity];
-    }
-    else {
-        context = [self.fetchedResultsController managedObjectContext];
-        entity = [[self.fetchedResultsController fetchRequest] entity];
-    }
-    NSManagedObject *newManagedObject = self.detailViewController.detailItem;
-    if (!newManagedObject) {
-        newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    }
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:self.detailViewController.productField.text forKey:kProductKey];
-    [newManagedObject setValue:self.detailViewController.priceField.text forKey:kPrice1Key];
-    [newManagedObject setValue:self.detailViewController.countField.text forKey:kCountKey];
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    if (![self.searchDisplayController isActive]) {
-        [self.tableView reloadData];
-    }
-    else {
-        [self.searchDisplayController.searchResultsTableView reloadData];
-    }
-}
-
-#pragma mark - Segues
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = nil;
-        NSManagedObject *object = nil;
-        if ([self.searchDisplayController isActive]) {
-            indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            object = [[self searchFetchedResultsController] objectAtIndexPath:indexPath];
-        }
-        else {
-            indexPath = [self.tableView indexPathForSelectedRow];
-            object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        }
-        self.detailViewController = (ItemDetailViewController *)[[segue destinationViewController] topViewController];
-        self.detailViewController.masterViewController =self;
-        [self.detailViewController setDetailItem:object];
-        self.detailViewController.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-        self.detailViewController.navigationItem.leftItemsSupplementBackButton = YES;
-    }
 }
 
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([self.searchDisplayController isActive]) {
-        return [[self.searchFetchedResultsController sections] count];
-    }
-    else {
-        NSLog(@"%lul", [[self.fetchedResultsController sections] count]);
-        return [[self.fetchedResultsController sections] count];
-    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([self.searchDisplayController isActive]) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [self.searchFetchedResultsController sections][section];
-        return [sectionInfo numberOfObjects];
-    }
-    else {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-        return [sectionInfo numberOfObjects];
-    }
+    return [self.items count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //    ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:ItemCellIdentifier forIndexPath:indexPath];
+    ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:itemCellIdentifier forIndexPath:indexPath];
     
-    ItemCell *cell = [self.tableView dequeueReusableCellWithIdentifier:itemCellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[ItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:itemCellIdentifier];
-    }
-    
-    NSManagedObject *object = nil;
-    if ([self.searchDisplayController isActive]) {
-        object = [[self searchFetchedResultsController] objectAtIndexPath:indexPath];
-    }
-    else {
-        object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    }
-    [self configureCell:cell withObject:object];
+    Item *item = self.items[indexPath.row];
+    [self configureCell:cell withObject:item];
     return cell;
 }
 
@@ -206,174 +65,16 @@ NSString * const kPrice1Key = @"price";
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (![self.searchDisplayController isActive]) {
-        if (editingStyle == UITableViewCellEditingStyleDelete) {
-            NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-            [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-            
-            NSError *error = nil;
-            if (![context save:&error]) {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-                abort();
-            }
-        }
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.managedObjectContext deleteObject:self.items[indexPath.row]];
+        [self.items removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
 
-- (void)configureCell:(ItemCell *)cell withObject:(NSManagedObject *)object {
-    //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
-    cell.product = @"Product";//[object valueForKey:kProductKey];
-    cell.price = @"Price";//[object valueForKey:kPrice1Key];
-    cell.count = @"Count";//[object valueForKey:kCountKey];
+- (void)configureCell:(ItemCell *)cell withObject:(Item *)item {
+    cell.item = item;
 }
-
-#pragma mark - Fetched results controller
-
-- (NSFetchedResultsController *)fetchedResultsController
-{
-    if (super.fetchedResultsController != nil) {
-        return super.fetchedResultsController;
-    }
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:kItemEntityName inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kProductKey ascending:NO];
-    
-    [fetchRequest setSortDescriptors:@[sortDescriptor]];
-    
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Item"];
-    aFetchedResultsController.delegate = self;
-    super.fetchedResultsController = aFetchedResultsController;
-    
-    NSError *error = nil;
-    if (![super.fetchedResultsController performFetch:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    
-    return super.fetchedResultsController;
-}
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    if (![self.searchDisplayController isActive]) {
-        [self.tableView beginUpdates];
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
-    if (![self.searchDisplayController isActive]) {
-        switch(type) {
-            case NSFetchedResultsChangeInsert:
-                [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-                break;
-                
-            case NSFetchedResultsChangeDelete:
-                [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-                break;
-                
-            default:
-                return;
-        }
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-    if (![self.searchDisplayController isActive]) {
-        UITableView *tableView = self.tableView;
-        
-        switch(type) {
-            case NSFetchedResultsChangeInsert:
-                [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-                break;
-                
-            case NSFetchedResultsChangeDelete:
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                break;
-                
-            case NSFetchedResultsChangeUpdate:
-                [self configureCell:[tableView cellForRowAtIndexPath:indexPath] withObject:anObject];
-                break;
-                
-            case NSFetchedResultsChangeMove:
-                [tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
-                break;
-        }
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    if (![self.searchDisplayController isActive]) {
-        [self.tableView endUpdates];
-    }
-}
-
-- (BOOL)searchDisplayController:(UISearchController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    if (self.searchFetchedResultsController) {
-        self.searchFetchedResultsController = nil;
-    }
-    if (searchString.length > 0) {
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        // Edit the entity name as appropriate.
-        NSEntityDescription *entity = [NSEntityDescription entityForName:kItemEntityName inManagedObjectContext:self.managedObjectContext];
-        [fetchRequest setEntity:entity];
-        
-        // Set the batch size to a suitable number.
-        [fetchRequest setFetchBatchSize:20];
-        
-        // Edit the sort key as appropriate.
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kProductKey ascending:NO];
-        
-        [fetchRequest setSortDescriptors:@[sortDescriptor]];
-        
-        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(name contains[cd] %@)", searchString];
-        [fetchRequest setPredicate:predicate];
-        
-        // Edit the section name key path and cache name if appropriate.
-        // nil for section name key path means "no sections".
-        NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-        aFetchedResultsController.delegate = self;
-        self.searchFetchedResultsController = aFetchedResultsController;
-        
-        NSError *error = nil;
-        if (![self.searchFetchedResultsController performFetch:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
-    }
-    return YES;
-}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
 @end
