@@ -32,7 +32,9 @@ NSString * const kNicknameKey = @"nickname";
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    UIBarButtonItem *importButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(importData:)];
+    NSArray *items = @[addButton, importButton];
+    self.navigationItem.rightBarButtonItems = items;
     //self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
 
@@ -67,6 +69,57 @@ NSString * const kNicknameKey = @"nickname";
     self.detailViewController.masterViewController = self;
     [self.detailViewController setDetailItem:nil];
     [self.navigationController pushViewController:navigationController animated:YES];
+}
+
+- (void)importData:(id)sender {
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *directoryURL = [fileManager URLForDirectory:NSDocumentDirectory
+                                              inDomain:NSUserDomainMask
+                                     appropriateForURL:nil
+                                                create:NO
+                                                 error:nil];
+    NSArray *urls = [fileManager contentsOfDirectoryAtURL:directoryURL
+                               includingPropertiesForKeys:[NSArray arrayWithObjects:NSURLNameKey, NSURLIsDirectoryKey, NSURLContentModificationDateKey, nil]
+                                                  options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                    error:nil];
+    for (NSURL *url in urls) {
+        NSLog(@"%@", [url lastPathComponent]);
+    }
+    // To create the object
+    FPPickerController *pickerController = [FPPickerController new];
+    
+    // Set the delegate
+    pickerController.fpdelegate = self;
+    
+    // Ask for specific data types. (Optional) Default is all files
+    pickerController.dataTypes = @[
+                                   @"*/*",
+                                   @"text/plain",
+                                   @"image/*"
+                                   ];
+    
+    // Select and order the sources (Optional) Default is all sources
+    pickerController.sourceNames = @[
+                                     FPSourceImagesearch,
+                                     FPSourceDropbox,
+                                     FPSourceSkydrive,
+                                     FPSourceCameraRoll
+                                     ];
+    
+    // You can set some of the in built Camera properties as you would with UIImagePicker
+    pickerController.allowsEditing = YES;
+    
+    // Allowing multiple file selection
+    pickerController.selectMultiple = NO;
+    
+    // Limiting the maximum number of files that can be uploaded at one time
+    pickerController.maxFiles = 5;
+    
+    // Display it
+    [self presentViewController:pickerController
+                       animated:YES
+                     completion:nil];
 }
 
 - (void)save {
@@ -339,6 +392,53 @@ NSString * const kNicknameKey = @"nickname";
         }
     }
     return YES;
+}
+
+#pragma mark - FPPickerControllerDelegate Methods
+
+- (void)fpPickerController:(FPPickerController *)pickerController
+      didPickMediaWithInfo:(FPMediaInfo *)info
+{
+}
+
+- (void)fpPickerController:(FPPickerController *)pickerController didFinishPickingMediaWithInfo:(FPMediaInfo *)info
+{
+    NSLog(@"FILE CHOSEN: %@", info);
+    
+    if (info)
+    {
+        if (info.containsImageAtMediaURL)
+        {
+        }
+        
+        [self dismissViewControllerAnimated:YES
+                                 completion:nil];
+    }
+    else
+    {
+        NSLog(@"Nothing was picked.");
+    }
+}
+
+- (void)fpPickerController:(FPPickerController *)pickerController didFinishPickingMultipleMediaWithResults:(NSArray *)results
+{
+    NSLog(@"FILES CHOSEN: %@", results);
+    
+    if (results.count == 0)
+    {
+        NSLog(@"Nothing was picked.");
+        
+        return;
+    }
+    
+}
+
+- (void)fpPickerControllerDidCancel:(FPPickerController *)pickerController
+{
+    NSLog(@"FP Cancelled Open");
+    
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 /*

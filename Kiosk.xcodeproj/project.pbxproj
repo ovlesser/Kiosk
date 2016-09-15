@@ -10,6 +10,13 @@
 		0E4540D31D5D926300358D07 /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540D21D5D926300358D07 /* ProductCell.m */; };
 		0E4540D81D5D97EB00358D07 /* ProductMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540D71D5D97EB00358D07 /* ProductMasterViewController.m */; };
 		0E4540DB1D5D9A0A00358D07 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540DA1D5D9A0A00358D07 /* ProductDetailViewController.m */; };
+		0E4973121D6D2EA4007293C6 /* Kiosk2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E4973101D6D2EA4007293C6 /* Kiosk2.xcdatamodeld */; };
+		0E4973141D6D2FE7007293C6 /* KioskV1toV2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0E4973131D6D2FE7007293C6 /* KioskV1toV2.xcmappingmodel */; };
+		0E500C1D1D766B3F003A1027 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0E500C1C1D766B3F003A1027 /* Podfile */; };
+		0E500C361D76B0A2003A1027 /* FileImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E500C311D76B0A2003A1027 /* FileImporter.m */; };
+		0E500C371D76B0A2003A1027 /* Reader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E500C331D76B0A2003A1027 /* Reader.m */; };
+		0E500C381D76B0A2003A1027 /* CustomerFileImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E500C351D76B0A2003A1027 /* CustomerFileImporter.m */; };
+		0E500C3B1D77C0BA003A1027 /* NSData+EnumerateComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E500C3A1D77C0BA003A1027 /* NSData+EnumerateComponents.m */; };
 		0E5829E01D63E0C000EC01A7 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829DF1D63E0C000EC01A7 /* ItemCell.m */; };
 		0E5829E31D63E0EF00EC01A7 /* ItemMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829E21D63E0EF00EC01A7 /* ItemMasterViewController.m */; };
 		0E5829FB1D66C1E900EC01A7 /* Stock+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829E81D66C1E900EC01A7 /* Stock+CoreDataProperties.m */; };
@@ -38,9 +45,45 @@
 		0EF7DAFB1D59527B00F14323 /* KioskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DAFA1D59527B00F14323 /* KioskTests.m */; };
 		0EF7DB061D59527B00F14323 /* KioskUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DB051D59527B00F14323 /* KioskUITests.m */; };
 		0EF7DB181D5954F100F14323 /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DB141D5954F100F14323 /* CustomerCell.m */; };
+		9847BA8DB7370568C15017DC /* Pods_Kiosk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A161427A899DCDB5DF074ABE /* Pods_Kiosk.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0E4973281D700F7B007293C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E49731B1D700F7B007293C6 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BB81546E56023F4D1AD9ACA184476542;
+			remoteInfo = "Pods-Kiosk";
+		};
+		0EE292A51D766BD700BC6FB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E49731B1D700F7B007293C6 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B42A8274C8EE6BBB7D6A15C1C44BA352;
+			remoteInfo = AFNetworking;
+		};
+		0EE292A71D766BD700BC6FB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E49731B1D700F7B007293C6 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1381A35A6A0785D18F6D206E0BC7402E;
+			remoteInfo = FPPicker;
+		};
+		0EE292A91D766BD700BC6FB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E49731B1D700F7B007293C6 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FD552C4E80E081515081EABDC52F8E32;
+			remoteInfo = "FPPicker-FPPicker";
+		};
+		0EE292AB1D766BD700BC6FB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E49731B1D700F7B007293C6 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4C571A43138EA41B1160FD8AEC78CF2;
+			remoteInfo = MBProgressHUD;
+		};
 		0EF7DAF71D59527B00F14323 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0EF7DACF1D59527A00F14323 /* Project object */;
@@ -64,6 +107,19 @@
 		0E4540D71D5D97EB00358D07 /* ProductMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductMasterViewController.m; sourceTree = "<group>"; };
 		0E4540D91D5D9A0A00358D07 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		0E4540DA1D5D9A0A00358D07 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
+		0E4973111D6D2EA4007293C6 /* Kiosk2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kiosk2.xcdatamodel; sourceTree = "<group>"; };
+		0E4973131D6D2FE7007293C6 /* KioskV1toV2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = KioskV1toV2.xcmappingmodel; sourceTree = "<group>"; };
+		0E49731B1D700F7B007293C6 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
+		0E4973301D71421D007293C6 /* Kiosk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Kiosk.entitlements; sourceTree = "<group>"; };
+		0E500C1C1D766B3F003A1027 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; };
+		0E500C301D76B0A2003A1027 /* FileImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileImporter.h; sourceTree = "<group>"; };
+		0E500C311D76B0A2003A1027 /* FileImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileImporter.m; sourceTree = "<group>"; };
+		0E500C321D76B0A2003A1027 /* Reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reader.h; sourceTree = "<group>"; };
+		0E500C331D76B0A2003A1027 /* Reader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reader.m; sourceTree = "<group>"; };
+		0E500C341D76B0A2003A1027 /* CustomerFileImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerFileImporter.h; sourceTree = "<group>"; };
+		0E500C351D76B0A2003A1027 /* CustomerFileImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerFileImporter.m; sourceTree = "<group>"; };
+		0E500C391D77C0BA003A1027 /* NSData+EnumerateComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+EnumerateComponents.h"; sourceTree = "<group>"; };
+		0E500C3A1D77C0BA003A1027 /* NSData+EnumerateComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+EnumerateComponents.m"; sourceTree = "<group>"; };
 		0E5829DE1D63E0C000EC01A7 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
 		0E5829DF1D63E0C000EC01A7 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 		0E5829E11D63E0EF00EC01A7 /* ItemMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemMasterViewController.h; sourceTree = "<group>"; };
@@ -119,6 +175,9 @@
 		0EF7DB071D59527B00F14323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EF7DB131D5954F100F14323 /* CustomerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCell.h; sourceTree = "<group>"; };
 		0EF7DB141D5954F100F14323 /* CustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCell.m; sourceTree = "<group>"; };
+		58D7678F5D1164A596A270FA /* Pods-Kiosk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiosk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kiosk/Pods-Kiosk.release.xcconfig"; sourceTree = "<group>"; };
+		61AC79DED0DE8B897A7DF7DC /* Pods-Kiosk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiosk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kiosk/Pods-Kiosk.debug.xcconfig"; sourceTree = "<group>"; };
+		A161427A899DCDB5DF074ABE /* Pods_Kiosk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kiosk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9847BA8DB7370568C15017DC /* Pods_Kiosk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +215,8 @@
 				0EF7DAE41D59527A00F14323 /* CustomerMasterViewController.m */,
 				0EF7DAE61D59527A00F14323 /* CustomerDetailViewController.h */,
 				0EF7DAE71D59527A00F14323 /* CustomerDetailViewController.m */,
+				0E500C341D76B0A2003A1027 /* CustomerFileImporter.h */,
+				0E500C351D76B0A2003A1027 /* CustomerFileImporter.m */,
 			);
 			name = Customer;
 			sourceTree = "<group>";
@@ -170,6 +232,61 @@
 				0E4540DA1D5D9A0A00358D07 /* ProductDetailViewController.m */,
 			);
 			name = Product;
+			sourceTree = "<group>";
+		};
+		0E49731C1D700F7B007293C6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0EE292A61D766BD700BC6FB2 /* AFNetworking.framework */,
+				0EE292A81D766BD700BC6FB2 /* FPPicker.framework */,
+				0EE292AA1D766BD700BC6FB2 /* FPPicker.bundle */,
+				0EE292AC1D766BD700BC6FB2 /* MBProgressHUD.framework */,
+				0E4973291D700F7B007293C6 /* Pods_Kiosk.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0E49732B1D70106F007293C6 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */,
+				0E4973101D6D2EA4007293C6 /* Kiosk2.xcdatamodeld */,
+				0E4973131D6D2FE7007293C6 /* KioskV1toV2.xcmappingmodel */,
+				0E5829E71D66C1E900EC01A7 /* Stock+CoreDataProperties.h */,
+				0E5829E81D66C1E900EC01A7 /* Stock+CoreDataProperties.m */,
+				0E5829E91D66C1E900EC01A7 /* Stock.h */,
+				0E5829EA1D66C1E900EC01A7 /* Stock.m */,
+				0E5829EB1D66C1E900EC01A7 /* Product+CoreDataProperties.h */,
+				0E5829EC1D66C1E900EC01A7 /* Product+CoreDataProperties.m */,
+				0E5829ED1D66C1E900EC01A7 /* Product.h */,
+				0E5829EE1D66C1E900EC01A7 /* Product.m */,
+				0E5829EF1D66C1E900EC01A7 /* Item+CoreDataProperties.h */,
+				0E5829F01D66C1E900EC01A7 /* Item+CoreDataProperties.m */,
+				0E5829F11D66C1E900EC01A7 /* Item.h */,
+				0E5829F21D66C1E900EC01A7 /* Item.m */,
+				0E5829F31D66C1E900EC01A7 /* Customer+CoreDataProperties.h */,
+				0E5829F41D66C1E900EC01A7 /* Customer+CoreDataProperties.m */,
+				0E5829F51D66C1E900EC01A7 /* Customer.h */,
+				0E5829F61D66C1E900EC01A7 /* Customer.m */,
+				0E5829F71D66C1E900EC01A7 /* Order+CoreDataProperties.h */,
+				0E5829F81D66C1E900EC01A7 /* Order+CoreDataProperties.m */,
+				0E5829F91D66C1E900EC01A7 /* Order.h */,
+				0E5829FA1D66C1E900EC01A7 /* Order.m */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		0E500C2F1D76AF8A003A1027 /* importer */ = {
+			isa = PBXGroup;
+			children = (
+				0E500C391D77C0BA003A1027 /* NSData+EnumerateComponents.h */,
+				0E500C3A1D77C0BA003A1027 /* NSData+EnumerateComponents.m */,
+				0E500C301D76B0A2003A1027 /* FileImporter.h */,
+				0E500C311D76B0A2003A1027 /* FileImporter.m */,
+				0E500C321D76B0A2003A1027 /* Reader.h */,
+				0E500C331D76B0A2003A1027 /* Reader.m */,
+			);
+			name = importer;
 			sourceTree = "<group>";
 		};
 		0E5829DD1D63E09200EC01A7 /* Item */ = {
@@ -203,6 +320,8 @@
 				0EF7DAF91D59527B00F14323 /* KioskTests */,
 				0EF7DB041D59527B00F14323 /* KioskUITests */,
 				0EF7DAD81D59527A00F14323 /* Products */,
+				5832FFEF71E1AC0DA0AF606B /* Pods */,
+				F64992730CDF79A17FDC8C84 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,6 +338,8 @@
 		0EF7DAD91D59527A00F14323 /* Kiosk */ = {
 			isa = PBXGroup;
 			children = (
+				0E4973301D71421D007293C6 /* Kiosk.entitlements */,
+				0E49732B1D70106F007293C6 /* models */,
 				0E5829DD1D63E09200EC01A7 /* Item */,
 				0E7CD5EC1D61952E00728078 /* Order */,
 				0E4540D51D5D92A800358D07 /* Product */,
@@ -233,28 +354,9 @@
 				0EF7DAEC1D59527A00F14323 /* Assets.xcassets */,
 				0EF7DAEE1D59527A00F14323 /* LaunchScreen.storyboard */,
 				0EF7DAF11D59527A00F14323 /* Info.plist */,
-				0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */,
-				0E5829E71D66C1E900EC01A7 /* Stock+CoreDataProperties.h */,
-				0E5829E81D66C1E900EC01A7 /* Stock+CoreDataProperties.m */,
-				0E5829E91D66C1E900EC01A7 /* Stock.h */,
-				0E5829EA1D66C1E900EC01A7 /* Stock.m */,
-				0E5829EB1D66C1E900EC01A7 /* Product+CoreDataProperties.h */,
-				0E5829EC1D66C1E900EC01A7 /* Product+CoreDataProperties.m */,
-				0E5829ED1D66C1E900EC01A7 /* Product.h */,
-				0E5829EE1D66C1E900EC01A7 /* Product.m */,
-				0E5829EF1D66C1E900EC01A7 /* Item+CoreDataProperties.h */,
-				0E5829F01D66C1E900EC01A7 /* Item+CoreDataProperties.m */,
-				0E5829F11D66C1E900EC01A7 /* Item.h */,
-				0E5829F21D66C1E900EC01A7 /* Item.m */,
-				0E5829F31D66C1E900EC01A7 /* Customer+CoreDataProperties.h */,
-				0E5829F41D66C1E900EC01A7 /* Customer+CoreDataProperties.m */,
-				0E5829F51D66C1E900EC01A7 /* Customer.h */,
-				0E5829F61D66C1E900EC01A7 /* Customer.m */,
-				0E5829F71D66C1E900EC01A7 /* Order+CoreDataProperties.h */,
-				0E5829F81D66C1E900EC01A7 /* Order+CoreDataProperties.m */,
-				0E5829F91D66C1E900EC01A7 /* Order.h */,
-				0E5829FA1D66C1E900EC01A7 /* Order.m */,
+				0E500C1C1D766B3F003A1027 /* Podfile */,
 				0EF7DADA1D59527A00F14323 /* Supporting Files */,
+				0E500C2F1D76AF8A003A1027 /* importer */,
 			);
 			path = Kiosk;
 			sourceTree = "<group>";
@@ -285,6 +387,24 @@
 			path = KioskUITests;
 			sourceTree = "<group>";
 		};
+		5832FFEF71E1AC0DA0AF606B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				61AC79DED0DE8B897A7DF7DC /* Pods-Kiosk.debug.xcconfig */,
+				58D7678F5D1164A596A270FA /* Pods-Kiosk.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F64992730CDF79A17FDC8C84 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E49731B1D700F7B007293C6 /* Pods.xcodeproj */,
+				A161427A899DCDB5DF074ABE /* Pods_Kiosk.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -292,9 +412,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0EF7DB0A1D59527B00F14323 /* Build configuration list for PBXNativeTarget "Kiosk" */;
 			buildPhases = (
+				C8A3AF79B96D330D6BDB5AF7 /* [CP] Check Pods Manifest.lock */,
 				0EF7DAD31D59527A00F14323 /* Sources */,
 				0EF7DAD41D59527A00F14323 /* Frameworks */,
 				0EF7DAD51D59527A00F14323 /* Resources */,
+				2E13F8862FFF7071CDC99584 /* [CP] Embed Pods Frameworks */,
+				D07E6AD416D360731E9741F2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -353,6 +476,11 @@
 					0EF7DAD61D59527A00F14323 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 29RC93543R;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					0EF7DAF51D59527B00F14323 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -375,6 +503,12 @@
 			mainGroup = 0EF7DACE1D59527A00F14323;
 			productRefGroup = 0EF7DAD81D59527A00F14323 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0E49731C1D700F7B007293C6 /* Products */;
+					ProjectRef = 0E49731B1D700F7B007293C6 /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0EF7DAD61D59527A00F14323 /* Kiosk */,
@@ -384,6 +518,44 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		0E4973291D700F7B007293C6 /* Pods_Kiosk.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_Kiosk.framework;
+			remoteRef = 0E4973281D700F7B007293C6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0EE292A61D766BD700BC6FB2 /* AFNetworking.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AFNetworking.framework;
+			remoteRef = 0EE292A51D766BD700BC6FB2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0EE292A81D766BD700BC6FB2 /* FPPicker.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FPPicker.framework;
+			remoteRef = 0EE292A71D766BD700BC6FB2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0EE292AA1D766BD700BC6FB2 /* FPPicker.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FPPicker.bundle;
+			remoteRef = 0EE292A91D766BD700BC6FB2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0EE292AC1D766BD700BC6FB2 /* MBProgressHUD.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MBProgressHUD.framework;
+			remoteRef = 0EE292AB1D766BD700BC6FB2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		0EF7DAD51D59527A00F14323 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -391,6 +563,7 @@
 			files = (
 				0EF7DAF01D59527A00F14323 /* LaunchScreen.storyboard in Resources */,
 				0EF7DAED1D59527A00F14323 /* Assets.xcassets in Resources */,
+				0E500C1D1D766B3F003A1027 /* Podfile in Resources */,
 				0EF7DAEB1D59527A00F14323 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +584,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2E13F8862FFF7071CDC99584 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kiosk/Pods-Kiosk-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8A3AF79B96D330D6BDB5AF7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D07E6AD416D360731E9741F2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kiosk/Pods-Kiosk-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0EF7DAD31D59527A00F14323 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -419,9 +640,13 @@
 				0E582A031D66C1E900EC01A7 /* Order+CoreDataProperties.m in Sources */,
 				0E5829E01D63E0C000EC01A7 /* ItemCell.m in Sources */,
 				0E5829FE1D66C1E900EC01A7 /* Product.m in Sources */,
+				0E4973141D6D2FE7007293C6 /* KioskV1toV2.xcmappingmodel in Sources */,
+				0E500C371D76B0A2003A1027 /* Reader.m in Sources */,
 				0EF7DAE81D59527A00F14323 /* CustomerDetailViewController.m in Sources */,
+				0E500C361D76B0A2003A1027 /* FileImporter.m in Sources */,
 				0EF7DAE51D59527A00F14323 /* CustomerMasterViewController.m in Sources */,
 				0E5829FB1D66C1E900EC01A7 /* Stock+CoreDataProperties.m in Sources */,
+				0E500C3B1D77C0BA003A1027 /* NSData+EnumerateComponents.m in Sources */,
 				0E7CD5F51D61960200728078 /* OrderDetailViewController.m in Sources */,
 				0E7CD5EF1D61959D00728078 /* OrderCell.m in Sources */,
 				0E582A041D66C1E900EC01A7 /* Order.m in Sources */,
@@ -436,11 +661,13 @@
 				0EF7DAE21D59527A00F14323 /* Kiosk.xcdatamodeld in Sources */,
 				0E582A011D66C1E900EC01A7 /* Customer+CoreDataProperties.m in Sources */,
 				0E5829FF1D66C1E900EC01A7 /* Item+CoreDataProperties.m in Sources */,
+				0E500C381D76B0A2003A1027 /* CustomerFileImporter.m in Sources */,
 				0E7CD5EB1D6192EC00728078 /* DetailViewController.m in Sources */,
 				0EF7DADF1D59527A00F14323 /* AppDelegate.m in Sources */,
 				0E582A001D66C1E900EC01A7 /* Item.m in Sources */,
 				0EF7DADC1D59527A00F14323 /* main.m in Sources */,
 				0EF7DB181D5954F100F14323 /* CustomerCell.m in Sources */,
+				0E4973121D6D2EA4007293C6 /* Kiosk2.xcdatamodeld in Sources */,
 				0E5829E31D63E0EF00EC01A7 /* ItemMasterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -580,8 +807,10 @@
 		};
 		0EF7DB0B1D59527B00F14323 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61AC79DED0DE8B897A7DF7DC /* Pods-Kiosk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Kiosk/Kiosk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Kiosk/Info.plist;
@@ -595,8 +824,10 @@
 		};
 		0EF7DB0C1D59527B00F14323 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58D7678F5D1164A596A270FA /* Pods-Kiosk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Kiosk/Kiosk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Kiosk/Info.plist;
@@ -696,6 +927,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		0E4973101D6D2EA4007293C6 /* Kiosk2.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0E4973111D6D2EA4007293C6 /* Kiosk2.xcdatamodel */,
+			);
+			currentVersion = 0E4973111D6D2EA4007293C6 /* Kiosk2.xcdatamodel */;
+			path = Kiosk2.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

@@ -9,10 +9,13 @@
 #import "AppDelegate.h"
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+//#import <OneDriveSDK/OneDriveSDK.h>
 //#import "CustomerDetailViewController.h"
 //#import "CustomerMasterViewController.h"
 //#import "ProductDetailViewController.h"
 //#import "ProductMasterViewController.h"
+
+@import FPPicker;
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -20,6 +23,10 @@
 
 @implementation AppDelegate
 
++ (void)initialize
+{
+    [FPConfig sharedInstance].APIKey = @"Axel7i1lTXC2jOsd4m9nAz";
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -34,6 +41,7 @@
         MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
         controller.managedObjectContext = self.managedObjectContext;
     }
+//    [ODClient setMicrosoftAccountAppId:@"7d0e070b-52ac-4597-aae2-ff2aff55a4b9" scopes:@[@"onedrive.readwrite"] ];
     return YES;
 }
 
