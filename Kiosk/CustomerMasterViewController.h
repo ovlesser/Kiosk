@@ -10,8 +10,6 @@
 //#import <OneDriveSDK/OneDriveSDK.h>
 #import "MasterViewController.h"
 
-@import FPPicker;
-
 @class CustomerDetailViewController;
 
 @interface CustomerMasterViewController : MasterViewController

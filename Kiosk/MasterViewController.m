@@ -8,10 +8,7 @@
 
 #import "MasterViewController.h"
 
-@import FPPicker;
-
-@interface MasterViewController () <FPPickerControllerDelegate,
-                                    FPSaveControllerDelegate>
+@interface MasterViewController ()
 
 @end
 

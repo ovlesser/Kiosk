@@ -15,18 +15,11 @@
 //#import "ProductDetailViewController.h"
 //#import "ProductMasterViewController.h"
 
-@import FPPicker;
-
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
 @end
 
 @implementation AppDelegate
-
-+ (void)initialize
-{
-    [FPConfig sharedInstance].APIKey = @"Axel7i1lTXC2jOsd4m9nAz";
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.

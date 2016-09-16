@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[ItemMasterViewController configureCell:withObject:]:ItemMasterViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "item.price">
+            </PersistentString>
+            <PersistentString
+               value = "item.product">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ItemMasterViewController numberOfSectionsInTableView:]:ItemMasterViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.fetchedResultsController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OrderCell setItems:]:OrderCell.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "item.product">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OrderMasterViewController insertNewObject:]:OrderMasterViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[OrderMasterViewController configureCell:withObject:]:OrderMasterViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[OrderDetailViewController viewDidLoad]:OrderDetailViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ItemMasterViewController tableView:cellForRowAtIndexPath:]:ItemMasterViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "item.product">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ItemMasterViewController insertNewObject:]:ItemMasterViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tableView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OrderDetailViewController pickerView:titleForRow:forComponent:]:OrderDetailViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.customer">
+            </PersistentString>
+            <PersistentString
+               value = "self.customers[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
