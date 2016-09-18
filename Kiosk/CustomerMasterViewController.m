@@ -32,8 +32,7 @@ NSString * const kNicknameKey = @"nickname";
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    UIBarButtonItem *importButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(importData:)];
-    NSArray *items = @[addButton, importButton];
+    NSArray *items = @[addButton];
     self.navigationItem.rightBarButtonItems = items;
     //self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
@@ -69,23 +68,6 @@ NSString * const kNicknameKey = @"nickname";
     self.detailViewController.masterViewController = self;
     [self.detailViewController setDetailItem:nil];
     [self.navigationController pushViewController:navigationController animated:YES];
-}
-
-- (void)importData:(id)sender {
-
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *directoryURL = [fileManager URLForDirectory:NSDocumentDirectory
-                                              inDomain:NSUserDomainMask
-                                     appropriateForURL:nil
-                                                create:NO
-                                                 error:nil];
-    NSArray *urls = [fileManager contentsOfDirectoryAtURL:directoryURL
-                               includingPropertiesForKeys:[NSArray arrayWithObjects:NSURLNameKey, NSURLIsDirectoryKey, NSURLContentModificationDateKey, nil]
-                                                  options:NSDirectoryEnumerationSkipsHiddenFiles
-                                                    error:nil];
-    for (NSURL *url in urls) {
-        NSLog(@"%@", [url lastPathComponent]);
-    }
 }
 
 - (void)save {

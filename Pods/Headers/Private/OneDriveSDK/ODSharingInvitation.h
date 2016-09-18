@@ -1,0 +1,1 @@
+../../../../OneDriveSDK/OneDriveCoreSDK/model/ODSharingInvitation.h

@@ -1,0 +1,1 @@
+../../../../OneDriveSDK/OneDriveCoreSDK/requests/ODThumbnailsCollectionRequestBuilder.h

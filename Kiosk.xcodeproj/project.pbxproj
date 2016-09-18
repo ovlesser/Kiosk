@@ -44,6 +44,8 @@
 		0EF7DAFB1D59527B00F14323 /* KioskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DAFA1D59527B00F14323 /* KioskTests.m */; };
 		0EF7DB061D59527B00F14323 /* KioskUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DB051D59527B00F14323 /* KioskUITests.m */; };
 		0EF7DB181D5954F100F14323 /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DB141D5954F100F14323 /* CustomerCell.m */; };
+		0EFB94DD1D8B7831001312D2 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFB94DC1D8B7831001312D2 /* SettingsController.m */; };
+		0EFB94E01D8BAE7D001312D2 /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFB94DF1D8BAE7D001312D2 /* ProgressViewController.m */; };
 		61D26C47BAA567E8A5926623 /* libPods-Kiosk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6F9F190E3D6F0F5E5733ACA /* libPods-Kiosk.a */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +139,10 @@
 		0EF7DB071D59527B00F14323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EF7DB131D5954F100F14323 /* CustomerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCell.h; sourceTree = "<group>"; };
 		0EF7DB141D5954F100F14323 /* CustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCell.m; sourceTree = "<group>"; };
+		0EFB94DB1D8B7831001312D2 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		0EFB94DC1D8B7831001312D2 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
+		0EFB94DE1D8BAE7D001312D2 /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
+		0EFB94DF1D8BAE7D001312D2 /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
 		4C9EBF8E06BCC41B1EE35C2D /* Pods-Kiosk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiosk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kiosk/Pods-Kiosk.debug.xcconfig"; sourceTree = "<group>"; };
 		5E3777531CDF589B132C39CB /* Pods-Kiosk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiosk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kiosk/Pods-Kiosk.release.xcconfig"; sourceTree = "<group>"; };
 		F6F9F190E3D6F0F5E5733ACA /* libPods-Kiosk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kiosk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +294,7 @@
 		0EF7DAD91D59527A00F14323 /* Kiosk */ = {
 			isa = PBXGroup;
 			children = (
+				0EFB94D71D8B6FCB001312D2 /* Settings */,
 				0E4973301D71421D007293C6 /* Kiosk.entitlements */,
 				0E49732B1D70106F007293C6 /* models */,
 				0E5829DD1D63E09200EC01A7 /* Item */,
@@ -334,6 +341,17 @@
 				0EF7DB071D59527B00F14323 /* Info.plist */,
 			);
 			path = KioskUITests;
+			sourceTree = "<group>";
+		};
+		0EFB94D71D8B6FCB001312D2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0EFB94DE1D8BAE7D001312D2 /* ProgressViewController.h */,
+				0EFB94DF1D8BAE7D001312D2 /* ProgressViewController.m */,
+				0EFB94DB1D8B7831001312D2 /* SettingsController.h */,
+				0EFB94DC1D8B7831001312D2 /* SettingsController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		2BB538B350CC50DACECB19F9 /* Pods */ = {
@@ -543,7 +561,9 @@
 				0E582A031D66C1E900EC01A7 /* Order+CoreDataProperties.m in Sources */,
 				0E5829E01D63E0C000EC01A7 /* ItemCell.m in Sources */,
 				0E5829FE1D66C1E900EC01A7 /* Product.m in Sources */,
+				0EFB94E01D8BAE7D001312D2 /* ProgressViewController.m in Sources */,
 				0E4973141D6D2FE7007293C6 /* KioskV1toV2.xcmappingmodel in Sources */,
+				0EFB94DD1D8B7831001312D2 /* SettingsController.m in Sources */,
 				0E500C371D76B0A2003A1027 /* Reader.m in Sources */,
 				0EF7DAE81D59527A00F14323 /* CustomerDetailViewController.m in Sources */,
 				0E500C361D76B0A2003A1027 /* FileImporter.m in Sources */,
