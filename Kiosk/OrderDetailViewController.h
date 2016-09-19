@@ -20,6 +20,8 @@
 @property (strong, nonatomic) Customer *customer;
 @property (copy, nonatomic) NSDecimalNumber *postage;
 @property (copy, nonatomic) NSDate *date;
+@property (copy, nonatomic) NSDecimalNumber *exchangeRate;
+@property (copy, nonatomic) NSDecimalNumber *sum;
 @property (copy, nonatomic) NSMutableArray<Item *> *items;
 //@property (strong, nonatomic) Order *order;
 

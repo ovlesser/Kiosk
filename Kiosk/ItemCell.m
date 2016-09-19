@@ -16,8 +16,10 @@ extern NSString * const kProductEntityName;
 @interface ItemCell ()
 
 @property (strong, nonatomic) IBOutlet UITextField *productField;
+@property (strong, nonatomic) IBOutlet UITextField *costField;
 @property (strong, nonatomic) IBOutlet UITextField *priceField;
 @property (strong, nonatomic) IBOutlet UITextField *countField;
+@property (weak, nonatomic) IBOutlet UITextField *profitField;
 
 @end
 

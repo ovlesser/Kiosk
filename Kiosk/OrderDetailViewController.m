@@ -24,6 +24,9 @@ extern NSString * const kCustomerEntityName;
 @property (weak, nonatomic) IBOutlet UITextField *customerField;
 @property (weak, nonatomic) IBOutlet UITextField *postageField;
 @property (weak, nonatomic) IBOutlet UITextField *dateField;
+@property (weak, nonatomic) IBOutlet UITextField *exchangeRateField;
+@property (weak, nonatomic) IBOutlet UITextField *sumField;
+@property (weak, nonatomic) IBOutlet UITextField *profitField;
 @property (weak, nonatomic) IBOutlet UITableView *itemTable;
 
 @end
