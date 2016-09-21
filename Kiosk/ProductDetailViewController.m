@@ -10,12 +10,14 @@
 #import "ProductMasterViewController.h"
 
 extern NSString * const kProductEntityName;
-extern NSString * const kName1Key;
+extern NSString * const kNameKey;
 extern NSString * const kBrandKey;
 extern NSString * const kVendorKey;
 extern NSString * const kPriceKey;
 extern NSString * const kDateKey;
 extern NSString * const kVolumeKey;
+extern NSString * const kCountKey;
+extern NSString * const kStockKey;
 
 @interface ProductDetailViewController ()
 @end
@@ -36,7 +38,7 @@ extern NSString * const kVolumeKey;
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.nameField.text = [[self.detailItem valueForKey:kName1Key] description];
+        self.nameField.text = [[self.detailItem valueForKey:kNameKey] description];
         self.brandField.text = [[self.detailItem valueForKey:kBrandKey] description];
         self.priceField.text = [[self.detailItem valueForKey:kPriceKey] stringValue];
         self.volumeField.text = [[self.detailItem valueForKey:kVolumeKey] stringValue];
@@ -47,6 +49,8 @@ extern NSString * const kVolumeKey;
         self.dateField.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[self.detailItem valueForKey:kDateKey]]];
 
         self.vendorField.text = [[self.detailItem valueForKey:kVendorKey] description];
+        self.countField.text = [[self.detailItem valueForKey:kCountKey] stringValue];
+        self.stockField.text = [[self.detailItem valueForKey:kStockKey] stringValue];
     }
 }
 
@@ -65,11 +69,23 @@ extern NSString * const kVolumeKey;
     [self.dateField setInputView:datePicker];
     UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [toolBar setTintColor:[UIColor grayColor]];
-    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(ShowSelectedDate)];
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(showSelectedDate)];
     UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [toolBar setItems:[NSArray arrayWithObjects:space,doneBtn, nil]];
     [self.dateField setInputAccessoryView:toolBar];
     
+    { // init customer picker
+        countPicker = [[UIPickerView alloc] init];
+        countPicker.delegate = self;
+        countPicker.dataSource = self;
+        [self.countField setInputView:countPicker];
+        UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        [toolBar setTintColor:[UIColor grayColor]];
+        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(showSelectedCount)];
+        UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        [toolBar setItems:[NSArray arrayWithObjects:space,doneBtn, nil]];
+        [self.countField setInputAccessoryView:toolBar];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,14 +97,47 @@ extern NSString * const kVolumeKey;
     [self.masterViewController save];
 }
 
--(void)ShowSelectedDate
+#pragma mark -
+#pragma mark Picker Data Source Methods
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return 100;
+    
+}
+
+#pragma mark Picker Delegate Methods
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [NSString stringWithFormat:@"%ld", (long)row];
+}
+
+-(void)showSelectedDate
 {
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"dd/MMM/YYYY"];
+    //    [formatter setDateFormat:@"dd/MMM/YYYY"];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     self.dateField.text=[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:datePicker.date]];
     [self.dateField resignFirstResponder];
 }
 
+- (void)showSelectedCount
+{
+    self.countField.text = [NSString stringWithFormat:@"%ld", (long)[countPicker selectedRowInComponent:0]];
+    [self countValueChange:NULL];
+    [self.countField resignFirstResponder];
+}
+
+- (IBAction)countValueChange:(id)sender {
+    NSDecimalNumber *newCount = [NSDecimalNumber decimalNumberWithString:self.countField.text];
+    NSDecimalNumber *currentCount = self.detailItem && [self.detailItem valueForKey:kCountKey]? [self.detailItem valueForKey:kCountKey] : [NSDecimalNumber decimalNumberWithString:@"0"];
+    NSDecimalNumber *currentStock = self.detailItem && [self.detailItem valueForKey:kStockKey]? [self.detailItem valueForKey:kStockKey] : [NSDecimalNumber decimalNumberWithString:@"0"];
+    NSDecimalNumber *newStock = [[currentStock decimalNumberByAdding:newCount] decimalNumberBySubtracting:currentCount];
+    self.stockField.text = [newStock stringValue];
+}
 @end

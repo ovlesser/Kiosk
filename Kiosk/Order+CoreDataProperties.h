@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSDate *date;
 @property (nullable, nonatomic, retain) NSString *number;
 @property (nullable, nonatomic, retain) NSDecimalNumber *postage;
+@property (nullable, nonatomic, retain) NSDecimalNumber *exchangeRate;
 @property (nullable, nonatomic, retain) Customer *customer;
 @property (nullable, nonatomic, retain) NSSet<Item *> *item;
 

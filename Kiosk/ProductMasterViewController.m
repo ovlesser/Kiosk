@@ -13,12 +13,14 @@
 
 NSString *productCellIdentifier = @"productCell";
 NSString * const kProductEntityName = @"Product";
-NSString * const kName1Key = @"name";
+extern NSString * const kNameKey;
 NSString * const kBrandKey = @"brand";
 NSString * const kVendorKey = @"vendor";
 NSString * const kPriceKey = @"price";
 NSString * const kDateKey = @"date";
 NSString * const kVolumeKey = @"volume";
+NSString * const kCountKey = @"count";
+NSString * const kStockKey = @"stock";
 
 @implementation ProductMasterViewController
 
@@ -29,17 +31,6 @@ NSString * const kVolumeKey = @"volume";
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    //self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    
-    
-    //UITableView *tableView = (id)[self.view viewWithTag:1];
-    //tableView.rowHeight = 94;
-    
-    //UIEdgeInsets contentInset = tableView.contentInset;
-    //contentInset.top = 20;
-    //[tableView setContentInset:contentInset];
-    
-    //self.searchDisplayController.searchResultsTableView.rowHeight = tableView.rowHeight;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -82,7 +73,7 @@ NSString * const kVolumeKey = @"volume";
     
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:self.detailViewController.nameField.text forKey:kName1Key];
+    [newManagedObject setValue:self.detailViewController.nameField.text forKey:kNameKey];
     [newManagedObject setValue:self.detailViewController.brandField.text forKey:kBrandKey];
     [newManagedObject setValue:[NSDecimalNumber decimalNumberWithString:self.detailViewController.priceField.text] forKey:kPriceKey];
     
@@ -96,6 +87,8 @@ NSString * const kVolumeKey = @"volume";
     [newManagedObject setValue:[dateFormatter dateFromString:self.detailViewController.dateField.text] forKey:kDateKey];
 
     [newManagedObject setValue:self.detailViewController.vendorField.text forKey:kVendorKey];
+    [newManagedObject setValue:[NSDecimalNumber decimalNumberWithString:self.detailViewController.countField.text] forKey:kCountKey];
+    [newManagedObject setValue:[NSDecimalNumber decimalNumberWithString:self.detailViewController.stockField.text] forKey:kStockKey];
     
     // Save the context.
     NSError *error = nil;
@@ -198,7 +191,7 @@ NSString * const kVolumeKey = @"volume";
 }
 
 - (void)configureCell:(ProductCell *)cell withObject:(NSManagedObject *)object {
-    //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+#if 0
     cell.name = [object valueForKey:kName1Key];
     cell.brand = [object valueForKey:kBrandKey];
     cell.price = [NSString stringWithFormat:@"%@", [object valueForKey:kPriceKey]];
@@ -210,6 +203,22 @@ NSString * const kVolumeKey = @"volume";
     cell.date = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[object valueForKey:kDateKey]]];
     
     cell.vendor = [object valueForKey:kVendorKey];
+    cell.count = [object valueForKey:kCountKey];
+    cell.stock = [object valueForKey:kStockKey];
+#else
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    cell.name = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@ %@",
+                 [object valueForKey:kNameKey],
+                 [object valueForKey:kBrandKey],
+                 [object valueForKey:kPriceKey],
+                 [object valueForKey:kVolumeKey],
+                 [object valueForKey:kCountKey],
+                 [object valueForKey:kStockKey],
+                 [dateFormatter stringFromDate:[object valueForKey:kDateKey]],
+                 [object valueForKey:kVendorKey]];
+#endif
 }
 
 #pragma mark - Fetched results controller
@@ -229,7 +238,7 @@ NSString * const kVolumeKey = @"volume";
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kName1Key ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kNameKey ascending:NO];
     
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
@@ -325,7 +334,7 @@ NSString * const kVolumeKey = @"volume";
         [fetchRequest setFetchBatchSize:20];
         
         // Edit the sort key as appropriate.
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kName1Key ascending:NO];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kNameKey ascending:NO];
         
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         

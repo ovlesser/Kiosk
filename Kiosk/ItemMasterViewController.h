@@ -9,6 +9,7 @@
 #import "MasterViewController.h"
 
 @class Item;
+@class OrderDetailViewController;
 
 @interface ItemMasterViewController : MasterViewController
 
@@ -16,4 +17,5 @@
 
 - (void)insertNewObject:(id)sender;
 
+@property (strong, nonatomic) OrderDetailViewController *orderDetailViewController;
 @end

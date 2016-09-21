@@ -10,16 +10,16 @@
 
 @class Product;
 @class Item;
+@class ItemMasterViewController;
 
 @interface ItemCell : UITableViewCell <UIPickerViewDelegate, UIPickerViewDataSource>
 
-//@property (strong, nonatomic) Product *product;
-//@property (copy, nonatomic) NSDecimalNumber *price;
-//@property (copy, nonatomic) NSNumber *count;
-
 @property (strong, nonatomic) UIPickerView *productPicker;
+@property (strong, nonatomic) UIPickerView *countPicker;
 @property (strong, nonatomic) NSArray<Product *> *products;
 
 @property (strong, nonatomic) Item *item;
+@property (strong, nonatomic) NSDecimalNumber *profit;
 
+@property (strong, nonatomic) ItemMasterViewController *itemViewController;
 @end

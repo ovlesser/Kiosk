@@ -8,8 +8,10 @@
 
 #import "OrderMasterViewController.h"
 #import "OrderDetailViewController.h"
+#import "ItemMasterViewController.h"
 #import "OrderCell.h"
 #import "Order.h"
+#include "Item.h"
 #import "AppDelegate.h"
 
 NSString *orderCellIdentifier = @"orderCell";
@@ -53,6 +55,7 @@ NSString * const kDate1Key = @"date";
     UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"orderDetailNavigation"];
     self.detailViewController = (OrderDetailViewController *)[navigationController topViewController];
     self.detailViewController.masterViewController = self;
+    self.detailViewController.exchangeRate = [NSDecimalNumber decimalNumberWithString:@"5.0"];
     [self.navigationController pushViewController:navigationController animated:YES];
 }
 
@@ -78,9 +81,13 @@ NSString * const kDate1Key = @"date";
     order.number = self.detailViewController.number;
     order.customer = self.detailViewController.customer;
     order.postage = self.detailViewController.postage;
+    order.exchangeRate = self.detailViewController.exchangeRate;
     order.date = self.detailViewController.date;
-    order.item = [NSSet setWithArray:self.detailViewController.items];
-     
+    order.item = [NSSet setWithArray:self.detailViewController.itemViewController.items];
+    for (Item *item in order.item) {
+        NSLog(@"%@", item.product);
+    }
+    
     // Save the context.
     NSError *error = nil;
     if (![context save:&error]) {

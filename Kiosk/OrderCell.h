@@ -14,11 +14,6 @@
 
 @interface OrderCell : UITableViewCell
 
-//@property (copy, nonatomic) NSString *number;
-//@property (strong, nonatomic) Customer *customer;
-//@property (copy, nonatomic) NSDecimalNumber *postage;
-//@property (copy, nonatomic) NSDate *date;
-//@property (strong, nonatomic) NSSet<Item *> *items;
 @property (strong, nonatomic) Order *order;
 
 @end

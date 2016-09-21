@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Item (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *count;
+@property (nullable, nonatomic, retain) NSDecimalNumber *count;
 @property (nullable, nonatomic, retain) NSDecimalNumber *price;
 @property (nullable, nonatomic, retain) Product *product;
 

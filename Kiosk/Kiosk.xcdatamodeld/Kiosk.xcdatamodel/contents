@@ -8,12 +8,13 @@
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES">
-        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="count" optional="YES" attributeType="Decimal" defaultValueString="0" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" syncable="YES"/>
     </entity>
     <entity name="Order" representedClassName="Order" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="exchangeRate" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postage" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" syncable="YES"/>
@@ -21,9 +22,11 @@
     </entity>
     <entity name="Product" representedClassName="Product" syncable="YES">
         <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="count" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="stock" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="vendor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="volume" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
     </entity>
@@ -34,8 +37,8 @@
     <elements>
         <element name="Customer" positionX="-261" positionY="18" width="128" height="118"/>
         <element name="Item" positionX="-36" positionY="216" width="128" height="90"/>
-        <element name="Order" positionX="-263" positionY="216" width="128" height="120"/>
-        <element name="Product" positionX="162" positionY="216" width="128" height="133"/>
+        <element name="Order" positionX="-263" positionY="216" width="128" height="135"/>
+        <element name="Product" positionX="162" positionY="216" width="128" height="165"/>
         <element name="Stock" positionX="160" positionY="18" width="128" height="73"/>
     </elements>
 </model>

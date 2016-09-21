@@ -104,8 +104,9 @@
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Kiosk.sqlite"];
+
     NSDictionary *options = @{
-                              //NSSQLitePragmasOption: @{@"journal_mode": @"DELETE"},
+                              NSSQLitePragmasOption: @{@"journal_mode": @"DELETE"},
                               NSMigratePersistentStoresAutomaticallyOption :@YES,
                               NSInferMappingModelAutomaticallyOption:@YES
                               };
@@ -123,7 +124,6 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
     return _persistentStoreCoordinator;
 }
 

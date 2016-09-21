@@ -19,5 +19,7 @@
 @dynamic price;
 @dynamic vendor;
 @dynamic volume;
+@dynamic count;
+@dynamic stock;
 
 @end

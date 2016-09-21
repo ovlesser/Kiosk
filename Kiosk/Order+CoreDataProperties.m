@@ -16,6 +16,7 @@
 @dynamic date;
 @dynamic number;
 @dynamic postage;
+@dynamic exchangeRate;
 @dynamic customer;
 @dynamic item;
 

@@ -53,11 +53,14 @@ extern NSString * const kCustomerEntityName;
         self.customer = order.customer;
         self.postage = order.postage;
         self.date = order.date;
-        self.items = [[order.item allObjects] mutableCopy];
+        self.exchangeRate = order.exchangeRate ? order.exchangeRate : [NSDecimalNumber decimalNumberWithString:@"5.0"];
+        self.itemViewController.items = [[order.item allObjects] mutableCopy];
+        [self updateData];
         
         self.numberField.text = order.number;
         self.customerField.text = [NSString stringWithFormat:@"%@ %@", order.customer.name, order.customer.mobile];
         self.postageField.text = [order.postage stringValue];
+        self.exchangeRateField.text = [order.exchangeRate stringValue];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -66,6 +69,11 @@ extern NSString * const kCustomerEntityName;
         
         self.itemViewController.items = [[order.item allObjects] mutableCopy];
     }
+    else {
+        self.postage = [NSDecimalNumber decimalNumberWithString:@"0.0"];
+        self.exchangeRate = [NSDecimalNumber decimalNumberWithString:@"5.0"];
+    }
+    self.itemViewController.orderDetailViewController = self;
 }
 
 - (void)viewDidLoad {
@@ -129,7 +137,8 @@ extern NSString * const kCustomerEntityName;
 - (IBAction)savePressed:(id)sender {
     self.number = [self.numberField.text copy];
     self.postage = [[NSDecimalNumber decimalNumberWithString:self.postageField.text] copy];
-    self.items = [self.itemViewController.items mutableCopy];
+    self.exchangeRate = [[NSDecimalNumber decimalNumberWithString:self.exchangeRateField.text] copy];
+//    self.itemViewController.items = [self.itemViewController.items mutableCopy];
 //    NSLog(@"savePressed %@", self.order);
     [self.masterViewController save];
 }
@@ -150,10 +159,39 @@ extern NSString * const kCustomerEntityName;
 
 -(void)ShowSelectedCustomer
 {
+    self.customer = self.customers[[self.customerPicker selectedRowInComponent:0]];
     self.customerField.text = [NSString stringWithFormat:@"%@ %@",
                                self.customer.name,
                                self.customer.mobile];
     [self.customerField resignFirstResponder];
+}
+
+- (void)updateData
+{
+    NSDecimalNumber *sum = [NSDecimalNumber decimalNumberWithString:@"0.0"];
+    NSDecimalNumber *profit = [NSDecimalNumber decimalNumberWithString:@"0.0"];
+    NSDecimalNumberHandler *roundUp = [NSDecimalNumberHandler
+                                       decimalNumberHandlerWithRoundingMode:NSRoundUp
+                                       scale:2
+                                       raiseOnExactness:NO
+                                       raiseOnOverflow:NO
+                                       raiseOnUnderflow:NO
+                                       raiseOnDivideByZero:YES];
+    for (Item *item in self.itemViewController.items) {
+        if (![item.price isEqualToNumber:[NSDecimalNumber notANumber]]
+            && ![item.count isEqualToNumber:[NSDecimalNumber notANumber]]
+            && ![self.exchangeRate isEqualToNumber:[NSDecimalNumber notANumber]]) {
+            sum = [sum decimalNumberByAdding:[item.price decimalNumberByMultiplyingBy:item.count]];
+            profit = [profit decimalNumberByAdding:[[[item.price decimalNumberByDividingBy:self.exchangeRate withBehavior:roundUp]
+                                                     decimalNumberBySubtracting:item.product.price]
+                                                    decimalNumberByMultiplyingBy:item.count]];
+        }
+    }
+    if (_postage && ![_postage isEqualToNumber:[NSDecimalNumber notANumber]]) {
+        profit = [profit decimalNumberBySubtracting:self.postage];
+    }
+    self.sumField.text = [sum stringValue];
+    self.profitField.text = [profit stringValue];
 }
 
 #pragma mark -
@@ -172,7 +210,17 @@ extern NSString * const kCustomerEntityName;
 #pragma mark Picker Delegate Methods
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    self.customer = self.customers[row];
-    return [NSString stringWithFormat:@"%@ %@", self.customer.name, self.customer.mobile];
+//    self.customer = self.customers[row];
+    return [NSString stringWithFormat:@"%@ %@", self.customers[row].name, self.customers[row].mobile];
+}
+
+- (IBAction)exchangeRateValueChanged:(id)sender {
+    _exchangeRate = [NSDecimalNumber decimalNumberWithString:self.exchangeRateField.text];
+    [self.itemTable reloadData];
+    [self updateData];
+}
+- (IBAction)postageValueChanged:(id)sender {
+    _postage = [NSDecimalNumber decimalNumberWithString:self.postageField.text];
+    [self updateData];
 }
 @end

@@ -22,8 +22,6 @@
 @property (copy, nonatomic) NSDate *date;
 @property (copy, nonatomic) NSDecimalNumber *exchangeRate;
 @property (copy, nonatomic) NSDecimalNumber *sum;
-@property (copy, nonatomic) NSMutableArray<Item *> *items;
-//@property (strong, nonatomic) Order *order;
 
 @property (strong, nonatomic) UIDatePicker *datePicker;
 @property (strong, nonatomic) UIPickerView *customerPicker;
@@ -31,5 +29,7 @@
 
 @property (strong, nonatomic) OrderMasterViewController *masterViewController;
 @property (strong, nonatomic) ItemMasterViewController *itemViewController;
+
+- (void)updateData;
 
 @end

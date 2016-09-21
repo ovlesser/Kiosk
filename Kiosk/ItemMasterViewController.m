@@ -10,6 +10,7 @@
 #import "ItemCell.h"
 #import "Item.h"
 #import "Product.h"
+#import "OrderDetailViewController.h"
 
 NSString *itemCellIdentifier = @"itemCell";
 NSString * const kItemEntityName = @"Item";
@@ -75,6 +76,7 @@ NSString * const kItemEntityName = @"Item";
 }
 
 - (void)configureCell:(ItemCell *)cell withObject:(Item *)item {
+    cell.itemViewController = self;
     cell.item = item;
 }
 @end

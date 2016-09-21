@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSDecimalNumber *price;
 @property (nullable, nonatomic, retain) NSString *vendor;
 @property (nullable, nonatomic, retain) NSNumber *volume;
+@property (nullable, nonatomic, retain) NSDecimalNumber *count;
+@property (nullable, nonatomic, retain) NSDecimalNumber *stock;
 
 @end
 

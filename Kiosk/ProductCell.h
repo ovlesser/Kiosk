@@ -16,5 +16,7 @@
 @property (copy, nonatomic) NSString *price;
 @property (copy, nonatomic) NSString *vendor;
 @property (copy, nonatomic) NSString *volume;
+@property (copy, nonatomic) NSString *count;
+@property (copy, nonatomic) NSString *stock;
 
 @end

@@ -16,6 +16,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 @property (strong, nonatomic) IBOutlet UILabel *vendorLabel;
 @property (strong, nonatomic) IBOutlet UILabel *volumeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *countLabel;
+@property (strong, nonatomic) IBOutlet UILabel *stockLabel;
 
 @end
 @implementation ProductCell
@@ -77,6 +79,22 @@
         _date = [date copy];
     }
     self.dateLabel.text = _date;
+}
+
+-(void)setCount:(NSString *)count
+{
+    if (![count isEqualToString:_count]) {
+        _count = [count copy];
+    }
+    self.countLabel.text = _count;
+}
+
+-(void)setStock:(NSString *)stock
+{
+    if (![stock isEqualToString:_stock]) {
+        _stock = [stock copy];
+    }
+    self.stockLabel.text = _stock;
 }
 
 @end
