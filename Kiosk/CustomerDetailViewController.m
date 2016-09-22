@@ -12,11 +12,6 @@
 #import "Customer.h"
 
 extern NSString * const kCustomerEntityName;
-//extern NSString * const kNameKey;
-//extern NSString * const kMobileKey;
-//extern NSString * const kIdentificationKey;
-//extern NSString * const kAddressKey;
-//extern NSString * const kNicknameKey;
 
 @interface CustomerDetailViewController ()
 @end

@@ -10,15 +10,11 @@
 #import "CustomerDetailViewController.h"
 #import "CustomerCell.h"
 #import "AppDelegate.h"
+#import "Customer.h"
 
 NSString *customerCellIdentifier = @"customerCell";
 NSString * const kCustomerEntityName = @"Customer";
 NSString * const kNameKey = @"name";
-NSString * const kMobileKey = @"mobile";
-NSString * const kIdentificationKey = @"identification";
-NSString * const kAddressKey = @"address";
-NSString * const kNicknameKey = @"nickname";
-
 
 @interface CustomerMasterViewController ()
 
@@ -165,12 +161,12 @@ NSString * const kNicknameKey = @"nickname";
 }
 
 - (void)configureCell:(CustomerCell *)cell withObject:(NSManagedObject *)object {
-    //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
-    cell.name = [object valueForKey:kNameKey];
-    cell.mobile = [object valueForKey:kMobileKey];
-    cell.identification = [object valueForKey:kIdentificationKey];
-    cell.address = [object valueForKey:kAddressKey];
-    cell.nickname = [object valueForKey:kNicknameKey];
+    Customer *customer = object;
+    cell.name = customer.name;
+    cell.mobile = customer.mobile;
+    cell.identification = customer.identification;
+    cell.address = customer.address;
+    cell.nickname = customer.nickname;
 }
 
 #pragma mark - Fetched results controller
