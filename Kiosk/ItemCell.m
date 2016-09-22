@@ -12,6 +12,7 @@
 #import "Item.h"
 #import "ItemMasterViewController.h"
 #import "OrderDetailViewController.h"
+#import "ProductDetailViewController.h"
 
 extern NSString * const kProductEntityName;
 
@@ -21,7 +22,9 @@ extern NSString * const kProductEntityName;
 @property (strong, nonatomic) IBOutlet UITextField *costField;
 @property (strong, nonatomic) IBOutlet UITextField *priceField;
 @property (strong, nonatomic) IBOutlet UITextField *countField;
-@property (weak, nonatomic) IBOutlet UITextField *profitField;
+@property (strong, nonatomic) IBOutlet UITextField *profitField;
+
+@property (strong, nonatomic) NSMutableArray<Product *> *productList;
 
 @end
 
@@ -67,6 +70,8 @@ extern NSString * const kProductEntityName;
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kProductEntityName];
     self.products = [context executeFetchRequest:request error:nil];
+    
+    self.productList = [[NSMutableArray alloc] init];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -107,6 +112,7 @@ extern NSString * const kProductEntityName;
         && ![_item.count isEqualToNumber:[NSDecimalNumber notANumber]]
         && ![self.itemViewController.orderDetailViewController.exchangeRate isEqualToNumber:[NSDecimalNumber notANumber]]
         && _item.product
+        && _item.product.price
         && ![_item.product.price isEqualToNumber:[NSDecimalNumber notANumber]]) {
         NSDecimalNumberHandler *roundUp = [NSDecimalNumberHandler
                                            decimalNumberHandlerWithRoundingMode:NSRoundUp
@@ -132,7 +138,22 @@ extern NSString * const kProductEntityName;
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (pickerView == self.productPicker) {
-        return [self.products count];
+        [self.productList removeAllObjects];
+        if (_item.product) {
+            [self.productList addObject:_item.product];
+        }
+        for (Product *product in self.products) {
+            //NSLog(@"%@", product);
+            if (product != _item.product && product.stock.unsignedIntegerValue > 0) {
+                [self.productList addObject:product];
+            }
+        }
+        if (_item.product) {
+            return [self.productList count];
+        }
+        else {
+            return [self.productList count] + 1;
+        }
     }
     else if (pickerView == self.countPicker) {
         return self.item.product.stock.unsignedIntegerValue + self.item.count.unsignedIntegerValue;
@@ -146,15 +167,20 @@ extern NSString * const kProductEntityName;
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (pickerView == self.productPicker) {
-        Product *product = self.products[row];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-        return [NSString stringWithFormat:@"%@ %@ %@ %@",
-                product.brand,
-                product.name,
-                product.price,
-                [dateFormatter stringFromDate:product.date]];
+        if (row == [self.productList count]) {
+            return @"new product";
+        }
+        else {
+            Product *product = self.productList[row];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+            [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+            [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+            return [NSString stringWithFormat:@"%@ %@ %@ %@",
+                    product.brand,
+                    product.name,
+                    product.price,
+                    [dateFormatter stringFromDate:product.date]];
+        }
     }
     else if (pickerView == self.countPicker) {
         return [NSString stringWithFormat:@"%ld", (long)row+1];
@@ -164,17 +190,43 @@ extern NSString * const kProductEntityName;
     }
 }
 
+- (void)save:(id)sender{
+    _item.product = sender;
+    //NSLog(@"%@", _item.product);
+    self.countField.text = [_item.count stringValue];
+    _item.price = [NSDecimalNumber decimalNumberWithString:@"0.0"];
+    self.priceField.text = [_item.price stringValue];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    self.productField.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
+                              _item.product.brand,
+                              _item.product.name,
+                              _item.product.price,
+                              [dateFormatter stringFromDate:_item.product.date]];
+    [self updateData];
+    [self.itemViewController.orderDetailViewController updateData];
+}
 -(void)showSelectedProduct
 {
-    NSLog(@"%@", _item.product);
-    NSLog(@"%@", self.products[[self.productPicker selectedRowInComponent:0]]);
-    if (_item.product != self.products[[self.productPicker selectedRowInComponent:0]]) {
+    if ([self.productPicker selectedRowInComponent:0] == [self.productList count]) {
+        UINavigationController *navigationController = [self.itemViewController.orderDetailViewController.storyboard instantiateViewControllerWithIdentifier:@"productDetailNavigation"];
+        ProductDetailViewController *detailViewController = (ProductDetailViewController *)[navigationController topViewController];
+        detailViewController.masterViewController = self;
+
+        [detailViewController setDetailItem:nil];
+        [self.itemViewController.orderDetailViewController presentViewController:navigationController animated:YES completion:^{
+            //_item.product = detailViewController.detailItem;
+            [detailViewController addLeftBarButton];
+        }];
+    }
+    else if (_item.product != self.productList[[self.productPicker selectedRowInComponent:0]]) {
         _item.product.stock = [_item.product.stock decimalNumberByAdding:_item.count];
         _item.count = [NSDecimalNumber decimalNumberWithString:@"0"];
         self.countField.text = [_item.count stringValue];
         _item.price = [NSDecimalNumber decimalNumberWithString:@"0.0"];
         self.priceField.text = [_item.price stringValue];
-        _item.product = self.products[[self.productPicker selectedRowInComponent:0]];
+        _item.product = self.productList[[self.productPicker selectedRowInComponent:0]];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
@@ -203,12 +255,12 @@ extern NSString * const kProductEntityName;
 }
 - (IBAction)countValueChanged:(id)sender
 {
-    NSLog(@"%@, %@", _item.product.stock, _item.count);
+//    NSLog(@"%@, %@", _item.product.stock, _item.count);
     _item.product.stock = [_item.product.stock decimalNumberByAdding:_item.count];
     _item.count = [NSDecimalNumber decimalNumberWithString:self.countField.text];
     [self updateData];
     [self.itemViewController.orderDetailViewController updateData];
-    NSLog(@"%@, %@", _item.product.stock, _item.count);
+//    NSLog(@"%@, %@", _item.product.stock, _item.count);
     _item.product.stock = [_item.product.stock decimalNumberBySubtracting:_item.count];
 }
 @end

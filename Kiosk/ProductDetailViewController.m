@@ -6,18 +6,12 @@
 //  Copyright © 2016 ovlesser. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "ProductDetailViewController.h"
 #import "ProductMasterViewController.h"
+#import "Product.h"
 
 extern NSString * const kProductEntityName;
-extern NSString * const kNameKey;
-extern NSString * const kBrandKey;
-extern NSString * const kVendorKey;
-extern NSString * const kPriceKey;
-extern NSString * const kDateKey;
-extern NSString * const kVolumeKey;
-extern NSString * const kCountKey;
-extern NSString * const kStockKey;
 
 @interface ProductDetailViewController ()
 @end
@@ -38,22 +32,27 @@ extern NSString * const kStockKey;
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.nameField.text = [[self.detailItem valueForKey:kNameKey] description];
-        self.brandField.text = [[self.detailItem valueForKey:kBrandKey] description];
-        self.priceField.text = [[self.detailItem valueForKey:kPriceKey] stringValue];
-        self.volumeField.text = [[self.detailItem valueForKey:kVolumeKey] stringValue];
+        Product *product = self.detailItem;
+        self.nameField.text = [product.name description];
+        self.brandField.text = [product.brand description];
+        self.priceField.text = [product.price stringValue];
+        self.volumeField.text = [product.volume stringValue];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-        self.dateField.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[self.detailItem valueForKey:kDateKey]]];
+        self.dateField.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:product.date]];
 
-        self.vendorField.text = [[self.detailItem valueForKey:kVendorKey] description];
-        self.countField.text = [[self.detailItem valueForKey:kCountKey] stringValue];
-        self.stockField.text = [[self.detailItem valueForKey:kStockKey] stringValue];
+        self.vendorField.text = [product.vendor description];
+        self.countField.text = [product.count stringValue];
+        self.stockField.text = [product.stock stringValue];
     }
 }
 
+- (void)addLeftBarButton{
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed:)];
+    self.navigationItem.leftBarButtonItem = cancelButton;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -62,7 +61,8 @@ extern NSString * const kStockKey;
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed:)];
-    self.navigationItem.rightBarButtonItem = saveButton;
+    NSArray *items = @[saveButton];
+    self.navigationItem.rightBarButtonItems = items;
     
     datePicker = [[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDate;
@@ -94,9 +94,46 @@ extern NSString * const kStockKey;
 }
 
 - (IBAction)savePressed:(id)sender {
-    [self.masterViewController save];
+
+    NSManagedObjectContext *context = [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:kProductEntityName inManagedObjectContext:context];
+    Product *product = self.detailItem;
+    if (!product) {
+        product = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    }
+    product.name = self.nameField.text;
+    product.brand = self.brandField.text;
+    product.price = [NSDecimalNumber decimalNumberWithString:self.priceField.text];
+    
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    product.volume = [f numberFromString:self.volumeField.text];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    product.date = [dateFormatter dateFromString:self.dateField.text];
+    
+    product.vendor = self.vendorField.text;
+    product.count = [NSDecimalNumber decimalNumberWithString:self.countField.text];
+    product.stock = [NSDecimalNumber decimalNumberWithString:self.stockField.text];
+    // Save the context.
+    //NSManagedObjectContext *context = [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
+    NSError *error = nil;
+    if (![context save:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    //NSLog(@"%@", product);
+    [self.masterViewController save:product];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)cancelPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 #pragma mark -
 #pragma mark Picker Data Source Methods
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -134,9 +171,10 @@ extern NSString * const kStockKey;
 }
 
 - (IBAction)countValueChange:(id)sender {
+    Product *product = self.detailItem;
     NSDecimalNumber *newCount = [NSDecimalNumber decimalNumberWithString:self.countField.text];
-    NSDecimalNumber *currentCount = self.detailItem && [self.detailItem valueForKey:kCountKey]? [self.detailItem valueForKey:kCountKey] : [NSDecimalNumber decimalNumberWithString:@"0"];
-    NSDecimalNumber *currentStock = self.detailItem && [self.detailItem valueForKey:kStockKey]? [self.detailItem valueForKey:kStockKey] : [NSDecimalNumber decimalNumberWithString:@"0"];
+    NSDecimalNumber *currentCount = self.detailItem && product.count? product.count : [NSDecimalNumber decimalNumberWithString:@"0"];
+    NSDecimalNumber *currentStock = self.detailItem && product.stock? product.stock : [NSDecimalNumber decimalNumberWithString:@"0"];
     NSDecimalNumber *newStock = [[currentStock decimalNumberByAdding:newCount] decimalNumberBySubtracting:currentCount];
     self.stockField.text = [newStock stringValue];
 }

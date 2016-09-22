@@ -17,6 +17,7 @@
 #import "Item.h"
 
 extern NSString * const kCustomerEntityName;
+extern NSString * const kOrderEntityName;
 
 @interface OrderDetailViewController ()
 
@@ -124,7 +125,7 @@ extern NSString * const kCustomerEntityName;
         NSManagedObjectContext *context = [delegate managedObjectContext];
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kCustomerEntityName];
         self.customers = [context executeFetchRequest:request error:nil];
-        NSLog(@"%@", self.customers);
+//        NSLog(@"%@", self.customers);
     }
     [self configureView];
 }
@@ -135,12 +136,27 @@ extern NSString * const kCustomerEntityName;
 }
 
 - (IBAction)savePressed:(id)sender {
-    self.number = [self.numberField.text copy];
-    self.postage = [[NSDecimalNumber decimalNumberWithString:self.postageField.text] copy];
-    self.exchangeRate = [[NSDecimalNumber decimalNumberWithString:self.exchangeRateField.text] copy];
-//    self.itemViewController.items = [self.itemViewController.items mutableCopy];
-//    NSLog(@"savePressed %@", self.order);
-    [self.masterViewController save];
+    NSManagedObjectContext *context = [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:kOrderEntityName inManagedObjectContext:context];
+    Order *order = self.detailItem;
+    if (!order) {
+        order = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    }
+    order.number = self.numberField.text;
+    order.postage = [NSDecimalNumber decimalNumberWithString:self.postageField.text];
+    order.exchangeRate = [NSDecimalNumber decimalNumberWithString:self.exchangeRateField.text];
+    order.customer = self.customer;
+    order.date = self.date;
+    order.item = [NSSet setWithArray:self.itemViewController.items ];
+    // Save the context.
+    NSError *error = nil;
+    if (![context save:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    [self.masterViewController save:order];
 }
 
 - (IBAction)addPressed:(id)sender {
@@ -178,9 +194,12 @@ extern NSString * const kCustomerEntityName;
                                        raiseOnUnderflow:NO
                                        raiseOnDivideByZero:YES];
     for (Item *item in self.itemViewController.items) {
+        //NSLog(@"%@", item);
+        //NSLog(@"%@", item.product);
         if (![item.price isEqualToNumber:[NSDecimalNumber notANumber]]
             && ![item.count isEqualToNumber:[NSDecimalNumber notANumber]]
-            && ![self.exchangeRate isEqualToNumber:[NSDecimalNumber notANumber]]) {
+            && ![self.exchangeRate isEqualToNumber:[NSDecimalNumber notANumber]]
+            && item.product && ![item.product.price isEqualToNumber:[NSDecimalNumber notANumber]]) {
             sum = [sum decimalNumberByAdding:[item.price decimalNumberByMultiplyingBy:item.count]];
             profit = [profit decimalNumberByAdding:[[[item.price decimalNumberByDividingBy:self.exchangeRate withBehavior:roundUp]
                                                      decimalNumberBySubtracting:item.product.price]

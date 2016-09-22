@@ -54,7 +54,6 @@ NSString * const kNicknameKey = @"nickname";
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [NSFetchedResultsController deleteCacheWithName:@"Customer"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,38 +69,7 @@ NSString * const kNicknameKey = @"nickname";
     [self.navigationController pushViewController:navigationController animated:YES];
 }
 
-- (void)save {
-    NSManagedObjectContext *context = nil;
-    NSEntityDescription *entity = nil;
-    if ([self.searchDisplayController isActive]) {
-        context = [self.searchFetchedResultsController managedObjectContext];
-        entity = [[self.searchFetchedResultsController fetchRequest] entity];
-    }
-    else {
-        context = [self.fetchedResultsController managedObjectContext];
-        entity = [[self.fetchedResultsController fetchRequest] entity];
-    }
-    NSManagedObject *newManagedObject = self.detailViewController.detailItem;
-    if (!newManagedObject) {
-        newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    }
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:self.detailViewController.nameField.text forKey:kNameKey];
-    [newManagedObject setValue:self.detailViewController.mobileField.text forKey:kMobileKey];
-    [newManagedObject setValue:self.detailViewController.addressField.text forKey:kAddressKey];
-    [newManagedObject setValue:self.detailViewController.identificationField.text forKey:kIdentificationKey];
-    [newManagedObject setValue:self.detailViewController.nicknameField.text forKey:kNicknameKey];
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+- (void)save:(id)sender {
     if (![self.searchDisplayController isActive]) {
         [self.tableView reloadData];
     }
@@ -222,7 +190,7 @@ NSString * const kNicknameKey = @"nickname";
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kNameKey ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kNameKey ascending:YES];
 
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     

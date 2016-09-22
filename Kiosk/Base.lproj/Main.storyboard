@@ -944,10 +944,6 @@
                                 <rect key="frame" x="154" y="300" width="426" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="countValueChange:" destination="dF1-DM-f1L" eventType="valueChanged" id="8oA-kp-WPe"/>
-                                    <action selector="countValueChange:" destination="dF1-DM-f1L" eventType="editingChanged" id="zMF-Us-iiP"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CiR-Ev-tPN">
                                 <rect key="frame" x="154" y="338" width="426" height="30"/>

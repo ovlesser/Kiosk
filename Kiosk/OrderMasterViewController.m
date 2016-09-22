@@ -16,11 +16,7 @@
 
 NSString *orderCellIdentifier = @"orderCell";
 NSString * const kOrderEntityName = @"Order";
-NSString * const kNumberKey = @"number";
-NSString * const kCustomerKey = @"customer";
-NSString * const kItemKey = @"item";
-NSString * const kPostageKey = @"postage";
-NSString * const kDate1Key = @"date";
+NSString * const kDateKey = @"date";
 
 @interface OrderMasterViewController ()
 
@@ -43,7 +39,6 @@ NSString * const kDate1Key = @"date";
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [NSFetchedResultsController deleteCacheWithName:@"Order"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,47 +50,12 @@ NSString * const kDate1Key = @"date";
     UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"orderDetailNavigation"];
     self.detailViewController = (OrderDetailViewController *)[navigationController topViewController];
     self.detailViewController.masterViewController = self;
+    [self.detailViewController setDetailItem:nil];
     self.detailViewController.exchangeRate = [NSDecimalNumber decimalNumberWithString:@"5.0"];
     [self.navigationController pushViewController:navigationController animated:YES];
 }
 
-- (void)save {
-    NSManagedObjectContext *context = nil;
-    NSEntityDescription *entity = nil;
-    if ([self.searchDisplayController isActive]) {
-        context = [self.searchFetchedResultsController managedObjectContext];
-        entity = [[self.searchFetchedResultsController fetchRequest] entity];
-    }
-    else {
-        context = [self.fetchedResultsController managedObjectContext];
-        entity = [[self.fetchedResultsController fetchRequest] entity];
-    }
-
-    Order *order = self.detailViewController.detailItem;
-    if (!order) {
-        order = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    }
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    order.number = self.detailViewController.number;
-    order.customer = self.detailViewController.customer;
-    order.postage = self.detailViewController.postage;
-    order.exchangeRate = self.detailViewController.exchangeRate;
-    order.date = self.detailViewController.date;
-    order.item = [NSSet setWithArray:self.detailViewController.itemViewController.items];
-    for (Item *item in order.item) {
-        NSLog(@"%@", item.product);
-    }
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+- (void)save:(id)sender{
     if (![self.searchDisplayController isActive]) {
         [self.tableView reloadData];
     }
@@ -209,7 +169,7 @@ NSString * const kDate1Key = @"date";
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kDate1Key ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kDateKey ascending:NO];
     
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
@@ -305,11 +265,11 @@ NSString * const kDate1Key = @"date";
         [fetchRequest setFetchBatchSize:20];
         
         // Edit the sort key as appropriate.
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kDate1Key ascending:NO];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kDateKey ascending:NO];
         
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
-        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(name contains[cd] %@)", searchString];
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(number contains[cd] %@)", searchString];
         [fetchRequest setPredicate:predicate];
         
         // Edit the section name key path and cache name if appropriate.

@@ -6,15 +6,17 @@
 //  Copyright © 2016 ovlesser. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "CustomerDetailViewController.h"
 #import "CustomerMasterViewController.h"
+#import "Customer.h"
 
 extern NSString * const kCustomerEntityName;
-extern NSString * const kNameKey;
-extern NSString * const kMobileKey;
-extern NSString * const kIdentificationKey;
-extern NSString * const kAddressKey;
-extern NSString * const kNicknameKey;
+//extern NSString * const kNameKey;
+//extern NSString * const kMobileKey;
+//extern NSString * const kIdentificationKey;
+//extern NSString * const kAddressKey;
+//extern NSString * const kNicknameKey;
 
 @interface CustomerDetailViewController ()
 @end
@@ -35,11 +37,12 @@ extern NSString * const kNicknameKey;
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.nameField.text = [[self.detailItem valueForKey:kNameKey] description];
-        self.addressField.text = [[self.detailItem valueForKey:kAddressKey] description];
-        self.identificationField.text = [[self.detailItem valueForKey:kIdentificationKey] description];
-        self.nicknameField.text = [[self.detailItem valueForKey:kNicknameKey] description];
-        self.mobileField.text = [[self.detailItem valueForKey:kMobileKey] description];
+        Customer *customer = self.detailItem;
+        self.nameField.text = [customer.name description];
+        self.addressField.text = [customer.address description];
+        self.identificationField.text = [customer.identification description];
+        self.nicknameField.text = [customer.nickname description];
+        self.mobileField.text = [customer.mobile description];
     }
 }
 
@@ -60,7 +63,28 @@ extern NSString * const kNicknameKey;
 }
 
 - (IBAction)savePressed:(id)sender {
-    [self.masterViewController save];
+    NSManagedObjectContext *context = [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:kCustomerEntityName inManagedObjectContext:context];
+    Customer *customer = self.detailItem;
+    if (!customer) {
+        customer = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    }
+    customer.name =  self.nameField.text;
+    customer.mobile =  self.mobileField.text;
+    customer.address = self.addressField.text;
+    customer.identification = self.identificationField.text;
+    customer.nickname = self.nicknameField.text;
+    
+    NSLog(@"%@", customer);
+    // Save the context.
+    NSError *error = nil;
+    if (![context save:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    [self.masterViewController save:customer];
 }
 
 @end

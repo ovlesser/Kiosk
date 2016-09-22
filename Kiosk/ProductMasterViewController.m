@@ -10,17 +10,11 @@
 #import "ProductDetailViewController.h"
 #import "ProductCell.h"
 #import "AppDelegate.h"
+#import "Product.h"
 
 NSString *productCellIdentifier = @"productCell";
 NSString * const kProductEntityName = @"Product";
 extern NSString * const kNameKey;
-NSString * const kBrandKey = @"brand";
-NSString * const kVendorKey = @"vendor";
-NSString * const kPriceKey = @"price";
-NSString * const kDateKey = @"date";
-NSString * const kVolumeKey = @"volume";
-NSString * const kCountKey = @"count";
-NSString * const kStockKey = @"stock";
 
 @implementation ProductMasterViewController
 
@@ -31,6 +25,8 @@ NSString * const kStockKey = @"stock";
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,7 +35,6 @@ NSString * const kStockKey = @"stock";
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [NSFetchedResultsController deleteCacheWithName:@"Product"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,53 +46,12 @@ NSString * const kStockKey = @"stock";
     UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"productDetailNavigation"];
     self.detailViewController = (ProductDetailViewController *)[navigationController topViewController];
     self.detailViewController.masterViewController = self;
+
     [self.detailViewController setDetailItem:nil];
     [self.navigationController pushViewController:navigationController animated:YES];
 }
 
-- (void)save {
-    NSManagedObjectContext *context = nil;
-    NSEntityDescription *entity = nil;
-    if ([self.searchDisplayController isActive]) {
-        context = [self.searchFetchedResultsController managedObjectContext];
-        entity = [[self.searchFetchedResultsController fetchRequest] entity];
-    }
-    else {
-        context = [self.fetchedResultsController managedObjectContext];
-        entity = [[self.fetchedResultsController fetchRequest] entity];
-    }
-    NSManagedObject *newManagedObject = self.detailViewController.detailItem;
-    if (!newManagedObject) {
-        newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    }
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:self.detailViewController.nameField.text forKey:kNameKey];
-    [newManagedObject setValue:self.detailViewController.brandField.text forKey:kBrandKey];
-    [newManagedObject setValue:[NSDecimalNumber decimalNumberWithString:self.detailViewController.priceField.text] forKey:kPriceKey];
-    
-    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-    f.numberStyle = NSNumberFormatterDecimalStyle;
-    [newManagedObject setValue:[f numberFromString:self.detailViewController.volumeField.text] forKey:kVolumeKey];
-
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    [newManagedObject setValue:[dateFormatter dateFromString:self.detailViewController.dateField.text] forKey:kDateKey];
-
-    [newManagedObject setValue:self.detailViewController.vendorField.text forKey:kVendorKey];
-    [newManagedObject setValue:[NSDecimalNumber decimalNumberWithString:self.detailViewController.countField.text] forKey:kCountKey];
-    [newManagedObject setValue:[NSDecimalNumber decimalNumberWithString:self.detailViewController.stockField.text] forKey:kStockKey];
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+- (void)save:(id)sender {
     if (![self.searchDisplayController isActive]) {
         [self.tableView reloadData];
     }
@@ -146,6 +100,7 @@ NSString * const kStockKey = @"stock";
     }
     else {
         id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+        NSLog(@"%lu", (unsigned long)[sectionInfo numberOfObjects]);
         return [sectionInfo numberOfObjects];
     }
 }
@@ -206,18 +161,19 @@ NSString * const kStockKey = @"stock";
     cell.count = [object valueForKey:kCountKey];
     cell.stock = [object valueForKey:kStockKey];
 #else
+    Product *product = (Product*)object;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     cell.name = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@ %@",
-                 [object valueForKey:kNameKey],
-                 [object valueForKey:kBrandKey],
-                 [object valueForKey:kPriceKey],
-                 [object valueForKey:kVolumeKey],
-                 [object valueForKey:kCountKey],
-                 [object valueForKey:kStockKey],
-                 [dateFormatter stringFromDate:[object valueForKey:kDateKey]],
-                 [object valueForKey:kVendorKey]];
+                 product.name,
+                 product.brand,
+                 [product.price stringValue],
+                 [product.volume stringValue],
+                 [product.count stringValue],
+                 [product.stock stringValue],
+                 [dateFormatter stringFromDate:product.date],
+                 product.vendor];
 #endif
 }
 
@@ -358,13 +314,9 @@ NSString * const kStockKey = @"stock";
     return YES;
 }
 
-/*
- // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
- {
- // In the simplest, most efficient, case, reload the table view.
- [self.tableView reloadData];
- }
- */
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchDisplayController setActive:NO];
+    [self.tableView reloadData];
+}
 @end

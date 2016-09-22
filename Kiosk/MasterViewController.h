@@ -16,6 +16,6 @@
 @property (strong, nonatomic) NSFetchedResultsController *searchFetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-- (void)save;
+- (void)save:(id)sender;
 
 @end

@@ -28,4 +28,5 @@
 
 @property (strong, nonatomic) ProductMasterViewController *masterViewController;
 
+- (void)addLeftBarButton;
 @end
