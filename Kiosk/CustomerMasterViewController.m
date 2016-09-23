@@ -31,6 +31,8 @@ NSString * const kNameKey = @"name";
     NSArray *items = @[addButton];
     self.navigationItem.rightBarButtonItems = items;
     //self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
 
     UITableView *tableView = (id)[self.view viewWithTag:1];
@@ -134,6 +136,7 @@ NSString * const kNameKey = @"name";
     else {
         object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     }
+    //NSLog(@"%ld: %@", (long)indexPath.row, (Customer*)object);
     [self configureCell:cell withObject:object];
     return cell;
 }
@@ -304,5 +307,11 @@ NSString * const kNameKey = @"name";
         }
     }
     return YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchDisplayController setActive:NO];
+    [self.tableView reloadData];
 }
 @end

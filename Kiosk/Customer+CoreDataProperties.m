@@ -18,5 +18,10 @@
 @dynamic mobile;
 @dynamic name;
 @dynamic nickname;
-
+#if 0
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"(%@)", [self name]];
+}
+#endif
 @end
