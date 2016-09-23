@@ -156,7 +156,12 @@ extern NSString * const kProductEntityName;
         }
     }
     else if (pickerView == self.countPicker) {
-        return self.item.product.stock.unsignedIntegerValue + self.item.count.unsignedIntegerValue;
+        if (self.item.product.count.unsignedIntegerValue > 0) {
+            return self.item.product.stock.unsignedIntegerValue + self.item.count.unsignedIntegerValue;
+        }
+        else {
+            return 100;
+        }
     }
     else {
         return 0;
@@ -212,12 +217,21 @@ extern NSString * const kProductEntityName;
     if ([self.productPicker selectedRowInComponent:0] == [self.productList count]) {
         UINavigationController *navigationController = [self.itemViewController.orderDetailViewController.storyboard instantiateViewControllerWithIdentifier:@"productDetailNavigation"];
         ProductDetailViewController *detailViewController = (ProductDetailViewController *)[navigationController topViewController];
-        detailViewController.masterViewController = self;
+        detailViewController.masterViewController = (ProductMasterViewController*)self;
 
         [detailViewController setDetailItem:nil];
         [self.itemViewController.orderDetailViewController presentViewController:navigationController animated:YES completion:^{
             //_item.product = detailViewController.detailItem;
             [detailViewController addLeftBarButton];
+            [detailViewController.priceField setEnabled:NO];
+            detailViewController.priceField.text = @"0";
+            [detailViewController.volumeField setEnabled:NO];
+            [detailViewController.dateField setEnabled:NO];
+            [detailViewController.vendorField setEnabled:NO];
+            [detailViewController.countField setEnabled:NO];
+            detailViewController.countField.text = @"0";
+            [detailViewController.stockField setEnabled:NO];
+            detailViewController.stockField.text = @"0";
         }];
     }
     else if (_item.product != self.productList[[self.productPicker selectedRowInComponent:0]]) {

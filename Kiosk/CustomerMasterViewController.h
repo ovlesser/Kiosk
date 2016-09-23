@@ -13,17 +13,11 @@
 
 @interface CustomerMasterViewController : MasterViewController
 
-//@property (strong, nonatomic) ODClient *client;
-
 @property (strong, nonatomic) CustomerDetailViewController *detailViewController;
 
 @property NSMutableDictionary *items;
 
 @property NSMutableArray *itemsLookup;
-
-//@property ODItem *currentItem;
-
-- (void)loadChildren;
 
 @end
 

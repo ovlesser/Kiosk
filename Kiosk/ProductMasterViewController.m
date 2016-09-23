@@ -165,6 +165,9 @@ extern NSString * const kNameKey;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    if (product.stock.integerValue < 0) {
+        cell.nameLabel.textColor = [UIColor redColor];
+    }
     cell.name = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@ %@",
                  product.name,
                  product.brand,

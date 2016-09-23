@@ -164,7 +164,7 @@ NSString * const kNameKey = @"name";
 }
 
 - (void)configureCell:(CustomerCell *)cell withObject:(NSManagedObject *)object {
-    Customer *customer = object;
+    Customer *customer = (Customer*)object;
     cell.name = customer.name;
     cell.mobile = customer.mobile;
     cell.identification = customer.identification;

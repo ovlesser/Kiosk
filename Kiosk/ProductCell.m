@@ -10,15 +10,6 @@
 
 @interface ProductCell ()
 
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *brandLabel;
-@property (strong, nonatomic) IBOutlet UILabel *priceLabel;
-@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
-@property (strong, nonatomic) IBOutlet UILabel *vendorLabel;
-@property (strong, nonatomic) IBOutlet UILabel *volumeLabel;
-@property (strong, nonatomic) IBOutlet UILabel *countLabel;
-@property (strong, nonatomic) IBOutlet UILabel *stockLabel;
-
 @end
 @implementation ProductCell
 
