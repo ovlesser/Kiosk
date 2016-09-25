@@ -39,9 +39,9 @@ NSString * const kNameKey = @"name";
 //    [tableView registerClass:[CustomerCell class] forCellReuseIdentifier:customerCellIdentifier];
     tableView.rowHeight = 94;
     
-    UIEdgeInsets contentInset = tableView.contentInset;
-    contentInset.top = 20;
-    [tableView setContentInset:contentInset];
+    //UIEdgeInsets contentInset = tableView.contentInset;
+    //contentInset.top = 20;
+    //[tableView setContentInset:contentInset];
     
     self.searchDisplayController.searchResultsTableView.rowHeight = tableView.rowHeight;
 }

@@ -10,8 +10,6 @@
 		0E4540D31D5D926300358D07 /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540D21D5D926300358D07 /* ProductCell.m */; };
 		0E4540D81D5D97EB00358D07 /* ProductMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540D71D5D97EB00358D07 /* ProductMasterViewController.m */; };
 		0E4540DB1D5D9A0A00358D07 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540DA1D5D9A0A00358D07 /* ProductDetailViewController.m */; };
-		0E4973121D6D2EA4007293C6 /* Kiosk2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E4973101D6D2EA4007293C6 /* Kiosk2.xcdatamodeld */; };
-		0E4973141D6D2FE7007293C6 /* KioskV1toV2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0E4973131D6D2FE7007293C6 /* KioskV1toV2.xcmappingmodel */; };
 		0E500C361D76B0A2003A1027 /* FileImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E500C311D76B0A2003A1027 /* FileImporter.m */; };
 		0E500C371D76B0A2003A1027 /* Reader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E500C331D76B0A2003A1027 /* Reader.m */; };
 		0E500C381D76B0A2003A1027 /* CustomerFileImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E500C351D76B0A2003A1027 /* CustomerFileImporter.m */; };
@@ -73,9 +71,8 @@
 		0E4540D71D5D97EB00358D07 /* ProductMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductMasterViewController.m; sourceTree = "<group>"; };
 		0E4540D91D5D9A0A00358D07 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		0E4540DA1D5D9A0A00358D07 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
-		0E4973111D6D2EA4007293C6 /* Kiosk2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kiosk2.xcdatamodel; sourceTree = "<group>"; };
-		0E4973131D6D2FE7007293C6 /* KioskV1toV2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = KioskV1toV2.xcmappingmodel; sourceTree = "<group>"; };
 		0E4973301D71421D007293C6 /* Kiosk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Kiosk.entitlements; sourceTree = "<group>"; };
+		0E4E0EBF1D97D3310051199F /* Kiosk 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Kiosk 2.xcdatamodel"; sourceTree = "<group>"; };
 		0E500C301D76B0A2003A1027 /* FileImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileImporter.h; sourceTree = "<group>"; };
 		0E500C311D76B0A2003A1027 /* FileImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileImporter.m; sourceTree = "<group>"; };
 		0E500C321D76B0A2003A1027 /* Reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reader.h; sourceTree = "<group>"; };
@@ -206,8 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */,
-				0E4973101D6D2EA4007293C6 /* Kiosk2.xcdatamodeld */,
-				0E4973131D6D2FE7007293C6 /* KioskV1toV2.xcmappingmodel */,
 				0E5829E71D66C1E900EC01A7 /* Stock+CoreDataProperties.h */,
 				0E5829E81D66C1E900EC01A7 /* Stock+CoreDataProperties.m */,
 				0E5829E91D66C1E900EC01A7 /* Stock.h */,
@@ -562,7 +557,6 @@
 				0E5829E01D63E0C000EC01A7 /* ItemCell.m in Sources */,
 				0E5829FE1D66C1E900EC01A7 /* Product.m in Sources */,
 				0EFB94E01D8BAE7D001312D2 /* ProgressViewController.m in Sources */,
-				0E4973141D6D2FE7007293C6 /* KioskV1toV2.xcmappingmodel in Sources */,
 				0EFB94DD1D8B7831001312D2 /* SettingsController.m in Sources */,
 				0E500C371D76B0A2003A1027 /* Reader.m in Sources */,
 				0EF7DAE81D59527A00F14323 /* CustomerDetailViewController.m in Sources */,
@@ -590,7 +584,6 @@
 				0E582A001D66C1E900EC01A7 /* Item.m in Sources */,
 				0EF7DADC1D59527A00F14323 /* main.m in Sources */,
 				0EF7DB181D5954F100F14323 /* CustomerCell.m in Sources */,
-				0E4973121D6D2EA4007293C6 /* Kiosk2.xcdatamodeld in Sources */,
 				0E5829E31D63E0EF00EC01A7 /* ItemMasterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -683,7 +676,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -721,7 +714,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -850,19 +843,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		0E4973101D6D2EA4007293C6 /* Kiosk2.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				0E4973111D6D2EA4007293C6 /* Kiosk2.xcdatamodel */,
-			);
-			currentVersion = 0E4973111D6D2EA4007293C6 /* Kiosk2.xcdatamodel */;
-			path = Kiosk2.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0E4E0EBF1D97D3310051199F /* Kiosk 2.xcdatamodel */,
 				0EF7DAE11D59527A00F14323 /* Kiosk.xcdatamodel */,
 			);
 			currentVersion = 0EF7DAE11D59527A00F14323 /* Kiosk.xcdatamodel */;

@@ -524,7 +524,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z8T-0I-Q2v">
                                 <rect key="frame" x="91" y="148" width="52" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                 <connections>
                                     <action selector="postageValueChanged:" destination="Q54-kR-FPh" eventType="valueChanged" id="PyY-4W-lrS"/>
                                     <action selector="postageValueChanged:" destination="Q54-kR-FPh" eventType="editingChanged" id="W8M-H6-UNC"/>
@@ -541,7 +541,7 @@
                                     <constraint firstAttribute="width" constant="40" id="5cS-2a-bgq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                 <connections>
                                     <action selector="exchangeRateValueChanged:" destination="Q54-kR-FPh" eventType="editingChanged" id="Lhw-QU-eTX"/>
                                     <action selector="exchangeRateValueChanged:" destination="Q54-kR-FPh" eventType="valueChanged" id="Wz9-9K-w5H"/>
@@ -649,7 +649,7 @@
                                                         <constraint firstAttribute="width" constant="47" id="Shf-sU-ZCa"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <action selector="priceValueChanged:" destination="otn-Fn-iP0" eventType="editingChanged" id="L3r-LX-jIq"/>
                                                         <action selector="priceValueChanged:" destination="otn-Fn-iP0" eventType="valueChanged" id="dZi-cL-9dT"/>
@@ -930,7 +930,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3du-HC-Fjw">
                                 <rect key="frame" x="154" y="186" width="426" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vu0-4e-aFi">
                                 <rect key="frame" x="154" y="148" width="426" height="30"/>

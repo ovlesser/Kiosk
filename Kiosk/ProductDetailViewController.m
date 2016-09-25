@@ -36,7 +36,7 @@ extern NSString * const kProductEntityName;
         self.nameField.text = [product.name description];
         self.brandField.text = [product.brand description];
         self.priceField.text = [product.price stringValue];
-        self.volumeField.text = [product.volume stringValue];
+        self.volumeField.text = [product.volume description];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];

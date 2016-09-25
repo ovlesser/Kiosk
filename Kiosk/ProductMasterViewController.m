@@ -100,7 +100,7 @@ extern NSString * const kNameKey;
     }
     else {
         id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-        NSLog(@"%lu", (unsigned long)[sectionInfo numberOfObjects]);
+        //NSLog(@"%lu", (unsigned long)[sectionInfo numberOfObjects]);
         return [sectionInfo numberOfObjects];
     }
 }
