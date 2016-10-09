@@ -10,22 +10,22 @@
 		0E4540D31D5D926300358D07 /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540D21D5D926300358D07 /* ProductCell.m */; };
 		0E4540D81D5D97EB00358D07 /* ProductMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540D71D5D97EB00358D07 /* ProductMasterViewController.m */; };
 		0E4540DB1D5D9A0A00358D07 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4540DA1D5D9A0A00358D07 /* ProductDetailViewController.m */; };
+		0E4E0F101D97D6820051199F /* Order+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E0EFD1D97D6820051199F /* Order+CoreDataProperties.m */; };
+		0E4E0F111D97D6820051199F /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E0EFF1D97D6820051199F /* Order.m */; };
+		0E4E0F121D97D6820051199F /* Customer+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E0F011D97D6820051199F /* Customer+CoreDataProperties.m */; };
+		0E4E0F131D97D6820051199F /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E0F031D97D6820051199F /* Customer.m */; };
+		0E4E0F141D97D6820051199F /* Item+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E0F051D97D6820051199F /* Item+CoreDataProperties.m */; };
+		0E4E0F151D97D6820051199F /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E0F071D97D6820051199F /* Item.m */; };
+		0E4E0F161D97D6820051199F /* Product+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E0F091D97D6820051199F /* Product+CoreDataProperties.m */; };
+		0E4E0F171D97D6820051199F /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E0F0B1D97D6820051199F /* Product.m */; };
+		0E4E0F181D97D6820051199F /* Stock+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E0F0D1D97D6820051199F /* Stock+CoreDataProperties.m */; };
+		0E4E0F191D97D6820051199F /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E0F0F1D97D6820051199F /* Stock.m */; };
 		0E500C361D76B0A2003A1027 /* FileImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E500C311D76B0A2003A1027 /* FileImporter.m */; };
 		0E500C371D76B0A2003A1027 /* Reader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E500C331D76B0A2003A1027 /* Reader.m */; };
 		0E500C381D76B0A2003A1027 /* CustomerFileImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E500C351D76B0A2003A1027 /* CustomerFileImporter.m */; };
 		0E500C3B1D77C0BA003A1027 /* NSData+EnumerateComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E500C3A1D77C0BA003A1027 /* NSData+EnumerateComponents.m */; };
 		0E5829E01D63E0C000EC01A7 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829DF1D63E0C000EC01A7 /* ItemCell.m */; };
 		0E5829E31D63E0EF00EC01A7 /* ItemMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829E21D63E0EF00EC01A7 /* ItemMasterViewController.m */; };
-		0E5829FB1D66C1E900EC01A7 /* Stock+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829E81D66C1E900EC01A7 /* Stock+CoreDataProperties.m */; };
-		0E5829FC1D66C1E900EC01A7 /* Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829EA1D66C1E900EC01A7 /* Stock.m */; };
-		0E5829FD1D66C1E900EC01A7 /* Product+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829EC1D66C1E900EC01A7 /* Product+CoreDataProperties.m */; };
-		0E5829FE1D66C1E900EC01A7 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829EE1D66C1E900EC01A7 /* Product.m */; };
-		0E5829FF1D66C1E900EC01A7 /* Item+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829F01D66C1E900EC01A7 /* Item+CoreDataProperties.m */; };
-		0E582A001D66C1E900EC01A7 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829F21D66C1E900EC01A7 /* Item.m */; };
-		0E582A011D66C1E900EC01A7 /* Customer+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829F41D66C1E900EC01A7 /* Customer+CoreDataProperties.m */; };
-		0E582A021D66C1E900EC01A7 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829F61D66C1E900EC01A7 /* Customer.m */; };
-		0E582A031D66C1E900EC01A7 /* Order+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829F81D66C1E900EC01A7 /* Order+CoreDataProperties.m */; };
-		0E582A041D66C1E900EC01A7 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5829FA1D66C1E900EC01A7 /* Order.m */; };
 		0E7CD5E81D618D2D00728078 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CD5E71D618D2D00728078 /* MasterViewController.m */; };
 		0E7CD5EB1D6192EC00728078 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CD5EA1D6192EC00728078 /* DetailViewController.m */; };
 		0E7CD5EF1D61959D00728078 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CD5EE1D61959D00728078 /* OrderCell.m */; };
@@ -73,6 +73,26 @@
 		0E4540DA1D5D9A0A00358D07 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		0E4973301D71421D007293C6 /* Kiosk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Kiosk.entitlements; sourceTree = "<group>"; };
 		0E4E0EBF1D97D3310051199F /* Kiosk 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Kiosk 2.xcdatamodel"; sourceTree = "<group>"; };
+		0E4E0EFC1D97D6820051199F /* Order+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Order+CoreDataProperties.h"; path = "../Order+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0E4E0EFD1D97D6820051199F /* Order+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Order+CoreDataProperties.m"; path = "../Order+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0E4E0EFE1D97D6820051199F /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Order.h; path = ../Order.h; sourceTree = "<group>"; };
+		0E4E0EFF1D97D6820051199F /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Order.m; path = ../Order.m; sourceTree = "<group>"; };
+		0E4E0F001D97D6820051199F /* Customer+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Customer+CoreDataProperties.h"; path = "../Customer+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0E4E0F011D97D6820051199F /* Customer+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Customer+CoreDataProperties.m"; path = "../Customer+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0E4E0F021D97D6820051199F /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Customer.h; path = ../Customer.h; sourceTree = "<group>"; };
+		0E4E0F031D97D6820051199F /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Customer.m; path = ../Customer.m; sourceTree = "<group>"; };
+		0E4E0F041D97D6820051199F /* Item+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Item+CoreDataProperties.h"; path = "../Item+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0E4E0F051D97D6820051199F /* Item+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Item+CoreDataProperties.m"; path = "../Item+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0E4E0F061D97D6820051199F /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = ../Item.h; sourceTree = "<group>"; };
+		0E4E0F071D97D6820051199F /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = ../Item.m; sourceTree = "<group>"; };
+		0E4E0F081D97D6820051199F /* Product+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Product+CoreDataProperties.h"; path = "../Product+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0E4E0F091D97D6820051199F /* Product+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Product+CoreDataProperties.m"; path = "../Product+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0E4E0F0A1D97D6820051199F /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Product.h; path = ../Product.h; sourceTree = "<group>"; };
+		0E4E0F0B1D97D6820051199F /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Product.m; path = ../Product.m; sourceTree = "<group>"; };
+		0E4E0F0C1D97D6820051199F /* Stock+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Stock+CoreDataProperties.h"; path = "../Stock+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0E4E0F0D1D97D6820051199F /* Stock+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Stock+CoreDataProperties.m"; path = "../Stock+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0E4E0F0E1D97D6820051199F /* Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stock.h; path = ../Stock.h; sourceTree = "<group>"; };
+		0E4E0F0F1D97D6820051199F /* Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stock.m; path = ../Stock.m; sourceTree = "<group>"; };
 		0E500C301D76B0A2003A1027 /* FileImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileImporter.h; sourceTree = "<group>"; };
 		0E500C311D76B0A2003A1027 /* FileImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileImporter.m; sourceTree = "<group>"; };
 		0E500C321D76B0A2003A1027 /* Reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reader.h; sourceTree = "<group>"; };
@@ -85,26 +105,6 @@
 		0E5829DF1D63E0C000EC01A7 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 		0E5829E11D63E0EF00EC01A7 /* ItemMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemMasterViewController.h; sourceTree = "<group>"; };
 		0E5829E21D63E0EF00EC01A7 /* ItemMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemMasterViewController.m; sourceTree = "<group>"; };
-		0E5829E71D66C1E900EC01A7 /* Stock+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Stock+CoreDataProperties.h"; sourceTree = "<group>"; };
-		0E5829E81D66C1E900EC01A7 /* Stock+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Stock+CoreDataProperties.m"; sourceTree = "<group>"; };
-		0E5829E91D66C1E900EC01A7 /* Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stock.h; sourceTree = "<group>"; };
-		0E5829EA1D66C1E900EC01A7 /* Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stock.m; sourceTree = "<group>"; };
-		0E5829EB1D66C1E900EC01A7 /* Product+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Product+CoreDataProperties.h"; sourceTree = "<group>"; };
-		0E5829EC1D66C1E900EC01A7 /* Product+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Product+CoreDataProperties.m"; sourceTree = "<group>"; };
-		0E5829ED1D66C1E900EC01A7 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
-		0E5829EE1D66C1E900EC01A7 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
-		0E5829EF1D66C1E900EC01A7 /* Item+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Item+CoreDataProperties.h"; sourceTree = "<group>"; };
-		0E5829F01D66C1E900EC01A7 /* Item+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Item+CoreDataProperties.m"; sourceTree = "<group>"; };
-		0E5829F11D66C1E900EC01A7 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
-		0E5829F21D66C1E900EC01A7 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
-		0E5829F31D66C1E900EC01A7 /* Customer+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Customer+CoreDataProperties.h"; sourceTree = "<group>"; };
-		0E5829F41D66C1E900EC01A7 /* Customer+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Customer+CoreDataProperties.m"; sourceTree = "<group>"; };
-		0E5829F51D66C1E900EC01A7 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
-		0E5829F61D66C1E900EC01A7 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
-		0E5829F71D66C1E900EC01A7 /* Order+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Order+CoreDataProperties.h"; sourceTree = "<group>"; };
-		0E5829F81D66C1E900EC01A7 /* Order+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Order+CoreDataProperties.m"; sourceTree = "<group>"; };
-		0E5829F91D66C1E900EC01A7 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
-		0E5829FA1D66C1E900EC01A7 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		0E7CD5E61D618D2D00728078 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		0E7CD5E71D618D2D00728078 /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		0E7CD5E91D6192EC00728078 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -203,26 +203,26 @@
 			isa = PBXGroup;
 			children = (
 				0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */,
-				0E5829E71D66C1E900EC01A7 /* Stock+CoreDataProperties.h */,
-				0E5829E81D66C1E900EC01A7 /* Stock+CoreDataProperties.m */,
-				0E5829E91D66C1E900EC01A7 /* Stock.h */,
-				0E5829EA1D66C1E900EC01A7 /* Stock.m */,
-				0E5829EB1D66C1E900EC01A7 /* Product+CoreDataProperties.h */,
-				0E5829EC1D66C1E900EC01A7 /* Product+CoreDataProperties.m */,
-				0E5829ED1D66C1E900EC01A7 /* Product.h */,
-				0E5829EE1D66C1E900EC01A7 /* Product.m */,
-				0E5829EF1D66C1E900EC01A7 /* Item+CoreDataProperties.h */,
-				0E5829F01D66C1E900EC01A7 /* Item+CoreDataProperties.m */,
-				0E5829F11D66C1E900EC01A7 /* Item.h */,
-				0E5829F21D66C1E900EC01A7 /* Item.m */,
-				0E5829F31D66C1E900EC01A7 /* Customer+CoreDataProperties.h */,
-				0E5829F41D66C1E900EC01A7 /* Customer+CoreDataProperties.m */,
-				0E5829F51D66C1E900EC01A7 /* Customer.h */,
-				0E5829F61D66C1E900EC01A7 /* Customer.m */,
-				0E5829F71D66C1E900EC01A7 /* Order+CoreDataProperties.h */,
-				0E5829F81D66C1E900EC01A7 /* Order+CoreDataProperties.m */,
-				0E5829F91D66C1E900EC01A7 /* Order.h */,
-				0E5829FA1D66C1E900EC01A7 /* Order.m */,
+				0E4E0EFC1D97D6820051199F /* Order+CoreDataProperties.h */,
+				0E4E0EFD1D97D6820051199F /* Order+CoreDataProperties.m */,
+				0E4E0EFE1D97D6820051199F /* Order.h */,
+				0E4E0EFF1D97D6820051199F /* Order.m */,
+				0E4E0F001D97D6820051199F /* Customer+CoreDataProperties.h */,
+				0E4E0F011D97D6820051199F /* Customer+CoreDataProperties.m */,
+				0E4E0F021D97D6820051199F /* Customer.h */,
+				0E4E0F031D97D6820051199F /* Customer.m */,
+				0E4E0F041D97D6820051199F /* Item+CoreDataProperties.h */,
+				0E4E0F051D97D6820051199F /* Item+CoreDataProperties.m */,
+				0E4E0F061D97D6820051199F /* Item.h */,
+				0E4E0F071D97D6820051199F /* Item.m */,
+				0E4E0F081D97D6820051199F /* Product+CoreDataProperties.h */,
+				0E4E0F091D97D6820051199F /* Product+CoreDataProperties.m */,
+				0E4E0F0A1D97D6820051199F /* Product.h */,
+				0E4E0F0B1D97D6820051199F /* Product.m */,
+				0E4E0F0C1D97D6820051199F /* Stock+CoreDataProperties.h */,
+				0E4E0F0D1D97D6820051199F /* Stock+CoreDataProperties.m */,
+				0E4E0F0E1D97D6820051199F /* Stock.h */,
+				0E4E0F0F1D97D6820051199F /* Stock.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -553,38 +553,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E582A031D66C1E900EC01A7 /* Order+CoreDataProperties.m in Sources */,
+				0E4E0F141D97D6820051199F /* Item+CoreDataProperties.m in Sources */,
 				0E5829E01D63E0C000EC01A7 /* ItemCell.m in Sources */,
-				0E5829FE1D66C1E900EC01A7 /* Product.m in Sources */,
 				0EFB94E01D8BAE7D001312D2 /* ProgressViewController.m in Sources */,
 				0EFB94DD1D8B7831001312D2 /* SettingsController.m in Sources */,
+				0E4E0F161D97D6820051199F /* Product+CoreDataProperties.m in Sources */,
+				0E4E0F101D97D6820051199F /* Order+CoreDataProperties.m in Sources */,
+				0E4E0F191D97D6820051199F /* Stock.m in Sources */,
 				0E500C371D76B0A2003A1027 /* Reader.m in Sources */,
 				0EF7DAE81D59527A00F14323 /* CustomerDetailViewController.m in Sources */,
+				0E4E0F111D97D6820051199F /* Order.m in Sources */,
 				0E500C361D76B0A2003A1027 /* FileImporter.m in Sources */,
 				0EF7DAE51D59527A00F14323 /* CustomerMasterViewController.m in Sources */,
-				0E5829FB1D66C1E900EC01A7 /* Stock+CoreDataProperties.m in Sources */,
 				0E500C3B1D77C0BA003A1027 /* NSData+EnumerateComponents.m in Sources */,
 				0E7CD5F51D61960200728078 /* OrderDetailViewController.m in Sources */,
+				0E4E0F151D97D6820051199F /* Item.m in Sources */,
 				0E7CD5EF1D61959D00728078 /* OrderCell.m in Sources */,
-				0E582A041D66C1E900EC01A7 /* Order.m in Sources */,
-				0E582A021D66C1E900EC01A7 /* Customer.m in Sources */,
-				0E5829FD1D66C1E900EC01A7 /* Product+CoreDataProperties.m in Sources */,
-				0E5829FC1D66C1E900EC01A7 /* Stock.m in Sources */,
+				0E4E0F121D97D6820051199F /* Customer+CoreDataProperties.m in Sources */,
 				0E7CD5E81D618D2D00728078 /* MasterViewController.m in Sources */,
 				0E7CD5F21D6195E600728078 /* OrderMasterViewController.m in Sources */,
 				0E4540D81D5D97EB00358D07 /* ProductMasterViewController.m in Sources */,
 				0E4540DB1D5D9A0A00358D07 /* ProductDetailViewController.m in Sources */,
 				0E4540D31D5D926300358D07 /* ProductCell.m in Sources */,
+				0E4E0F171D97D6820051199F /* Product.m in Sources */,
 				0EF7DAE21D59527A00F14323 /* Kiosk.xcdatamodeld in Sources */,
-				0E582A011D66C1E900EC01A7 /* Customer+CoreDataProperties.m in Sources */,
-				0E5829FF1D66C1E900EC01A7 /* Item+CoreDataProperties.m in Sources */,
 				0E500C381D76B0A2003A1027 /* CustomerFileImporter.m in Sources */,
 				0E7CD5EB1D6192EC00728078 /* DetailViewController.m in Sources */,
 				0EF7DADF1D59527A00F14323 /* AppDelegate.m in Sources */,
-				0E582A001D66C1E900EC01A7 /* Item.m in Sources */,
 				0EF7DADC1D59527A00F14323 /* main.m in Sources */,
+				0E4E0F131D97D6820051199F /* Customer.m in Sources */,
 				0EF7DB181D5954F100F14323 /* CustomerCell.m in Sources */,
 				0E5829E31D63E0EF00EC01A7 /* ItemMasterViewController.m in Sources */,
+				0E4E0F181D97D6820051199F /* Stock+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -849,7 +849,7 @@
 				0E4E0EBF1D97D3310051199F /* Kiosk 2.xcdatamodel */,
 				0EF7DAE11D59527A00F14323 /* Kiosk.xcdatamodel */,
 			);
-			currentVersion = 0EF7DAE11D59527A00F14323 /* Kiosk.xcdatamodel */;
+			currentVersion = 0E4E0EBF1D97D3310051199F /* Kiosk 2.xcdatamodel */;
 			path = Kiosk.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

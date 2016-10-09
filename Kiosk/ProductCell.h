@@ -15,7 +15,7 @@
 @property (copy, nonatomic) NSString *date;
 @property (copy, nonatomic) NSString *price;
 @property (copy, nonatomic) NSString *vendor;
-@property (copy, nonatomic) NSString *volume;
+@property (copy, nonatomic) NSString *format;
 @property (copy, nonatomic) NSString *count;
 @property (copy, nonatomic) NSString *stock;
 
@@ -24,7 +24,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *priceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 @property (strong, nonatomic) IBOutlet UILabel *vendorLabel;
-@property (strong, nonatomic) IBOutlet UILabel *volumeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *formatLabel;
 @property (strong, nonatomic) IBOutlet UILabel *countLabel;
 @property (strong, nonatomic) IBOutlet UILabel *stockLabel;
 

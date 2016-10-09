@@ -81,7 +81,7 @@ extern NSString * const kOrderEntityName;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed:)];
+    saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed:)];
     self.navigationItem.rightBarButtonItem = saveButton;
     
     { // init a date picker
@@ -157,10 +157,13 @@ extern NSString * const kOrderEntityName;
         abort();
     }
     [self.masterViewController save:order];
+    self.detailItem = order;
+    saveButton.tintColor = [UIColor blackColor];
 }
 
 - (IBAction)addPressed:(id)sender {
     [self.itemViewController insertNewObject:sender];
+    saveButton.tintColor = [UIColor redColor];
 }
 
 -(void)ShowSelectedDate
@@ -237,9 +240,29 @@ extern NSString * const kOrderEntityName;
     _exchangeRate = [NSDecimalNumber decimalNumberWithString:self.exchangeRateField.text];
     [self.itemTable reloadData];
     [self updateData];
+    saveButton.tintColor = [UIColor redColor];
 }
 - (IBAction)postageValueChanged:(id)sender {
     _postage = [NSDecimalNumber decimalNumberWithString:self.postageField.text];
     [self updateData];
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)numberValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)customerValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)dateValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)productValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)priceValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)countValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
 }
 @end

@@ -12,6 +12,9 @@
 @class CustomerMasterViewController;
 
 @interface CustomerDetailViewController : DetailViewController
+{
+    UIBarButtonItem *saveButton;
+}
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *mobileField;

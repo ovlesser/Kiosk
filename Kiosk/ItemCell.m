@@ -225,7 +225,7 @@ extern NSString * const kProductEntityName;
             [detailViewController addLeftBarButton];
             [detailViewController.priceField setEnabled:NO];
             detailViewController.priceField.text = @"0";
-            [detailViewController.volumeField setEnabled:NO];
+            [detailViewController.formatField setEnabled:NO];
             [detailViewController.dateField setEnabled:NO];
             [detailViewController.vendorField setEnabled:NO];
             [detailViewController.countField setEnabled:NO];

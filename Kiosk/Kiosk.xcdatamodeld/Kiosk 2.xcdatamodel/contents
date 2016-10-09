@@ -24,11 +24,12 @@
         <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="count" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="format" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="stock" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="vendor" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="volume" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="volume" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Stock" representedClassName="Stock" syncable="YES">
         <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -38,7 +39,7 @@
         <element name="Customer" positionX="-261" positionY="18" width="128" height="118"/>
         <element name="Item" positionX="-36" positionY="216" width="128" height="90"/>
         <element name="Order" positionX="-263" positionY="216" width="128" height="135"/>
-        <element name="Product" positionX="162" positionY="216" width="128" height="165"/>
+        <element name="Product" positionX="162" positionY="216" width="128" height="180"/>
         <element name="Stock" positionX="160" positionY="18" width="128" height="73"/>
     </elements>
 </model>

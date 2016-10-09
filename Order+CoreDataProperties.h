@@ -1,9 +1,9 @@
 //
 //  Order+CoreDataProperties.h
-//  Kiosk
+//  
 //
-//  Created by ovlesser on 19/08/2016.
-//  Copyright © 2016 ovlesser. All rights reserved.
+//  Created by ovlesser on 25/09/2016.
+//
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
@@ -16,9 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Order (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSDate *date;
+@property (nullable, nonatomic, retain) NSDecimalNumber *exchangeRate;
 @property (nullable, nonatomic, retain) NSString *number;
 @property (nullable, nonatomic, retain) NSDecimalNumber *postage;
-@property (nullable, nonatomic, retain) NSDecimalNumber *exchangeRate;
 @property (nullable, nonatomic, retain) Customer *customer;
 @property (nullable, nonatomic, retain) NSSet<Item *> *item;
 

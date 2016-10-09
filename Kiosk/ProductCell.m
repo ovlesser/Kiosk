@@ -56,12 +56,12 @@
     self.priceLabel.text = _price;
 }
 
--(void)setVolume:(NSString *)volume
+-(void)setFormat:(NSString *)format
 {
-    if (![volume isEqualToString:_volume]) {
-        _volume = [volume copy];
+    if (![format isEqualToString:_format]) {
+        _format = [format copy];
     }
-    self.volumeLabel.text = _volume;
+    self.formatLabel.text = _format;
 }
 
 -(void)setDate:(NSString *)date

@@ -1,9 +1,9 @@
 //
-//  Product.h
-//  Kiosk
+//  Customer.h
+//  
 //
-//  Created by ovlesser on 19/08/2016.
-//  Copyright © 2016 ovlesser. All rights reserved.
+//  Created by ovlesser on 25/09/2016.
+//
 //
 
 #import <Foundation/Foundation.h>
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Product : NSManagedObject
+@interface Customer : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -19,4 +19,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Product+CoreDataProperties.h"
+#import "Customer+CoreDataProperties.h"

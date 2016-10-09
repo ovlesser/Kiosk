@@ -15,7 +15,9 @@
 @class Order;
 
 @interface OrderDetailViewController : DetailViewController <UIPickerViewDataSource, UIPickerViewDelegate>
-
+{
+    UIBarButtonItem *saveButton;
+}
 @property (copy, nonatomic) NSString *number;
 @property (strong, nonatomic) Customer *customer;
 @property (copy, nonatomic) NSDecimalNumber *postage;

@@ -15,12 +15,13 @@
 {
     UIDatePicker *datePicker;
     UIPickerView *countPicker;
+    UIBarButtonItem *saveButton;
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *brandField;
 @property (weak, nonatomic) IBOutlet UITextField *priceField;
-@property (weak, nonatomic) IBOutlet UITextField *volumeField;
+@property (weak, nonatomic) IBOutlet UITextField *formatField;
 @property (weak, nonatomic) IBOutlet UITextField *dateField;
 @property (weak, nonatomic) IBOutlet UITextField *vendorField;
 @property (weak, nonatomic) IBOutlet UITextField *countField;

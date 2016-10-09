@@ -36,7 +36,7 @@ extern NSString * const kProductEntityName;
         self.nameField.text = [product.name description];
         self.brandField.text = [product.brand description];
         self.priceField.text = [product.price stringValue];
-        self.volumeField.text = [product.volume description];
+        self.formatField.text = [product.format description];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -60,7 +60,7 @@ extern NSString * const kProductEntityName;
     
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed:)];
+    saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed:)];
     NSArray *items = @[saveButton];
     self.navigationItem.rightBarButtonItems = items;
     
@@ -105,9 +105,7 @@ extern NSString * const kProductEntityName;
     product.brand = self.brandField.text;
     product.price = [NSDecimalNumber decimalNumberWithString:self.priceField.text];
     
-    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-    f.numberStyle = NSNumberFormatterDecimalStyle;
-    product.volume = [f numberFromString:self.volumeField.text];
+    product.format = self.formatField.text;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -128,7 +126,9 @@ extern NSString * const kProductEntityName;
     }
     //NSLog(@"%@", product);
     [self.masterViewController save:product];
+    self.detailItem = product;
     [self dismissViewControllerAnimated:YES completion:nil];
+    saveButton.tintColor = [UIColor blackColor];
 }
 
 - (IBAction)cancelPressed:(id)sender {
@@ -177,5 +177,24 @@ extern NSString * const kProductEntityName;
     NSDecimalNumber *currentStock = self.detailItem && product.stock? product.stock : [NSDecimalNumber decimalNumberWithString:@"0"];
     NSDecimalNumber *newStock = [[currentStock decimalNumberByAdding:newCount] decimalNumberBySubtracting:currentCount];
     self.stockField.text = [newStock stringValue];
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)nameValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)brandValueCHanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)priceValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)formatValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)dateValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)vendorValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
 }
 @end

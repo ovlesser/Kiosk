@@ -150,7 +150,7 @@ extern NSString * const kNameKey;
     cell.name = [object valueForKey:kName1Key];
     cell.brand = [object valueForKey:kBrandKey];
     cell.price = [NSString stringWithFormat:@"%@", [object valueForKey:kPriceKey]];
-    cell.volume = [[object valueForKey:kVolumeKey] stringValue];
+    cell.format = [[object valueForKey:kVolumeKey] stringValue];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -168,11 +168,17 @@ extern NSString * const kNameKey;
     if (product.stock.integerValue < 0) {
         cell.nameLabel.textColor = [UIColor redColor];
     }
+    else if (product.stock.integerValue == 0) {
+        cell.nameLabel.textColor = [UIColor lightGrayColor];
+    }
+    else {
+        cell.nameLabel.textColor = [UIColor blackColor];
+    }
     cell.name = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@ %@",
                  product.name,
                  product.brand,
                  [product.price stringValue],
-                 [product.volume stringValue],
+                 product.format,
                  [product.count stringValue],
                  [product.stock stringValue],
                  [dateFormatter stringFromDate:product.date],

@@ -48,7 +48,7 @@ extern NSString * const kCustomerEntityName;
 
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed:)];
+    saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed:)];
     self.navigationItem.rightBarButtonItem = saveButton;
 }
 
@@ -80,6 +80,23 @@ extern NSString * const kCustomerEntityName;
         abort();
     }
     [self.masterViewController save:customer];
+    self.detailItem = customer;
+    saveButton.tintColor = [UIColor blackColor];
 }
 
+- (IBAction)nameValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)mobileValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)identificationValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)addressValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
+- (IBAction)nicknameValueChanged:(id)sender {
+    saveButton.tintColor = [UIColor redColor];
+}
 @end

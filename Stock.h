@@ -1,13 +1,15 @@
 //
 //  Stock.h
-//  Kiosk
+//  
 //
-//  Created by ovlesser on 19/08/2016.
-//  Copyright © 2016 ovlesser. All rights reserved.
+//  Created by ovlesser on 25/09/2016.
+//
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+
+@class Product;
 
 NS_ASSUME_NONNULL_BEGIN
 
