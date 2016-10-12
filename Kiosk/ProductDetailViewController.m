@@ -173,8 +173,10 @@ extern NSString * const kProductEntityName;
 - (IBAction)countValueChange:(id)sender {
     Product *product = self.detailItem;
     NSDecimalNumber *newCount = [NSDecimalNumber decimalNumberWithString:self.countField.text];
-    NSDecimalNumber *currentCount = self.detailItem && product.count? product.count : [NSDecimalNumber decimalNumberWithString:@"0"];
-    NSDecimalNumber *currentStock = self.detailItem && product.stock? product.stock : [NSDecimalNumber decimalNumberWithString:@"0"];
+    NSDecimalNumber *currentCount = self.detailItem && product.count
+    && ![product.count isEqualToNumber:[NSDecimalNumber notANumber]]? product.count : [NSDecimalNumber decimalNumberWithString:@"0"];
+    NSDecimalNumber *currentStock = self.detailItem && product.stock
+    && ![product.stock isEqualToNumber:[NSDecimalNumber notANumber]]? product.stock : [NSDecimalNumber decimalNumberWithString:@"0"];
     NSDecimalNumber *newStock = [[currentStock decimalNumberByAdding:newCount] decimalNumberBySubtracting:currentCount];
     self.stockField.text = [newStock stringValue];
     saveButton.tintColor = [UIColor redColor];

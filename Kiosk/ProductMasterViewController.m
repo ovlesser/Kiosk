@@ -14,7 +14,7 @@
 
 NSString *productCellIdentifier = @"productCell";
 NSString * const kProductEntityName = @"Product";
-extern NSString * const kNameKey;
+extern NSString * const kDateKey;
 
 @implementation ProductMasterViewController
 
@@ -203,7 +203,7 @@ extern NSString * const kNameKey;
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kNameKey ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kDateKey ascending:NO];
     
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
@@ -299,11 +299,11 @@ extern NSString * const kNameKey;
         [fetchRequest setFetchBatchSize:20];
         
         // Edit the sort key as appropriate.
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kNameKey ascending:NO];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kDateKey ascending:NO];
         
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
-        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(name contains[cd] %@)", searchString];
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(name contains[cd] %@) OR (brand contains[cd] %@)", searchString, searchString];
         [fetchRequest setPredicate:predicate];
         
         // Edit the section name key path and cache name if appropriate.

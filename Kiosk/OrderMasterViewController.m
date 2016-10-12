@@ -271,7 +271,7 @@ NSString * const kDateKey = @"date";
         
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
-        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(number contains[cd] %@)", searchString];
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(number contains[cd] %@) OR ANY customer.name contains[cd] %@", searchString, searchString];
         [fetchRequest setPredicate:predicate];
         
         // Edit the section name key path and cache name if appropriate.
