@@ -18,6 +18,7 @@
 
 extern NSString * const kCustomerEntityName;
 extern NSString * const kOrderEntityName;
+extern NSString * const kNameKey;
 
 @interface OrderDetailViewController ()
 
@@ -124,7 +125,25 @@ extern NSString * const kOrderEntityName;
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
         NSManagedObjectContext *context = [delegate managedObjectContext];
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kCustomerEntityName];
+        // Edit the sort key as appropriate.
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kNameKey ascending:YES];
+        
+        [request setSortDescriptors:@[sortDescriptor]];
+        
         self.customers = [context executeFetchRequest:request error:nil];
+#if 0 //sorting is too slow
+        self.customers = [self.customers sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            NSMutableString *str1 = [NSMutableString stringWithString:((Customer*)obj1).name];
+            CFStringTransform((CFMutableStringRef)str1, NULL, kCFStringTransformToLatin, false);
+            CFStringTransform((CFMutableStringRef)str1, NULL, kCFStringTransformStripDiacritics, false);
+            str1 = (NSMutableString *)[str1 stringByReplacingOccurrencesOfString:@" " withString:@""];
+            NSMutableString *str2 = [NSMutableString stringWithString:((Customer*)obj2).name];
+            CFStringTransform((CFMutableStringRef)str2, NULL, kCFStringTransformToLatin, false);
+            CFStringTransform((CFMutableStringRef)str2, NULL, kCFStringTransformStripDiacritics, false);
+            str2 = (NSMutableString *)[str2 stringByReplacingOccurrencesOfString:@" " withString:@""];
+            return [str1 compare:str2];
+        }];
+#endif
 //        NSLog(@"%@", self.customers);
     }
     [self configureView];

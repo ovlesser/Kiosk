@@ -262,8 +262,11 @@
     UIAlertAction *uploadFile = [UIAlertAction actionWithTitle:@"Upload Database File" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         [self uploadDatabase];
     }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+    
     
     [folderActions addAction:uploadFile];
+    [folderActions addAction:cancel];
     [folderActions popoverPresentationController].barButtonItem = actionButton;
     [self presentViewController:folderActions animated:YES completion:nil];
 }

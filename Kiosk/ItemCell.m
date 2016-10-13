@@ -15,6 +15,7 @@
 #import "ProductDetailViewController.h"
 
 extern NSString * const kProductEntityName;
+extern NSString * const kDateKey;
 
 @interface ItemCell ()
 
@@ -69,6 +70,11 @@ extern NSString * const kProductEntityName;
     NSManagedObjectContext *context = [delegate managedObjectContext];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kProductEntityName];
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kDateKey ascending:NO];
+    
+    [request setSortDescriptors:@[sortDescriptor]];
+    
     self.products = [context executeFetchRequest:request error:nil];
     
     self.productList = [[NSMutableArray alloc] init];

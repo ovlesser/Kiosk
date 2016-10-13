@@ -10,10 +10,6 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import <OneDriveSDK/OneDriveSDK.h>
-//#import "CustomerDetailViewController.h"
-//#import "CustomerMasterViewController.h"
-//#import "ProductDetailViewController.h"
-//#import "ProductMasterViewController.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -24,6 +20,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 //    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+    [NSFetchedResultsController deleteCacheWithName:@"Customer"];
+    [NSFetchedResultsController deleteCacheWithName:@"Product"];
+    [NSFetchedResultsController deleteCacheWithName:@"Order"];
     UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
     for (UISplitViewController *splitViewController in tabBarController.viewControllers) {
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
