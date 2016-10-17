@@ -181,6 +181,7 @@ NSString * const kNameKey = @"name";
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    self.managedObjectContext = [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:kCustomerEntityName inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];

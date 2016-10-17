@@ -29,9 +29,9 @@
         navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
         splitViewController.delegate = self;
         
-        UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
-        MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
-        controller.managedObjectContext = self.managedObjectContext;
+        //UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
+        //MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
+        //controller.managedObjectContext = self.managedObjectContext;
     }
     [ODClient setMicrosoftAccountAppId:@"7d0e070b-52ac-4597-aae2-ff2aff55a4b9" scopes:@[@"onedrive.readwrite"] ];
     return YES;

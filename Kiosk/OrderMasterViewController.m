@@ -163,6 +163,7 @@ NSString * const kDateKey = @"date";
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    self.managedObjectContext = [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:kOrderEntityName inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];

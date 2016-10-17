@@ -195,6 +195,7 @@ extern NSString * const kDateKey;
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    self.managedObjectContext = [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:kProductEntityName inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
