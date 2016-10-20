@@ -11,20 +11,31 @@
 #import "ProductCell.h"
 #import "AppDelegate.h"
 #import "Product.h"
+#import "SettingsViewController.h"
 
 NSString *productCellIdentifier = @"productCell";
 NSString * const kProductEntityName = @"Product";
 extern NSString * const kDateKey;
 
 @implementation ProductMasterViewController
+{
+    
+    BOOL isDisplaySoldOutProduct;
+    NSString *sortString;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    isDisplaySoldOutProduct = YES;
+    sortString = kDateKey;
+    
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    UIBarButtonItem *settingButton = [[UIBarButtonItem alloc] initWithTitle:@"setting" style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonPressed)];;
+    
+    self.navigationItem.rightBarButtonItems = @[addButton, settingButton];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
@@ -49,6 +60,28 @@ extern NSString * const kDateKey;
 
     [self.detailViewController setDetailItem:nil];
     [self.navigationController pushViewController:navigationController animated:YES];
+}
+
+- (void)settingsButtonPressed
+{
+    
+    SettingsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"settingsViewController"];
+    controller.onCompletion = ^{
+        isDisplaySoldOutProduct = controller.displaySoldOutProducts.isOn;
+        sortString = controller.sortTextField.text;
+        self.fetchedResultsController = nil;
+        [self.tableView reloadData];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    };
+    controller.modalPresentationStyle = UIModalPresentationPopover;
+    [self presentViewController:controller animated:YES completion:^{
+        [controller.displaySoldOutProducts setOn:isDisplaySoldOutProduct];
+        [controller.sortTextField setText:sortString];
+    }];
+    UIPopoverPresentationController *popController = [controller popoverPresentationController];
+    popController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    popController.barButtonItem = self.navigationItem.rightBarButtonItems[1];
+//    popController.delegate = self;
 }
 
 - (void)save:(id)sender {
@@ -205,12 +238,22 @@ extern NSString * const kDateKey;
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kDateKey ascending:NO];
+    if ([sortString isEqualToString:@"best selling"]) {
+    }
+    else {
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortString ascending:NO];
+    }
     
+    if (!isDisplaySoldOutProduct) {
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(stock > 0)"];
+        [fetchRequest setPredicate:predicate];
+    }
+
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Product"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     super.fetchedResultsController = aFetchedResultsController;
     

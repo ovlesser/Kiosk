@@ -389,6 +389,89 @@
             </objects>
             <point key="canvasLocation" x="722" y="844"/>
         </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="C48-TL-bMS">
+            <objects>
+                <viewController storyboardIdentifier="settingsViewController" id="oO8-AS-jk4" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kU8-d1-LCj"/>
+                        <viewControllerLayoutGuide type="bottom" id="K0n-UG-ZME"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tmr-3i-2ZU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="sorting..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UGJ-2b-MpB">
+                                <rect key="frame" x="89" y="88" width="183" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wqy-Vf-dEp">
+                                <rect key="frame" x="223" y="126" width="51" height="31"/>
+                                <connections>
+                                    <action selector="displaySoldOutProductsValueChanged:" destination="oO8-AS-jk4" eventType="valueChanged" id="EJg-jc-J7F"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display sold out products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9O-1r-4sm">
+                                <rect key="frame" x="20" y="131" width="195" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y9d-Ym-N4G">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <items>
+                                    <navigationItem id="iik-yg-h5b">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="3zR-bf-CDL">
+                                            <connections>
+                                                <action selector="cancelPressed:" destination="oO8-AS-jk4" id="Lz9-13-QgL"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="4um-yP-mlP">
+                                            <connections>
+                                                <action selector="donePressed:" destination="oO8-AS-jk4" id="cHj-PD-SyV"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZaF-7o-tca">
+                                <rect key="frame" x="20" y="92" width="61" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UGJ-2b-MpB" firstAttribute="top" secondItem="Y9d-Ym-N4G" secondAttribute="bottom" constant="16" id="0ZY-dV-VZS"/>
+                            <constraint firstItem="Y9d-Ym-N4G" firstAttribute="leading" secondItem="Tmr-3i-2ZU" secondAttribute="leadingMargin" constant="-20" id="BMm-Ay-ql6"/>
+                            <constraint firstItem="ZaF-7o-tca" firstAttribute="leading" secondItem="Tmr-3i-2ZU" secondAttribute="leadingMargin" id="DJi-eN-4Rp"/>
+                            <constraint firstItem="s9O-1r-4sm" firstAttribute="top" secondItem="ZaF-7o-tca" secondAttribute="bottom" constant="18" id="DWk-ei-Ldf"/>
+                            <constraint firstItem="UGJ-2b-MpB" firstAttribute="leading" secondItem="ZaF-7o-tca" secondAttribute="trailing" constant="8" id="EfN-ay-D0u"/>
+                            <constraint firstItem="s9O-1r-4sm" firstAttribute="top" secondItem="UGJ-2b-MpB" secondAttribute="bottom" constant="13" id="RA9-E4-ud8"/>
+                            <constraint firstItem="s9O-1r-4sm" firstAttribute="leading" secondItem="ZaF-7o-tca" secondAttribute="leading" id="W92-Ru-ku5"/>
+                            <constraint firstItem="Y9d-Ym-N4G" firstAttribute="top" secondItem="kU8-d1-LCj" secondAttribute="bottom" constant="8" id="XcL-sB-knP"/>
+                            <constraint firstItem="wqy-Vf-dEp" firstAttribute="leading" secondItem="s9O-1r-4sm" secondAttribute="trailing" constant="8" id="aj9-FG-oMl"/>
+                            <constraint firstItem="wqy-Vf-dEp" firstAttribute="trailing" secondItem="UGJ-2b-MpB" secondAttribute="trailing" id="boA-lH-2VJ"/>
+                            <constraint firstItem="UGJ-2b-MpB" firstAttribute="top" secondItem="Y9d-Ym-N4G" secondAttribute="bottom" constant="16" id="ksw-sI-rDA"/>
+                            <constraint firstItem="wqy-Vf-dEp" firstAttribute="top" secondItem="UGJ-2b-MpB" secondAttribute="bottom" constant="8" id="l8D-Kk-TAs"/>
+                            <constraint firstItem="wqy-Vf-dEp" firstAttribute="leading" secondItem="s9O-1r-4sm" secondAttribute="trailing" constant="8" id="m8A-Vf-HQS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Y9d-Ym-N4G" secondAttribute="trailing" constant="-20" id="ox7-At-HwA"/>
+                            <constraint firstItem="wqy-Vf-dEp" firstAttribute="top" secondItem="UGJ-2b-MpB" secondAttribute="bottom" constant="8" id="uUB-PS-iqQ"/>
+                            <constraint firstItem="ZaF-7o-tca" firstAttribute="top" secondItem="Y9d-Ym-N4G" secondAttribute="bottom" constant="20" id="ueT-ue-TM1"/>
+                            <constraint firstItem="s9O-1r-4sm" firstAttribute="leading" secondItem="Tmr-3i-2ZU" secondAttribute="leadingMargin" id="ykC-AJ-a1B"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="displaySoldOutProducts" destination="wqy-Vf-dEp" id="lki-5C-U1p"/>
+                        <outlet property="sortTextField" destination="UGJ-2b-MpB" id="4YK-EB-ePK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8BT-vp-4cL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1361" y="1239"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="48J-pF-E5p">
             <objects>

@@ -31,6 +31,7 @@
 		0E7CD5EF1D61959D00728078 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CD5EE1D61959D00728078 /* OrderCell.m */; };
 		0E7CD5F21D6195E600728078 /* OrderMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CD5F11D6195E600728078 /* OrderMasterViewController.m */; };
 		0E7CD5F51D61960200728078 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CD5F41D61960200728078 /* OrderDetailViewController.m */; };
+		0EE3523B1DB493DA0085DA0E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3523A1DB493DA0085DA0E /* SettingsViewController.m */; };
 		0EF7DADC1D59527A00F14323 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DADB1D59527A00F14323 /* main.m */; };
 		0EF7DADF1D59527A00F14323 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DADE1D59527A00F14323 /* AppDelegate.m */; };
 		0EF7DAE21D59527A00F14323 /* Kiosk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7DAE01D59527A00F14323 /* Kiosk.xcdatamodeld */; };
@@ -115,6 +116,8 @@
 		0E7CD5F11D6195E600728078 /* OrderMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderMasterViewController.m; sourceTree = "<group>"; };
 		0E7CD5F31D61960200728078 /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
 		0E7CD5F41D61960200728078 /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
+		0EE352391DB493DA0085DA0E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		0EE3523A1DB493DA0085DA0E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		0EF7DAD71D59527A00F14323 /* Kiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF7DADB1D59527A00F14323 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0EF7DADD1D59527A00F14323 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -302,6 +305,8 @@
 				0E7CD5E71D618D2D00728078 /* MasterViewController.m */,
 				0E7CD5E91D6192EC00728078 /* DetailViewController.h */,
 				0E7CD5EA1D6192EC00728078 /* DetailViewController.m */,
+				0EE352391DB493DA0085DA0E /* SettingsViewController.h */,
+				0EE3523A1DB493DA0085DA0E /* SettingsViewController.m */,
 				0EF7DAE91D59527A00F14323 /* Main.storyboard */,
 				0EF7DAEC1D59527A00F14323 /* Assets.xcassets */,
 				0EF7DAEE1D59527A00F14323 /* LaunchScreen.storyboard */,
@@ -583,6 +588,7 @@
 				0EF7DADC1D59527A00F14323 /* main.m in Sources */,
 				0E4E0F131D97D6820051199F /* Customer.m in Sources */,
 				0EF7DB181D5954F100F14323 /* CustomerCell.m in Sources */,
+				0EE3523B1DB493DA0085DA0E /* SettingsViewController.m in Sources */,
 				0E5829E31D63E0EF00EC01A7 /* ItemMasterViewController.m in Sources */,
 				0E4E0F181D97D6820051199F /* Stock+CoreDataProperties.m in Sources */,
 			);
